@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-PT">
+	<head>
+		<!-- Definir  -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="cSS.css" rel="stylesheet" type="text/css">
+		<link href="css/product.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="https://use.typekit.net/uhg8sos.css">
+		<link rel="stylesheet" href="https://use.typekit.net/yiz2qnq.css">
+		<title>Clover Prints - products</title>
+		<link rel="icon" href="SGVs/M.svg" type="image/x-icon" />
+	</head>
+		<body>
+			<header id="header-placeholder"></header>
+	<div class="sidebutton">
+		<a class="sidebutton-left" onclick="navigate(-1)">
+			<img class="smaller-icon" src="SGVs/arrowblackleft.svg" alt="Calendar Icon">
+		</a>
+		<a class="sidebutton-right" onclick="navigate(1)">
+			<img class="smaller-icon" src="SGVs/arrowblackright.svg" alt="Calendar Icon">
+		</a>
+	</div>
+
+    <!-- Back Button -->
+    <a href="Hello.html" class="back-button">
+      <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="m15 18-6-6 6-6"/>
+      </svg>
+      Back to Collection
+    </a>
+
+	<div class="product-page">
+    <div class="product-main">
+      <!-- Left Column - Images -->
+      <div class="product-images">
+        <div class="main-image-container">
+          <img alt="Imagem da Ilustração" class="ProfileImageProduct" id="mainImage">
+        </div>
+        
+        <div class="thumbnail-grid">
+          <button class="thumbnail active" >
+            <img alt="Imagem da Ilustração1" class="ImagemainProduct" onclick="changeImage(this)" id="mainImage">
+          </button>
+          <button class="thumbnail">
+            <img alt="Imagem da Ilustração2" class="Image2Product" onclick="changeImage(this)" id="image2">
+          </button>
+          <button class="thumbnail">
+            <img alt="Imagem da Ilustração3" class="Image3Product" onclick="changeImage(this)" id="image3">
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Column - Product Details -->
+      <div class="product-details">
+        <h1 id="name" class="Semi-Bold"></h1>
+					<p id="product-Materials" class="Light">
+
+					</p>
+					<p id="product-Text"class="Extra-Light">
+
+					</p>
+				<button  class="snipcart-add-item cta-primary"
+					data-item-id="wanderer-vessel-tshirt"
+  					data-item-price="30.00"
+  					data-item-url="/"
+					data-item-name="Wanderer Vessel"
+  					data-item-description="T-shirt Design"
+					data-item-custom1-name="Tamanho"
+					data-item-custom1-options="XS|S|M|L|XL|XXL">
+          Comprar Agora
+				</button>
+        </div>
+      </div>
+      
+    </div>
+
+<div id="footer-placeholder"></div>
+<script src="product.js"></script>
+  <script>
+    window.SnipcartSettings = {
+        publicApiKey: 'OTgyZTdlMzItNzNhZC00YjM1LTkxMzItZWY0ZmYzODU5NTQ5NjM4OTQ4NjU1ODg4NTQxNzg3',
+        loadStrategy: 'on-user-interaction',
+    };
+
+    (()=>{var c,d;(d=(c=window.SnipcartSettings).version)!=null||(c.version="3.0");var s,S;(S=(s=window.SnipcartSettings).timeoutDuration)!=null||(s.timeoutDuration=2750);var l,p;(p=(l=window.SnipcartSettings).domain)!=null||(l.domain="cdn.snipcart.com");var w,u;(u=(w=window.SnipcartSettings).protocol)!=null||(w.protocol="https");var f=window.SnipcartSettings.version.includes("v3.0.0-ci")||window.SnipcartSettings.version!="3.0"&&window.SnipcartSettings.version.localeCompare("3.4.0",void 0,{numeric:!0,sensitivity:"base"})===-1,m=["focus","mouseover","touchmove","scroll","keydown"];window.LoadSnipcart=o;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",r):r();function r(){window.SnipcartSettings.loadStrategy?window.SnipcartSettings.loadStrategy==="on-user-interaction"&&(m.forEach(t=>document.addEventListener(t,o)),setTimeout(o,window.SnipcartSettings.timeoutDuration)):o()}var a=!1;function o(){if(a)return;a=!0;let t=document.getElementsByTagName("head")[0],e=document.querySelector("#snipcart"),i=document.querySelector(`src[src^="${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}"][src$="snipcart.js"]`),n=document.querySelector(`link[href^="${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}"][href$="snipcart.css"]`);e||(e=document.createElement("div"),e.id="snipcart",e.setAttribute("hidden","true"),document.body.appendChild(e)),v(e),i||(i=document.createElement("script"),i.src=`${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}/themes/v${window.SnipcartSettings.version}/default/snipcart.js`,i.async=!0,t.appendChild(i)),n||(n=document.createElement("link"),n.rel="stylesheet",n.type="text/css",n.href=`${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}/themes/v${window.SnipcartSettings.version}/default/snipcart.css`,t.prepend(n)),m.forEach(g=>document.removeEventListener(g,o))}function v(t){!f||(t.dataset.apiKey=window.SnipcartSettings.publicApiKey,window.SnipcartSettings.addProductBehavior&&(t.dataset.configAddProductBehavior=window.SnipcartSettings.addProductBehavior),window.SnipcartSettings.modalStyle&&(t.dataset.configModalStyle=window.SnipcartSettings.modalStyle),window.SnipcartSettings.currency&&(t.dataset.currency=window.SnipcartSettings.currency),window.SnipcartSettings.templatesUrl&&(t.dataset.templatesUrl=window.SnipcartSettings.templatesUrl))}})();
+</script>
+	</body>
+</html>
+

@@ -1,0 +1,356 @@
+@charset "UTF-8";
+
+.icon {
+	padding: 12px 0px 0px 0px;
+	display: flex;
+	width: 30px;
+	height: 30px;
+	top: 0;
+	display: none;
+	background-color: transparent;
+	z-index: 1;
+	float: left;
+}
+
+.span {
+	background: #009688;
+	height: 100%;
+	width: 0%;
+	border-radius: 1px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	/* "send to back" */
+	z-index: -1;
+	transition: 0.4s;
+}
+
+.button:hover span {
+	width: 100%;
+}
+
+.button:hover {
+	transition: 0.6s;
+	border: 2px solid #fff;
+}
+
+.span2 {
+	background: #009688;
+	height: 100%;
+	width: 100%;
+	border-radius: 25px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	/* "send to back" */
+	z-index: -1;
+	transition: 0.5s;
+}
+
+
+
+.small {
+	flex: 0;
+}
+
+.checkbox {
+	margin-right: 4px;
+	width: 12px;
+	height: 12px;
+	border: 1px solid var(--);
+	background: transparent;
+}
+
+.checkbox-label a {
+	color: var(--primary-color);
+}
+
+
+
+/*FOOTER*/
+footer {
+	background-color: var(--secoundary-color);
+	padding-top: 32px;
+	padding-bottom: 32px;
+}
+
+.rower {
+	display: flex;
+}
+
+
+.footer-container {
+    max-width: 1920px;
+    min-width: 800px;
+    margin-bottom: 18px;
+    margin-top: 48px;
+    display: flex; /* Ensure flexbox is used */
+    align-items: center; /* Center items vertically */
+    justify-content: center;
+	flex-wrap: wrap;
+}
+
+
+
+
+
+.logo-footer {
+	width: 200px;
+	margin-bottom: 6px;
+}
+
+
+
+
+.c1,
+.c2,
+.c3,
+.c4 {
+	max-width: 400px;
+	min-width: 170px;
+	float: none;
+	margin-right: 58px;
+	margin-bottom: 24px;
+}
+
+
+
+
+
+p.registo,
+p.link {
+	color: var(--sixth-color);
+	font-size: 16px;
+	letter-spacing: .5px;
+	line-height: 1.8em;
+	margin-bottom: 16px;
+	margin-top: 2px;
+}
+
+
+h3.titles {
+	color: var(--fo);
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 1.1em;
+	margin-bottom: 24px;
+}
+
+a {
+	background-color: transparent;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 1.2em;
+	text-decoration: none;
+}
+
+a:active {
+	outline: 0;
+}
+
+a:hover {
+	outline: 0;
+}
+
+
+
+
+/* good to know */
+span.link {
+	color: var(--fo);
+	font-weight: 200;
+}
+
+/* hover */
+span.link:hover {
+	font-weight: 300;
+}
+
+a.footer-icons {
+	background-color: transparent;
+	color: var(--sixth-color);
+	display: inline-block;
+	font-size: 16px;
+	margin: 12px 8px 12px 0px;
+	font-weight: 400;
+	line-height: 1.2em;
+	max-width: 100%;
+	opacity: .8;
+	text-decoration: none;
+}
+
+a.footer-icons:hover {
+	opacity: 2;
+	outline: 0;
+}
+
+.toggle-checkbox {
+	display: none;
+}
+
+
+
+@media(max-width: 1400px) {
+
+	.toggle-checkbox {
+		display: none;
+	}
+
+
+
+	footer {}
+
+
+	.footer-container {
+		flex-direction: column;
+        align-items: center;
+		min-width: 200px;
+	}
+
+.c1,
+.c2,
+.c3,
+.c4 {
+	margin-right: 0; /* Remove right margin for stacked elements */
+    margin-bottom: 24px;
+	padding: 0 24px;
+}
+
+}
+
+
+
+@media(max-width: 700px) {
+
+
+h1 {
+	text-align: middle;
+	font-size: 56px;
+}
+
+p1 {
+	font-size: 16px;
+}
+
+.footer-container{
+	justify-content: center;
+}
+
+footer {
+	background-color: var(--secoundary-color);
+	padding-top: 32px;
+	padding-bottom: 32px;
+}
+
+.rower {
+	display: block;
+}
+
+.container {
+	padding-left: 16px;
+	padding-right: 16px;
+	margin-top: 24px;
+}
+
+.logo-footer {
+	width: 200px;
+	margin-bottom: 24px;
+}
+
+.c1,
+.c2,
+.c3,
+.c4 {
+	width: 100%;
+	float: none;
+	margin-bottom: 24px;
+	text-align: center;
+	padding: 0;
+}
+
+p.registo,
+p.link {
+	color: var(--sixth-color);
+	text-align: center;
+	font-size: 16px;
+	letter-spacing: .5px;
+	line-height: 1.8em;
+	margin-bottom: 16px;
+	margin-top: 2px;
+}
+
+h3.titles {
+	color: white;
+	text-align: center;
+	font-size: 20px;
+	font-weight: 900;
+	line-height: 1.1em;
+	margin-top: 24px;
+}
+
+a {
+	background-color: transparent;
+	font-size: 17px;
+	font-weight: 400;
+	line-height: 1.2em;
+	text-decoration: none;
+}
+
+a:active {
+	outline: 0;
+}
+
+a:hover {
+	outline: 0;
+}
+
+/* good to know */
+span.link {
+	color: var(--sixth-color);
+	font-weight: 300;
+}
+
+/* hover */
+span.link:hover {
+	color: white;
+	font-weight: 600;
+}
+
+a.footer-icons {
+	color: white;
+	background-color: transparent;
+	color: var(--sixth-color);
+	display: block;
+	font-size: 17px;
+	margin: 0 auto;
+	font-weight: 400;
+	line-height: 1.2em;
+	max-width: 100%;
+	opacity: .8;
+	text-decoration: none;
+	text-align: center;
+	margin-bottom: 8px;
+}
+
+a.footer-icons:hover {
+	opacity: 2;
+	outline: 0;
+}
+
+
+
+.icons-footer {
+	display: flex;
+	align-items: center;
+	padding: 12px 0px 0px 0px;
+}
+
+.footer-icons {
+	margin: 0 auto;
+	display: block;
+	text-align: center;
+	margin-bottom: 8px;
+	/* Add spacing between icons */
+}
+
+}

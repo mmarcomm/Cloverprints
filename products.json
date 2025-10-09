@@ -1,0 +1,45 @@
+{
+
+    "wanderer-vessel-tshirt": {
+  "id": "wanderer-vessel-tshirt",
+  "name": "Wanderer Vessel",
+  "price": "25.00",
+  "description": "Great quality T-shirt made to last",
+  "category": "T-shirt",
+  "url": "/Product.html?id=wanderer-vessel-tshirt",
+  "images": {
+            "mainImage": "Website_Imgs/12.png",
+            "mainImage2": "Website_Imgs/12.png",
+            "image2": "Website_Imgs/12.png",
+            "image3": "Website_Imgs/12.png"
+      }
+},
+        "urban-explorer-tshirt": {
+      "id": "urban-explorer-tshirt",
+      "name": "Urban Explorer",
+      "price": "25.00",
+      "description": "Great quality T-shirt made to last",
+      "category": "T-shirt",
+      "url": "/Product.html?id=urban-explorer-tshirt",
+      "images": {
+            "mainImage": "Website_Imgs/12.png",
+            "mainImage2": "Website_Imgs/12.png",
+            "image2": "Website_Imgs/12.png",
+            "image3": "Website_Imgs/12.png"
+      }
+    },
+        "minimal-essence": {
+      "id": "minimal-essence",
+      "name": "Minimal Essence",
+      "price": "25.00",
+      "description": "Great quality T-shirt made to last",
+      "category": "T-shirt",
+      "url": "/Product.html?id=minimal-essence",
+      "images": {
+            "mainImage": "Website_Imgs/12.png",
+            "mainImage2": "Website_Imgs/12.png",
+            "image2": "Website_Imgs/12.png",
+            "image3": "Website_Imgs/12.png"
+      }
+      }
+  }

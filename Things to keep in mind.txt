@@ -1,0 +1,7 @@
+body {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #000;
+            background-color: #f9fafb;
+            min-height: 100vh;
+        }

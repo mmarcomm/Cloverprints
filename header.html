@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <link href="css/header.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<header>
+  <div class="navbar">
+    <div class="logo-container">
+      <a href="Index.html">
+        <img src="SGVs/logo1.svg" alt="Studio313 logo" class="logo" />
+      </a>
+    </div>
+    <div class="menu__toggle">
+    <!-- Make these three SIBLINGS in this exact order -->
+    <input type="checkbox" class="toggle-checkbox" id="menu-toggle-checkbox" />
+
+    <label for="menu-toggle-checkbox"
+           class="menu-button"
+           id="menu-button"
+           aria-label="Open menu"
+           aria-controls="menu-panel"
+           aria-expanded="false">
+      <img src="SGVs/menu.svg" alt="" class="hamburger-icon" aria-hidden="true" />
+    </label>
+
+    <nav class="menu__links" id="menu-panel" role="navigation">
+      <ul id="navgatorList">
+        <li><a href="Index.html" class="activemenu">Produtos</a></li>
+        <li><a href="Exposições.html">Projetos</a></li>
+        <li><a href="Sobre.html">Sobre</a></li>
+        <li><a href="Conectar.html">Conectar</a></li>
+      </ul>
+    </nav>
+    </div>
+  </div>
+</header>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+	<head>
+		<meta charset="utf-8">
+		<link href="css/form.css" rel="stylesheet" type="text/css">
+	</head>
+    <div class="rowProduct">
+            <div class="Buttonmiddle">
+            <a href="https://www.instagram.com/marco_martin.work/" class="hero-btn">
+                Interessado
+            </a>
+            </div>
+            <div class="form-container">
+                <form action="https://formspree.io/f/mgvozgge" method="post" enctype="multipart/form-data">
+                    <div class="form-group-left">
+                        <label for="nome" class="form-text">Nome</label>
+                        <input class="form-input" type="text" id="nome" name="nome" maxlength="65" placeholder="nome" required aria-required="true">
+                    </div>
+                    <!-- Phone Input (Optional)-->
+                    <div class="form-group-right">
+                        <label for="telefone" class="form-text">Telemóvel</label>
+                        <input type="text" id="telefone" name="telefone" class="form-input" maxlength="65" placeholder="telemóvel (opcional)">
+                    </div>
+                    
+                    <!-- Email Input -->
+                    <div class="form-group-left">
+                        <label for="email" class="form-text">Email</label>
+                        <input type="text" id="email" name="email" class="form-input" maxlength="65" placeholder="email" required>
+                    </div>
+            
+                    <!-- Subject Input-->
+                    <div class="form-group-right">
+                        <label for="assunto" class="form-text">Assunto</label>
+                        <input type="text" id="assunto" name="assunto" class="form-input" maxlength="65" placeholder="título da mensagem" required>
+                    </div>
+            
+                    <!-- Message -->
+                    <div class="form-group">
+                        <label for="opiniao" class="form-text">Mensagem</label>
+                        <textarea id="opiniao" name="opiniao" class="form-textbox" placeholder="escrever a mensagem" required></textarea>
+                    </div>
+            
+                    <!-- Privacy Policy Checkbox -->
+                    <div class="form-group-checkbox">
+                        <input type="checkbox" id="confirmoprivacy" name="confirmoprivacy" class="checkbox" value="1" required>
+                        <label for="confirmoprivacy" class="checkbox-label">Concordo com a <a href="" target="_blank" class="form-link">Politica de privacidade</a></label>
+                    </div>
+
+                    <div class="form-group-checkbox">
+                        <input type="checkbox" id="subscribeNewsletter" name="subscribeNewsletter" class="checkbox" value="1">
+                        <label for="confirmoprivacy" class="checkbox-label">(opcional) Subscrever à <a href="" target="_blank" class="form-link">Newsletter</a></label>
+                    </div>
+                    <!-- Submit Button -->
+                    <div class="form-group-submit">
+                        <button type="submit" class="submit-button" value="Submit">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+<script>
+        function changeImage(imgElement) {
+            var mainImage = document.getElementById('mainImage');
+            mainImage.src = imgElement.src;
+        }
+</script>
+</html>
