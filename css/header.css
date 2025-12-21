@@ -14,11 +14,6 @@
 	background-color: white;
 }
 
-.activemenu {
-  color: #009270 !important;
-  font-weight: 200;
-}
-
 .navbar {
 	display: flex;
 	justify-content: center;
@@ -49,6 +44,7 @@ ul {
 	color: #212427;
 	text-transform: uppercase;
 	font-size: 20px;
+	font-weight: 300;
 	transition: color 0.25s ease;
 }
 
@@ -90,12 +86,11 @@ header nav ul {
 
 nav ul li {
 	float: middle;
-	color: #FFFFFF;
+	color: var(--se);
 	font-size: 14px;
 	text-align: left;
 	margin-right: 25px;
 	letter-spacing: 2px;
-	font-weight: bold;
 	transition: all 0.3s linear;
 }
 

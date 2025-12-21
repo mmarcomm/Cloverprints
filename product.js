@@ -13,21 +13,27 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Get the product name from the URL
     const params = new URLSearchParams(window.location.search);
-    const productName = params.get("nome");  // Example: "Sem_titulo_3"
-
-    if (!productName) {
-        console.error("Nenhum produto especificado.");
-        return;
-    }
-
+    // Support both `?nome=...` and legacy `?id=...` query params (prefer `nome`).
+    const productName = params.get("nome") || params.get("id");  // Example: "Sem_titulo_3"
     // Fetch product data from JSON
     fetch("products.json")
         .then(response => response.json())
         .then(data => {
-            if (data[productName]) {
-                updateProduct(data, productName);  // Load the correct product
+            // Helper: resolve a product key by param (either matches a key or the object's id field)
+            const resolveProductKey = (param) => {
+                if (!param) return null;
+                if (data[param]) return param; // direct key match
+                for (const k in data) {
+                    if (data[k] && data[k].id === param) return k; // match id field
+                }
+                return null;
+            };
+
+            const productKey = resolveProductKey(productName);
+            if (productKey) {
+                updateProduct(data, productKey);  // Load the correct product
             } else {
-                console.error("Produto não encontrado!");
+                console.error("Produto não encontrado! (searched for: ", productName, ")");
             }
         })
         .catch(error => console.error("Erro ao carregar os produtos:", error));
@@ -42,13 +48,23 @@ document.addEventListener("DOMContentLoaded", function () {
 // load the JSON
 document.addEventListener("DOMContentLoaded", function () {
     const params = new URLSearchParams(window.location.search);
-    const productName = params.get("nome"); // Extract the 'nome' parameter
+    // Accept either `nome` or `id` so links using either format work.
+    const productName = params.get("nome") || params.get("id"); // Extract the product key (may be a key or an id)
 
     fetch("products.json")
         .then(response => response.json()) // Convert response to JSON
         .then(data => {
-            if (productName && data[productName]) {
-                displayProduct(data, productName);
+            // resolve key by direct match or by id field
+            const resolveProductKey = (param) => {
+                if (!param) return null;
+                if (data[param]) return param;
+                for (const k in data) if (data[k] && data[k].id === param) return k;
+                return null;
+            };
+
+            const productKey = resolveProductKey(productName);
+            if (productKey) {
+                displayProduct(data, productKey);
             } else {
                 console.warn("Produto não encontrado. Carregando padrão.");
                 displayProduct(data, "Sem_titulo_0"); // Fallback only if no product is found
@@ -139,12 +155,23 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch("products.json")
         .then(response => response.json())
         .then(data => {
+
             productKeys = Object.keys(data);
             const params = new URLSearchParams(window.location.search);
-            const productName = params.get("nome");
+            const productName = params.get("nome") || params.get("id");
 
-            // Find index of the product in the URL, or default to the first one
-            currentIndex = productKeys.indexOf(productName) !== -1 ? productKeys.indexOf(productName) : 0;
+            // resolve param to actual product key (either direct key or matching id field)
+            const resolveProductKey = (param) => {
+                if (!param) return null;
+                if (data[param]) return param;
+                for (const k in data) if (data[k] && data[k].id === param) return k;
+                return null;
+            };
+
+            const resolvedKey = resolveProductKey(productName);
+
+            // Find index of the resolved product key in productKeys, or default to the first one
+            currentIndex = resolvedKey && productKeys.indexOf(resolvedKey) !== -1 ? productKeys.indexOf(resolvedKey) : 0;
 
             if (productKeys.length > 0) {
                 updateProduct(data, productKeys[currentIndex]); // Load correct product
@@ -284,7 +311,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 productKeys = Object.keys(data);
                 const params = new URLSearchParams(window.location.search);
-                const productName = params.get("nome");
+                const productName = params.get("nome") || params.get("id");
 
                 // Find index of the product in the URL, or default to the first one
                 currentIndex = productKeys.indexOf(productName) !== -1 ? productKeys.indexOf(productName) : 0;
