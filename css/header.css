@@ -111,7 +111,7 @@ ul li:hover a {
 	background-color: transparent;
 	justify-content: center;
 	align-items: center;
-	z-index: 2;
+	z-index: 3;
 	width: 240px;
 	/* Maintains the specified width */
 }
@@ -142,11 +142,11 @@ ul li:hover a {
 .logo-container {
 	position: fixed;
 	top: 0;
-	right: 0;
-	z-index: 2;
+	left: 0;
+	z-index: 3;
 	justify-content: center;
 	align-items: center;
-	padding: 14px 42px 14px 0;
+	padding: 14px 42px 14px 14px;
 	margin: 0;
 }
 
@@ -183,18 +183,26 @@ nav {
 
 .navbar {
 	padding: 0px 46px 0px 46px;
+	position: fixed;
+	height: 48px;
+	width: 100%;
+	z-index: 1;
+	background-color: white;
+	top: 0;
+	justify-content: unset;
+	margin: 0;
+	border-radius: 0;
 }
 
 
 /* ------------ */
 .menu__toggle {
-	z-index: 0;
-	width: 48px;
-	height: 48px;
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	background-color: transparent;
+    position: fixed; 
+    top: 0;
+    right: 0;
+    z-index: 2;
+    width: 48px;
+    height: 48px;
 }
 
 .toggle-checkbox {
@@ -213,11 +221,11 @@ nav {
 	z-index: 2;*/
 
 .menu__links {
-	position: absolute;
-	width: 110vw;
-	height: 120vh;
-	margin: -100px 0 0 -50px;
-	padding: 125px 50px 50px 50px;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
 	background-color: white;
 	z-index: 0;
 	transform: translateY(-100%);
@@ -253,7 +261,7 @@ nav {
 }
 
 .menu__links a {
-	color: var(--secoundary-color);
+	color: var(--se);
 	transition: color 0.3s ease;
 }
 
@@ -287,11 +295,11 @@ nav {
 .logo-container {
 	position: fixed;
 	top: 0;
-	right: 0;
-	z-index: 2;
+	left: 0;
+	z-index: 3;
 	justify-content: center;
 	align-items: center;
-	padding: 14px 24px 14px 0;
+	padding: 14px 24px 14px 14px;
 	margin: 0;
 }
 
@@ -307,6 +315,15 @@ nav {
 
 .navbar {
 	padding: 0px 26px 0px 26px;
+	position: fixed;
+	height: 48px;
+	width: 100%;
+	z-index: 1;
+	background-color: white;
+	top: 0;
+	justify-content: unset;
+	margin: 0;
+	border-radius: 0;
 }
 
 
@@ -348,11 +365,11 @@ nav {
 	z-index: 2;*/
 
 .menu__links {
-	position: absolute;
-	width: 90vw;
-	height: 120vh;
-	margin: -100px 0 0 -50px;
-	padding: 125px 50px 50px 50px;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
 	background-color: white;
 	z-index: 0;
 	transform: translateY(-100%);
