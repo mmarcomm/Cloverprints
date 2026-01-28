@@ -160,11 +160,11 @@
 .product-status {
     font-size: 0.875rem;
     font-weight: 500;
-    color: #166534;
+    color: var(--se);
 }
 
 .cta-primary {
-    background-color: #166534;
+    background-color: var(--se);
     color: white;
     padding: 1rem 3rem;
     font-size: 1.125rem;
@@ -179,7 +179,7 @@
 }
 
 .cta-primary:hover {
-    background-color: #15803d;
+    background-color: var(--th);
     transform: scale(1.05);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }

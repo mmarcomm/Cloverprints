@@ -221,15 +221,9 @@ a.footer-icons:hover {
 
 @media(max-width: 700px) {
 
-
-h1 {
-	text-align: middle;
-	font-size: 56px;
-}
-
-p1 {
-	font-size: 16px;
-}
+	.toggle-checkbox {
+		display: none;
+	}
 
 .footer-container{
 	justify-content: center;
@@ -267,89 +261,5 @@ footer {
 	padding: 0;
 }
 
-p.registo,
-p.link {
-	color: var(--sixth-color);
-	text-align: center;
-	font-size: 16px;
-	letter-spacing: .5px;
-	line-height: 1.8em;
-	margin-bottom: 16px;
-	margin-top: 2px;
-}
-
-h3.titles {
-	color: white;
-	text-align: center;
-	font-size: 20px;
-	font-weight: 900;
-	line-height: 1.1em;
-	margin-top: 24px;
-}
-
-a {
-	background-color: transparent;
-	font-size: 17px;
-	font-weight: 400;
-	line-height: 1.2em;
-	text-decoration: none;
-}
-
-a:active {
-	outline: 0;
-}
-
-a:hover {
-	outline: 0;
-}
-
-/* good to know */
-span.link {
-	color: var(--sixth-color);
-	font-weight: 300;
-}
-
-/* hover */
-span.link:hover {
-	color: white;
-	font-weight: 600;
-}
-
-a.footer-icons {
-	color: white;
-	background-color: transparent;
-	color: var(--sixth-color);
-	display: block;
-	font-size: 17px;
-	margin: 0 auto;
-	font-weight: 400;
-	line-height: 1.2em;
-	max-width: 100%;
-	opacity: .8;
-	text-decoration: none;
-	text-align: center;
-	margin-bottom: 8px;
-}
-
-a.footer-icons:hover {
-	opacity: 2;
-	outline: 0;
-}
-
-
-
-.icons-footer {
-	display: flex;
-	align-items: center;
-	padding: 12px 0px 0px 0px;
-}
-
-.footer-icons {
-	margin: 0 auto;
-	display: block;
-	text-align: center;
-	margin-bottom: 8px;
-	/* Add spacing between icons */
-}
 
 }

@@ -6,11 +6,11 @@
         }
 
 :root {
-	--st: ;
+	--st: #00BFFF;
     /*Primary color*/
-	--se: #3FB498;
+	--se: #00BFFF;
 	/*Secondary color*/
-	--th: #9AD4C6;
+	--th: #5ed7ff;
 	/*Accent color*/
 	--fo: #212427;
 	/*black*/

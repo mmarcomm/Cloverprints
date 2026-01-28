@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
 
 .menubox {
 	display: flex;
@@ -183,7 +188,6 @@ nav {
 
 .navbar {
 	padding: 0px 46px 0px 46px;
-	position: fixed;
 	height: 48px;
 	width: 100%;
 	z-index: 1;
@@ -315,7 +319,6 @@ nav {
 
 .navbar {
 	padding: 0px 26px 0px 26px;
-	position: fixed;
 	height: 48px;
 	width: 100%;
 	z-index: 1;
