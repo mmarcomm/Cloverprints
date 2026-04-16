@@ -2,223 +2,450 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Drag & Match</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Ryanair Code Match</title>
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
+      min-height: 100vh;
+      background: #0d0d1a;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 16px 40px;
+      gap: 20px;
+    }
+
+    header {
+      width: 100%;
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    h1 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #e94560;
+      text-align: center;
+    }
+
+    .score-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 4px;
+      background: #1e1e3a;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: #e94560;
+      border-radius: 2px;
+      transition: width 0.4s ease;
+    }
+
+    /* Red card — the IATA code to drag */
+    .red-card {
+      width: 140px;
+      height: 140px;
+      background: #e94560;
+      border-radius: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      margin: 0;
-      background: #1a1a2e;
-      font-family: sans-serif;
-      color: white;
-      gap: 80px;
+      font-size: 2.4rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      cursor: grab;
+      user-select: none;
+      box-shadow: 0 0 30px #e9456055;
+      touch-action: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      position: relative;
+    }
+    .red-card span {
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 1px;
+      opacity: 0.8;
+      margin-top: 4px;
+    }
+    .red-card.dragging {
+      transform: scale(1.08);
+      box-shadow: 0 0 40px #e9456099;
     }
 
-    h2 {
-      margin: 0;
-      opacity: 0.6;
-      font-size: 1rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+    /* Blue cards — city names */
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      width: 100%;
+      max-width: 500px;
     }
 
-    .arena {
-      display: flex;
-      align-items: center;
-      gap: 100px;
-    }
-
-    .box {
-      width: 100px;
-      height: 100px;
+    .blue-card {
+      background: #0f2044;
+      border: 2px solid #1a2f5e;
       border-radius: 16px;
+      padding: 18px 12px;
+      text-align: center;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+      min-height: 70px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
-      transition: transform 0.15s, box-shadow 0.15s;
     }
-
-    #draggable {
-      background: #e94560;
-      cursor: grab;
-      box-shadow: 0 0 20px #e9456066;
-      position: relative;
-      z-index: 10;
-    }
-
-    #draggable:active {
-      cursor: grabbing;
-    }
-
-    #draggable.dragging {
-      opacity: 0.85;
-      transform: scale(1.1);
-    }
-
-    #target {
-      background: #0f3460;
-      border: 3px dashed #16213e;
-      box-shadow: 0 0 20px #0f346066;
-    }
-
-    #target.highlight {
+    .blue-card.highlight {
       border-color: #e94560;
-      box-shadow: 0 0 30px #e9456099;
+      box-shadow: 0 0 20px #e9456066;
+      transform: scale(1.03);
+    }
+    .blue-card.wrong {
+      animation: shake 0.4s ease;
+      border-color: #ff4444;
+      background: #2a0f0f;
+    }
+    .blue-card.correct {
+      animation: pop-correct 0.5s ease forwards;
     }
 
-    .boom {
-      font-size: 4rem;
-      animation: pop 0.6s ease forwards;
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20%      { transform: translateX(-8px); }
+      40%      { transform: translateX(8px); }
+      60%      { transform: translateX(-6px); }
+      80%      { transform: translateX(6px); }
+    }
+    @keyframes pop-correct {
+      0%   { transform: scale(1); opacity: 1; }
+      50%  { transform: scale(1.15); opacity: 0.8; }
+      100% { transform: scale(0); opacity: 0; }
+    }
+
+    /* Floating clone while dragging on touch */
+    .drag-clone {
       position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
       pointer-events: none;
+      z-index: 9999;
+      width: 120px;
+      height: 120px;
+      background: #e94560;
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: white;
+      opacity: 0.92;
+      box-shadow: 0 8px 30px #e9456077;
+      transform: scale(1.08);
     }
 
-    @keyframes pop {
-      0%   { opacity: 1; transform: translate(-50%, -50%) scale(0.5); }
-      50%  { opacity: 1; transform: translate(-50%, -50%) scale(1.8); }
-      100% { opacity: 0; transform: translate(-50%, -50%) scale(2.5); }
+    /* Result overlay */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #0d0d1acc;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 24px;
+      z-index: 100;
     }
-
-    button {
-      padding: 10px 28px;
+    .overlay.show { display: flex; }
+    .overlay h2 { font-size: 2rem; }
+    .overlay p  { opacity: 0.7; font-size: 1rem; }
+    .overlay button {
+      padding: 14px 36px;
       background: #e94560;
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       font-size: 1rem;
+      font-weight: 700;
       cursor: pointer;
-      display: none;
+      letter-spacing: 1px;
     }
-
-    button:hover {
-      background: #c73652;
-    }
+    .overlay button:hover { background: #c7304e; }
   </style>
 </head>
 <body>
 
-  <h2>Drag the red onto the blue</h2>
+  <header>
+    <h1>✈ Ryanair Code Match</h1>
+    <div class="score-row">
+      <span id="score-label">Score: <b id="score">0</b></span>
+      <span id="remain-label"><b id="remain">185</b> left</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width:0%"></div></div>
+  </header>
 
-  <div class="arena">
-    <div class="box" id="draggable" draggable="true">🔴</div>
-    <div class="box" id="target">🔵</div>
+  <p style="opacity:.45; font-size:.8rem; text-align:center">Drag the code onto the correct city</p>
+
+  <div class="red-card" id="red-card" draggable="true">
+    <span id="code-label">---</span>
+    <span>drag me</span>
   </div>
 
-  <button id="reset">Play again</button>
+  <div class="options-grid" id="options"></div>
+
+  <div class="overlay" id="overlay">
+    <h2>🎉 All done!</h2>
+    <p id="final-score"></p>
+    <button onclick="startGame()">Play Again</button>
+  </div>
 
   <script>
-    const draggable = document.getElementById('draggable');
-    const target    = document.getElementById('target');
-    const reset     = document.getElementById('reset');
+    const ALL = [
+      ["DUB","Dublin"],["ORK","Cork"],["SNN","Shannon"],["NOC","Knock"],["KIR","Kerry"],
+      ["STN","London Stansted"],["LTN","London Luton"],["LGW","London Gatwick"],
+      ["MAN","Manchester"],["BHX","Birmingham"],["EDI","Edinburgh"],["GLA","Glasgow"],
+      ["BRS","Bristol"],["LBA","Leeds Bradford"],["NCL","Newcastle"],["LPL","Liverpool"],
+      ["EMA","East Midlands"],["BFS","Belfast"],["ABZ","Aberdeen"],["CWL","Cardiff"],
+      ["BOH","Bournemouth"],["INV","Inverness"],["NQY","Newquay"],["LDY","Derry"],
+      ["EXT","Exeter"],
+      ["MAD","Madrid"],["BCN","Barcelona"],["VLC","Valencia"],["SVQ","Seville"],
+      ["AGP","Malaga"],["ALC","Alicante"],["PMI","Palma"],["IBZ","Ibiza"],
+      ["ACE","Lanzarote"],["FUE","Fuerteventura"],["LPA","Gran Canaria"],
+      ["TFS","Tenerife South"],["GRO","Girona"],["REU","Reus"],["SDR","Santander"],
+      ["BIO","Bilbao"],["SCQ","Santiago de Compostela"],["OVD","Asturias"],
+      ["LEI","Almeria"],["GRX","Granada"],["XRY","Jerez"],["MAH","Menorca"],
+      ["LIS","Lisbon"],["OPO","Porto"],["FAO","Faro"],["FNC","Funchal"],["PDL","Ponta Delgada"],
+      ["CIA","Rome Ciampino"],["FCO","Rome Fiumicino"],["BGY","Milan Bergamo"],
+      ["MXP","Milan Malpensa"],["NAP","Naples"],["VCE","Venice"],["BLQ","Bologna"],
+      ["BRI","Bari"],["CTA","Catania"],["PMO","Palermo"],["PSA","Pisa"],["TRN","Turin"],
+      ["BDS","Brindisi"],["SUF","Lamezia Terme"],["TPS","Trapani"],["AOI","Ancona"],
+      ["PSR","Pescara"],["TRS","Trieste"],["VRN","Verona"],["AHO","Alghero"],["CAG","Cagliari"],
+      ["BVA","Paris Beauvais"],["CDG","Paris CDG"],["MRS","Marseille"],["NCE","Nice"],
+      ["LYS","Lyon"],["BOD","Bordeaux"],["TLS","Toulouse"],["NTE","Nantes"],
+      ["SXB","Strasbourg"],["MPL","Montpellier"],["PGF","Perpignan"],["BIQ","Biarritz"],
+      ["CCF","Carcassonne"],["LRH","La Rochelle"],["LIG","Limoges"],["GNB","Grenoble"],
+      ["FNI","Nimes"],["BES","Brest"],["CFE","Clermont-Ferrand"],["TLN","Toulon"],
+      ["FRA","Frankfurt"],["BER","Berlin"],["MUC","Munich"],["CGN","Cologne Bonn"],
+      ["HAM","Hamburg"],["BRE","Bremen"],["DTM","Dortmund"],["NUE","Nuremberg"],
+      ["STR","Stuttgart"],["FMM","Memmingen"],["NRN","Weeze"],["LEJ","Leipzig"],
+      ["WMI","Warsaw Modlin"],["KRK","Krakow"],["GDN","Gdansk"],["KTW","Katowice"],
+      ["WRO","Wroclaw"],["POZ","Poznan"],["LUZ","Lublin"],["RZE","Rzeszow"],
+      ["AMS","Amsterdam"],["EIN","Eindhoven"],
+      ["CRL","Brussels Charleroi"],["BRU","Brussels"],
+      ["PRG","Prague"],["BRQ","Brno"],["OSR","Ostrava"],
+      ["BTS","Bratislava"],["KSC","Kosice"],
+      ["BUD","Budapest"],["DEB","Debrecen"],
+      ["VIE","Vienna"],["SZG","Salzburg"],["INN","Innsbruck"],["GRZ","Graz"],
+      ["ATH","Athens"],["SKG","Thessaloniki"],["CFU","Corfu"],["RHO","Rhodes"],
+      ["KGS","Kos"],["HER","Heraklion"],["CHQ","Chania"],["JTR","Santorini"],
+      ["JMK","Mykonos"],["ZTH","Zakynthos"],["EFL","Kefalonia"],["JSI","Skiathos"],
+      ["ZAG","Zagreb"],["SPU","Split"],["DBV","Dubrovnik"],["ZAD","Zadar"],["PUY","Pula"],
+      ["OTP","Bucharest"],["CLJ","Cluj-Napoca"],["TSR","Timisoara"],["IAS","Iasi"],
+      ["SBZ","Sibiu"],["CRA","Craiova"],["BCM","Bacau"],
+      ["SOF","Sofia"],["VAR","Varna"],["BOJ","Burgas"],
+      ["BEG","Belgrade"],["INI","Nis"],
+      ["SKP","Skopje"],
+      ["TIA","Tirana"],
+      ["SJJ","Sarajevo"],["TZL","Tuzla"],["BNX","Banja Luka"],
+      ["PRN","Pristina"],
+      ["TIV","Tivat"],["TGD","Podgorica"],
+      ["LJU","Ljubljana"],
+      ["MLA","Malta"],
+      ["LCA","Larnaca"],["PFO","Paphos"],
+      ["RAK","Marrakech"],["AGA","Agadir"],["FEZ","Fez"],["CMN","Casablanca"],
+      ["TNG","Tangier"],["RBA","Rabat"],
+      ["AMM","Amman"],["TLV","Tel Aviv"],
+      ["VNO","Vilnius"],["KUN","Kaunas"],
+      ["RIX","Riga"],
+      ["TLL","Tallinn"],
+      ["TMP","Tampere"],["HEL","Helsinki"],
+      ["NYO","Stockholm Skavsta"],
+      ["SVG","Stavanger"],["BGO","Bergen"],
+      ["CPH","Copenhagen"],["BLL","Billund"],
+      ["TBS","Tbilisi"]
+    ];
 
-    // --- Drag events ---
-    draggable.addEventListener('dragstart', () => {
-      draggable.classList.add('dragging');
-    });
+    let pool, answered, score, currentEntry, currentCorrectCard;
 
-    draggable.addEventListener('dragend', () => {
-      draggable.classList.remove('dragging');
-      target.classList.remove('highlight');
-    });
-
-    target.addEventListener('dragover', e => {
-      e.preventDefault();
-      target.classList.add('highlight');
-    });
-
-    target.addEventListener('dragleave', () => {
-      target.classList.remove('highlight');
-    });
-
-    target.addEventListener('drop', e => {
-      e.preventDefault();
-      vanish();
-    });
-
-    // --- Touch support (mobile) ---
-    let startX, startY, clone;
-
-    draggable.addEventListener('touchstart', e => {
-      const t = e.touches[0];
-      startX = t.clientX - draggable.getBoundingClientRect().left;
-      startY = t.clientY - draggable.getBoundingClientRect().top;
-
-      clone = draggable.cloneNode(true);
-      clone.style.cssText = `
-        position: fixed;
-        width: 100px; height: 100px;
-        border-radius: 16px;
-        background: #e94560;
-        display: flex; align-items: center; justify-content: center;
-        font-size: 2rem;
-        opacity: 0.85;
-        pointer-events: none;
-        z-index: 999;
-        box-shadow: 0 0 20px #e9456066;
-        transform: scale(1.1);
-      `;
-      document.body.appendChild(clone);
-      draggable.style.opacity = '0.3';
-    }, { passive: true });
-
-    draggable.addEventListener('touchmove', e => {
-      e.preventDefault();
-      const t = e.touches[0];
-      clone.style.left = (t.clientX - startX) + 'px';
-      clone.style.top  = (t.clientY - startY) + 'px';
-
-      const cloneRect  = clone.getBoundingClientRect();
-      const targetRect = target.getBoundingClientRect();
-      const overlap    = !(cloneRect.right  < targetRect.left  ||
-                           cloneRect.left   > targetRect.right ||
-                           cloneRect.bottom < targetRect.top   ||
-                           cloneRect.top    > targetRect.bottom);
-      target.classList.toggle('highlight', overlap);
-    }, { passive: false });
-
-    draggable.addEventListener('touchend', e => {
-      const t = e.changedTouches[0];
-      const targetRect = target.getBoundingClientRect();
-
-      const hit = t.clientX >= targetRect.left   &&
-                  t.clientX <= targetRect.right   &&
-                  t.clientY >= targetRect.top     &&
-                  t.clientY <= targetRect.bottom;
-
-      clone.remove();
-      draggable.style.opacity = '1';
-      target.classList.remove('highlight');
-
-      if (hit) vanish();
-    });
-
-    // --- Vanish logic ---
-    function vanish() {
-      draggable.style.display = 'none';
-      target.style.display    = 'none';
-
-      const boom = document.createElement('div');
-      boom.className = 'boom';
-      boom.textContent = '💥';
-      document.body.appendChild(boom);
-      setTimeout(() => boom.remove(), 700);
-
-      reset.style.display = 'block';
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
     }
 
-    reset.addEventListener('click', () => {
-      draggable.style.display = '';
-      target.style.display    = '';
-      reset.style.display     = 'none';
+    function startGame() {
+      pool = shuffle([...ALL]);
+      answered = 0;
+      score = 0;
+      document.getElementById('overlay').classList.remove('show');
+      nextRound();
+    }
+
+    function nextRound() {
+      if (pool.length === 0) {
+        endGame(); return;
+      }
+
+      currentEntry = pool.pop();
+      answered++;
+
+      // update header
+      document.getElementById('code-label').textContent = currentEntry[0];
+      document.getElementById('score').textContent = score;
+      document.getElementById('remain').textContent = pool.length;
+      const pct = (answered / ALL.length) * 100;
+      document.getElementById('progress').style.width = pct + '%';
+
+      // build 4 options: 1 correct + 3 wrong
+      const wrongs = shuffle(ALL.filter(d => d[0] !== currentEntry[0])).slice(0, 3);
+      const opts = shuffle([currentEntry, ...wrongs]);
+
+      const grid = document.getElementById('options');
+      grid.innerHTML = '';
+      opts.forEach(([code, city]) => {
+        const card = document.createElement('div');
+        card.className = 'blue-card';
+        card.textContent = city;
+        card.dataset.code = code;
+        grid.appendChild(card);
+
+        // tap support (for when user just taps instead of dragging)
+        card.addEventListener('click', () => tryMatch(card));
+      });
+    }
+
+    function tryMatch(card) {
+      if (card.dataset.code === currentEntry[0]) {
+        // correct
+        score++;
+        document.getElementById('score').textContent = score;
+        currentCorrectCard = card;
+        card.classList.add('correct');
+        const redCard = document.getElementById('red-card');
+        redCard.style.transition = 'transform .4s, opacity .4s';
+        redCard.style.transform = 'scale(0)';
+        redCard.style.opacity = '0';
+        setTimeout(() => {
+          redCard.style.transition = '';
+          redCard.style.transform = '';
+          redCard.style.opacity = '';
+          nextRound();
+        }, 500);
+      } else {
+        // wrong
+        card.classList.add('wrong');
+        setTimeout(() => card.classList.remove('wrong'), 500);
+      }
+    }
+
+    function endGame() {
+      document.getElementById('final-score').textContent =
+        `You scored ${score} out of ${ALL.length}!`;
+      document.getElementById('overlay').classList.add('show');
+    }
+
+    // ── Drag (desktop) ──────────────────────────────────────────────
+    const redCard = document.getElementById('red-card');
+
+    redCard.addEventListener('dragstart', e => {
+      redCard.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
     });
+    redCard.addEventListener('dragend', () => {
+      redCard.classList.remove('dragging');
+      document.querySelectorAll('.blue-card').forEach(c => c.classList.remove('highlight'));
+    });
+
+    document.getElementById('options').addEventListener('dragover', e => {
+      e.preventDefault();
+      const card = e.target.closest('.blue-card');
+      document.querySelectorAll('.blue-card').forEach(c => c.classList.remove('highlight'));
+      if (card) card.classList.add('highlight');
+    });
+    document.getElementById('options').addEventListener('dragleave', e => {
+      if (!e.currentTarget.contains(e.relatedTarget))
+        document.querySelectorAll('.blue-card').forEach(c => c.classList.remove('highlight'));
+    });
+    document.getElementById('options').addEventListener('drop', e => {
+      e.preventDefault();
+      const card = e.target.closest('.blue-card');
+      if (card) tryMatch(card);
+      document.querySelectorAll('.blue-card').forEach(c => c.classList.remove('highlight'));
+    });
+
+    // ── Touch (mobile) ───────────────────────────────────────────────
+    let dragClone = null, touchOffX = 0, touchOffY = 0;
+
+    redCard.addEventListener('touchstart', e => {
+      const t = e.touches[0];
+      const rect = redCard.getBoundingClientRect();
+      touchOffX = t.clientX - rect.left;
+      touchOffY = t.clientY - rect.top;
+
+      dragClone = document.createElement('div');
+      dragClone.className = 'drag-clone';
+      dragClone.textContent = currentEntry[0];
+      dragClone.style.left = (t.clientX - touchOffX) + 'px';
+      dragClone.style.top  = (t.clientY - touchOffY) + 'px';
+      document.body.appendChild(dragClone);
+      redCard.style.opacity = '0.3';
+    }, { passive: true });
+
+    redCard.addEventListener('touchmove', e => {
+      e.preventDefault();
+      const t = e.touches[0];
+      dragClone.style.left = (t.clientX - touchOffX) + 'px';
+      dragClone.style.top  = (t.clientY - touchOffY) + 'px';
+
+      // highlight whichever blue card is under finger
+      const cloneRect = dragClone.getBoundingClientRect();
+      const cx = cloneRect.left + cloneRect.width / 2;
+      const cy = cloneRect.top  + cloneRect.height / 2;
+      document.querySelectorAll('.blue-card').forEach(card => {
+        const r = card.getBoundingClientRect();
+        const over = cx >= r.left && cx <= r.right && cy >= r.top && cy <= r.bottom;
+        card.classList.toggle('highlight', over);
+      });
+    }, { passive: false });
+
+    redCard.addEventListener('touchend', e => {
+      const t = e.changedTouches[0];
+      dragClone.remove(); dragClone = null;
+      redCard.style.opacity = '1';
+
+      document.querySelectorAll('.blue-card').forEach(card => {
+        card.classList.remove('highlight');
+        const r = card.getBoundingClientRect();
+        if (t.clientX >= r.left && t.clientX <= r.right &&
+            t.clientY >= r.top  && t.clientY <= r.bottom) {
+          tryMatch(card);
+        }
+      });
+    });
+
+    // Start!
+    startGame();
   </script>
 </body>
 </html>
