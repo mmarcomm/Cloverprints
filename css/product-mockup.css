@@ -45,6 +45,11 @@
     width: 11px;
     height: auto;
     vertical-align: middle;
+    transition: filter 0.2s ease;
+}
+
+.breadcrumb-back:hover .breadcrumb-back-icon {
+    filter: brightness(0);
 }
 
 /* ---- Gallery / zoom ---- */
