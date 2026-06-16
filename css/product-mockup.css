@@ -44,7 +44,7 @@
 .breadcrumb-back-icon {
     width: 11px;
     height: auto;
-    display: block;
+    vertical-align: middle;
 }
 
 /* ---- Gallery / zoom ---- */
