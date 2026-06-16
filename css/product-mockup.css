@@ -8,7 +8,7 @@
     background-color: var(--fo);
     color: var(--si);
     text-align: center;
-    font-size: 13px;
+    font-size: 14px;
     letter-spacing: .5px;
     padding: 8px 16px;
 }
@@ -18,7 +18,7 @@
     max-width: 80rem;
     margin: 0 auto;
     padding: 1rem 1.5rem 0;
-    font-size: 13px;
+    font-size: 14px;
     color: #6b7280;
 }
 
@@ -63,14 +63,9 @@
     margin-bottom: 0.25rem;
 }
 
-#name {
-    font-size: 2rem;
-    margin: 0;
-}
-
 .badge {
     display: inline-block;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     letter-spacing: .05em;
     text-transform: uppercase;
@@ -96,13 +91,13 @@
 }
 
 .price-current {
-    font-size: 1.75rem;
+    font-size: 24px;
     font-weight: 600;
     color: var(--fo);
 }
 
 .price-compare {
-    font-size: 1.1rem;
+    font-size: 18px;
     color: #9ca3af;
     text-decoration: line-through;
 }
@@ -119,11 +114,15 @@
 .stars {
     color: #f59e0b;
     letter-spacing: 1px;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .stars.stars-empty {
     color: #d1d5db;
+}
+
+.stars.stars-lg {
+    font-size: 24px;
 }
 
 /* ---- Color swatches ---- */
@@ -134,7 +133,7 @@
 }
 
 .option-label {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: .05em;
@@ -221,7 +220,7 @@
     background: none;
     border: none;
     padding: 0;
-    font-size: 13px;
+    font-size: 14px;
     text-decoration: underline;
     color: #374151;
     cursor: pointer;
@@ -254,6 +253,7 @@
 }
 
 .size-guide-modal h3 {
+    font-size: 18px;
     margin-bottom: 1rem;
 }
 
@@ -282,7 +282,7 @@
 
 /* ---- Stock / urgency ---- */
 .stock-note {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     color: #b45309;
 }
@@ -320,7 +320,7 @@
     background: none;
     border: none;
     padding: 0.9rem 0;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 500;
     cursor: pointer;
     display: flex;
@@ -429,7 +429,7 @@
 }
 
 .sticky-cta .price-current {
-    font-size: 1.1rem;
+    font-size: 18px;
 }
 
 @media (max-width: 768px) {
