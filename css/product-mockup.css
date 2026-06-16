@@ -239,7 +239,7 @@
 .size-btn.out-of-stock {
     color: #d1d5db;
     text-decoration: line-through;
-    cursor: not-allowed;
+    cursor: default;
     background: repeating-linear-gradient(45deg, #fff, #fff 4px, #f3f4f6 4px, #f3f4f6 8px);
 }
 
@@ -441,16 +441,6 @@
     line-height: 1.5;
 }
 
-.reviews-empty-cta {
-    margin-top: 0.75rem;
-    background: none;
-    border: 1px solid #d1d5db;
-    border-radius: 0.4rem;
-    padding: 0.6rem 1.2rem;
-    font-size: 14px;
-    color: #9ca3af;
-    cursor: not-allowed;
-}
 
 /* ---- Sticky mobile add-to-cart bar ---- */
 .sticky-cta {
