@@ -37,7 +37,7 @@ function initGallery() {
 function initColorSwatches() {
     const swatches = document.querySelectorAll('.swatch');
     const valueLabel = document.getElementById('selectedColorLabel');
-    const addToCartBtn = document.querySelector('.snipcart-add-item');
+    const addToCartBtns = document.querySelectorAll('.snipcart-add-item');
 
     swatches.forEach(swatch => {
         swatch.addEventListener('click', () => {
@@ -45,7 +45,7 @@ function initColorSwatches() {
             swatch.classList.add('active');
             const color = swatch.dataset.color;
             if (valueLabel) valueLabel.textContent = color;
-            if (addToCartBtn) addToCartBtn.setAttribute('data-item-custom2-value', color);
+            addToCartBtns.forEach(btn => btn.setAttribute('data-item-custom2-value', color));
         });
     });
 }
@@ -54,7 +54,7 @@ function initColorSwatches() {
 function initSizeSelector() {
     const sizeButtons = document.querySelectorAll('.size-btn:not(.out-of-stock)');
     const valueLabel = document.getElementById('selectedSizeLabel');
-    const addToCartBtn = document.querySelector('.snipcart-add-item');
+    const addToCartBtns = document.querySelectorAll('.snipcart-add-item');
 
     sizeButtons.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -62,7 +62,7 @@ function initSizeSelector() {
             btn.classList.add('active');
             const size = btn.dataset.size;
             if (valueLabel) valueLabel.textContent = size;
-            if (addToCartBtn) addToCartBtn.setAttribute('data-item-custom1-value', size);
+            addToCartBtns.forEach(btn2 => btn2.setAttribute('data-item-custom1-value', size));
         });
     });
 }
