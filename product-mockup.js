@@ -3,7 +3,7 @@
 const PRODUCT = {
     id: 'wanderer-vessel-tshirt',
     name: 'Wanderer Vessel',
-    price: 25.00,
+    price: 60.00,
     url: '/Product.html?id=wanderer-vessel-tshirt',
     image: 'Website_Imgs/tshirt.svg',
     description: 'Ilustração original inspirada em viagens marítimas, 100% algodão orgânico',
