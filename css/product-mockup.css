@@ -315,6 +315,12 @@
     gap: 0.5rem;
 }
 
+.trust-icon {
+    width: 18px;
+    height: auto;
+    flex-shrink: 0;
+}
+
 /* ---- Accordion (materials / care / shipping) ---- */
 .accordion-item {
     border-bottom: 1px solid #e5e7eb;
