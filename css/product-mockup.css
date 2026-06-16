@@ -345,10 +345,14 @@
 .accordion-panel-inner {
     min-height: 0;
     overflow: hidden;
-    padding: 0 0 1rem 0;
+    padding: 0;
     color: #4b5563;
     font-size: 14px;
     line-height: 1.6;
+}
+
+.accordion-item.open .accordion-panel-inner {
+    padding-bottom: 1rem;
 }
 
 /* ---- Reviews ---- */
