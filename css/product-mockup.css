@@ -321,7 +321,10 @@
 }
 
 .accordion-trigger .chevron {
-    transition: transform 0.2s ease;
+    display: inline-flex;
+    flex-shrink: 0;
+    color: #6b7280;
+    transition: transform 0.25s ease;
 }
 
 .accordion-item.open .chevron {
@@ -329,15 +332,22 @@
 }
 
 .accordion-panel {
-    display: none;
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 0.3s ease;
+}
+
+.accordion-item.open .accordion-panel {
+    grid-template-rows: 1fr;
+}
+
+.accordion-panel-inner {
+    min-height: 0;
     padding: 0 0 1rem 0;
     color: #4b5563;
     font-size: 14px;
     line-height: 1.6;
-}
-
-.accordion-item.open .accordion-panel {
-    display: block;
 }
 
 /* ---- Reviews ---- */
