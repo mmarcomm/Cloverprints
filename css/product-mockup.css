@@ -66,6 +66,17 @@
     padding: 6px;
 }
 
+/* ---- Product header (identity cluster) ---- */
+.product-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.product-header .price-row {
+    margin-top: 0.75rem;
+}
+
 /* ---- Badges ---- */
 .badge-row {
     display: flex;
@@ -303,7 +314,7 @@
     flex-direction: row;
     justify-content: center;
     gap: 2.5rem;
-    padding: 1.25rem 0;
+    padding: 0;
     font-size: 13px;
     color: #4b5563;
 }
@@ -325,6 +336,10 @@
 }
 
 /* ---- Accordion (materials / care / shipping) ---- */
+.accordion {
+    border-top: 1px solid #e5e7eb;
+}
+
 .accordion-item {
     border-bottom: 1px solid #e5e7eb;
 }
