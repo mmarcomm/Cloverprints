@@ -117,6 +117,10 @@
     font-size: 15px;
 }
 
+.stars.stars-empty {
+    color: #d1d5db;
+}
+
 /* ---- Color swatches ---- */
 .option-group {
     display: flex;
@@ -335,7 +339,7 @@
     display: grid;
     grid-template-rows: 0fr;
     overflow: hidden;
-    transition: grid-template-rows 0.3s ease;
+    transition: grid-template-rows 0.32s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .accordion-item.open .accordion-panel {
@@ -349,9 +353,13 @@
     color: #4b5563;
     font-size: 14px;
     line-height: 1.6;
+    opacity: 0;
+    transition: opacity 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+                padding 0.32s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .accordion-item.open .accordion-panel-inner {
+    opacity: 1;
     padding-bottom: 1rem;
 }
 
@@ -362,39 +370,41 @@
     padding: 0 1.5rem 4rem;
 }
 
-.reviews-summary {
+/* Empty state (no reviews yet) */
+.reviews-empty {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.review-card {
-    background: #fff;
+    text-align: center;
+    gap: 0.5rem;
+    padding: 2.5rem 1.5rem;
+    border: 1px dashed #e5e7eb;
     border-radius: 0.5rem;
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1);
-    padding: 1.25rem;
-    margin-bottom: 1rem;
+    background: #fafafa;
 }
 
-.review-card .review-head {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.4rem;
-    font-size: 14px;
+.reviews-empty-title {
+    font-size: 16px;
     font-weight: 600;
+    color: var(--fo);
 }
 
-.review-card .review-meta {
-    font-size: 12px;
-    color: #9ca3af;
-    font-weight: 400;
-}
-
-.review-card p {
+.reviews-empty-text {
     font-size: 14px;
-    color: #4b5563;
+    color: #6b7280;
+    max-width: 28rem;
     line-height: 1.5;
+}
+
+.reviews-empty-cta {
+    margin-top: 0.75rem;
+    background: none;
+    border: 1px solid #d1d5db;
+    border-radius: 0.4rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 14px;
+    color: #9ca3af;
+    cursor: not-allowed;
 }
 
 /* ---- Sticky mobile add-to-cart bar ---- */

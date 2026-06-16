@@ -24,7 +24,7 @@ const STOCK = {
 };
 
 let selectedSize = 'M';
-let selectedColor = 'Preto';
+let selectedColor = 'Branco';
 
 document.addEventListener('DOMContentLoaded', () => {
     loadComponent('header.html', 'header-placeholder');
