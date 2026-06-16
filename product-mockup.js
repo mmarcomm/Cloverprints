@@ -25,7 +25,6 @@ const STOCK = {
 
 let selectedSize = 'M';
 let selectedColor = 'Preto';
-let quantity = 1;
 
 document.addEventListener('DOMContentLoaded', () => {
     loadComponent('header.html', 'header-placeholder');
@@ -33,14 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
     initGallery();
     initColorSwatches();
     initSizeSelector();
-    initQuantitySelector();
     initSizeGuide();
     initAccordion();
-    initViewerCounter();
     initAddToCart();
     renderSizeAvailability();
     renderStockNote();
-    renderQuantityControls();
     renderAddToCartButtons();
 });
 
@@ -93,37 +89,10 @@ function initSizeSelector() {
             selectedSize = btn.dataset.size;
             if (valueLabel) valueLabel.textContent = selectedSize;
 
-            // Selecting a new size can never start above its available stock.
-            quantity = Math.min(quantity, STOCK[selectedSize] || 0) || 1;
             renderStockNote();
-            renderQuantityControls();
             renderAddToCartButtons();
         });
     });
-}
-
-/* ---------------- Quantity selector ---------------- */
-function initQuantitySelector() {
-    document.getElementById('qtyMinus')?.addEventListener('click', () => {
-        quantity = Math.max(1, quantity - 1);
-        renderQuantityControls();
-    });
-    document.getElementById('qtyPlus')?.addEventListener('click', () => {
-        const stock = STOCK[selectedSize] || 0;
-        quantity = Math.min(stock, quantity + 1);
-        renderQuantityControls();
-    });
-}
-
-function renderQuantityControls() {
-    const stock = STOCK[selectedSize] || 0;
-    const qtyValue = document.getElementById('qtyValue');
-    const qtyMinus = document.getElementById('qtyMinus');
-    const qtyPlus = document.getElementById('qtyPlus');
-
-    if (qtyValue) qtyValue.textContent = stock === 0 ? 0 : quantity;
-    if (qtyMinus) qtyMinus.disabled = stock === 0 || quantity <= 1;
-    if (qtyPlus) qtyPlus.disabled = stock === 0 || quantity >= stock;
 }
 
 /* ---------------- Stock note + size availability ---------------- */
@@ -184,18 +153,6 @@ function initAccordion() {
     });
 }
 
-/* ---------------- Fake live viewer counter (social proof) ---------------- */
-function initViewerCounter() {
-    const el = document.getElementById('viewerCount');
-    if (!el) return;
-    let count = parseInt(el.textContent, 10) || 8;
-    setInterval(() => {
-        count += Math.random() > 0.5 ? 1 : -1;
-        count = Math.max(4, Math.min(19, count));
-        el.textContent = count;
-    }, 4000);
-}
-
 /* ---------------- Add to cart (Snipcart JS SDK) ----------------
    data-item-custom*-value attributes are unreliable once Snipcart has
    already parsed the button: building the ProductDefinition at click
@@ -209,11 +166,11 @@ function initAddToCart() {
 
 function addCurrentSelectionToCart() {
     const stock = STOCK[selectedSize] || 0;
-    if (stock === 0 || quantity < 1) return;
+    if (stock === 0) return;
 
     const productDefinition = {
         ...PRODUCT,
-        quantity,
+        quantity: 1,
         customFields: [
             { name: 'Tamanho', value: selectedSize },
             { name: 'Cor', value: selectedColor },
@@ -223,11 +180,9 @@ function addCurrentSelectionToCart() {
     const onAdded = () => {
         // Simulated local inventory deduction; a real store would rely on
         // Snipcart's own variant inventory management synced server-side.
-        STOCK[selectedSize] = Math.max(0, STOCK[selectedSize] - quantity);
-        quantity = Math.min(quantity, STOCK[selectedSize]) || 1;
+        STOCK[selectedSize] = Math.max(0, STOCK[selectedSize] - 1);
         renderSizeAvailability();
         renderStockNote();
-        renderQuantityControls();
         renderAddToCartButtons();
     };
 
