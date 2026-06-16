@@ -215,6 +215,14 @@
     border-color: var(--fo);
 }
 
+.cta-primary:disabled {
+    background-color: #d1d5db;
+    color: #6b7280;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
 .size-btn.out-of-stock {
     color: #d1d5db;
     text-decoration: line-through;
@@ -290,6 +298,40 @@
     font-size: 13px;
     font-weight: 500;
     color: #b45309;
+}
+
+.stock-note.out {
+    color: #b91c1c;
+}
+
+/* ---- Quantity selector ---- */
+.qty-selector {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #d1d5db;
+    border-radius: 0.4rem;
+    width: fit-content;
+}
+
+.qty-btn {
+    width: 38px;
+    height: 38px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: var(--fo);
+}
+
+.qty-btn:disabled {
+    color: #d1d5db;
+    cursor: not-allowed;
+}
+
+#qtyValue {
+    min-width: 32px;
+    text-align: center;
+    font-size: 15px;
 }
 
 /* ---- Shipping / trust row ---- */

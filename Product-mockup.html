@@ -107,9 +107,19 @@
 							<button class="size-btn active" data-size="M">M</button>
 							<button class="size-btn" data-size="L">L</button>
 							<button class="size-btn" data-size="XL">XL</button>
-							<button class="size-btn out-of-stock" data-size="XXL" disabled>XXL</button>
+							<button class="size-btn" data-size="XXL">XXL</button>
 						</div>
-						<span class="stock-note">Restam apenas 6 unidades neste tamanho</span>
+						<span class="stock-note" id="stockNote">Restam apenas 5 unidades neste tamanho</span>
+					</div>
+
+					<!-- Quantity -->
+					<div class="option-group">
+						<span class="option-label">Quantidade</span>
+						<div class="qty-selector">
+							<button type="button" class="qty-btn" id="qtyMinus" aria-label="Diminuir quantidade">−</button>
+							<span id="qtyValue">1</span>
+							<button type="button" class="qty-btn" id="qtyPlus" aria-label="Aumentar quantidade">+</button>
+						</div>
 					</div>
 
 					<div class="viewers-note">
