@@ -4,7 +4,12 @@ const PRODUCT = {
     id: 'wanderer-vessel-tshirt',
     name: 'Wanderer Vessel',
     price: 45.00,
-    url: '/Product.html?id=wanderer-vessel-tshirt',
+    /* Must point to a public, crawlable page that contains a matching
+       product definition (same id + price + custom fields). Snipcart
+       validates against it server-side; custom fields absent from this
+       URL get stripped. We self-reference this mockup page, which carries
+       a hidden <button class="snipcart-add-item"> definition. */
+    url: 'Product-mockup.html',
     image: 'Website_Imgs/tshirt.svg',
     description: 'Ilustração original inspirada em viagens marítimas, 100% algodão orgânico',
     categories: ['T-shirt'],
@@ -172,8 +177,10 @@ function addCurrentSelectionToCart() {
         ...PRODUCT,
         quantity: 1,
         customFields: [
-            { name: 'Tamanho', value: selectedSize },
-            { name: 'Cor', value: selectedColor },
+            // `options` must match the crawlable definition so Snipcart
+            // renders these as dropdowns and accepts the selected `value`.
+            { name: 'Tamanho', options: 'XS|S|M|L|XL|XXL', value: selectedSize },
+            { name: 'Cor', options: 'Branco', value: selectedColor },
         ],
     };
 

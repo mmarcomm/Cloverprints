@@ -109,6 +109,26 @@
 						Adicionar ao Carrinho
 					</button>
 
+					<!-- Hidden Snipcart product definition.
+					     Snipcart crawls data-item-url server-side to validate price
+					     and the allowed custom fields. The visible CTA above adds to
+					     the cart via the JS SDK using the live size/colour selection;
+					     this element is the crawlable source of truth those values are
+					     validated against. Not shown to users. -->
+					<button hidden aria-hidden="true" tabindex="-1"
+						class="snipcart-add-item"
+						data-item-id="wanderer-vessel-tshirt"
+						data-item-name="Wanderer Vessel"
+						data-item-price="45.00"
+						data-item-url="Product-mockup.html"
+						data-item-description="Ilustração original inspirada em viagens marítimas, 100% algodão orgânico"
+						data-item-image="Website_Imgs/tshirt.svg"
+						data-item-custom1-name="Tamanho"
+						data-item-custom1-options="XS|S|M|L|XL|XXL"
+						data-item-custom2-name="Cor"
+						data-item-custom2-options="Branco">
+					</button>
+
 					<div class="trust-row">
 						<div><img src="SGVs/shipping.svg" alt="" class="trust-icon"> Envio gratuito</div>
 						<div><img src="SGVs/troca.svg" alt="" class="trust-icon"> Retoma gratuita</div>
