@@ -17,9 +17,13 @@
 .breadcrumb {
     max-width: 80rem;
     margin: 0 auto;
-    padding: 1rem 1.5rem 0;
+    padding: 1rem 1.5rem;
     font-size: 14px;
     color: #6b7280;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.25rem;
 }
 
 .breadcrumb a {
@@ -34,12 +38,13 @@
 .breadcrumb-back {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
 }
 
 .breadcrumb-back-icon {
     width: 11px;
     height: auto;
+    display: block;
 }
 
 /* ---- Gallery / zoom ---- */
