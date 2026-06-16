@@ -31,6 +31,17 @@
     color: var(--fo);
 }
 
+.breadcrumb-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.breadcrumb-back-icon {
+    width: 11px;
+    height: auto;
+}
+
 /* ---- Gallery / zoom ---- */
 .main-image-container.zoomable {
     cursor: zoom-in;
@@ -65,7 +76,7 @@
 
 .badge {
     display: inline-block;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: .05em;
     text-transform: uppercase;
@@ -76,11 +87,6 @@
 .badge-limited {
     background-color: #fee2e2;
     color: #991b1b;
-}
-
-.badge-new {
-    background-color: var(--th);
-    color: var(--fo);
 }
 
 /* ---- Price row ---- */
