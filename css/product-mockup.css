@@ -46,7 +46,6 @@
     height: auto;
     vertical-align: middle;
     padding-top: 2px;
-    transition: filter 0.2s ease;
 }
 
 .breadcrumb-back:hover .breadcrumb-back-icon {
