@@ -642,3 +642,8 @@
         display: none;
     }
 }
+
+/* Hide sticky bar when Snipcart cart drawer is open */
+html.snipcart-overscroll .sticky-cta {
+    display: none !important;
+}

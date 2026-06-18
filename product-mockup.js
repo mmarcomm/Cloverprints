@@ -239,5 +239,13 @@ function addCurrentSelectionToCart() {
     window.LoadSnipcart && window.LoadSnipcart();
     document.addEventListener('snipcart.ready', () => {
         window.Snipcart.api.cart.items.add(productDefinition).then(onAdded);
+        initSnipcartBarSync();
     }, { once: true });
+}
+
+function initSnipcartBarSync() {
+    const bar = document.querySelector('.sticky-cta');
+    if (!bar || !window.Snipcart) return;
+    Snipcart.events.on('cart.open',  () => { bar.style.display = 'none'; });
+    Snipcart.events.on('cart.close', () => { bar.style.removeProperty('display'); });
 }
