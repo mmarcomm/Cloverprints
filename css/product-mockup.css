@@ -55,13 +55,13 @@
 /* ---- Gallery layout ---- */
 .product-images {
     display: flex;
-    flex-direction: column-reverse; /* mobile: main image top, thumbs below */
+    flex-direction: column;
     gap: 0.75rem;
 }
 
 @media (min-width: 768px) {
     .product-images {
-        flex-direction: row; /* desktop: thumbs left, main image right */
+        flex-direction: row;
         align-items: flex-start;
         gap: 0.75rem;
     }
@@ -71,11 +71,14 @@
 .gallery-thumbs {
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
     gap: 0.5rem;
     overflow-x: auto;
     overflow-y: hidden;
     scrollbar-width: none;
     padding-bottom: 2px;
+    order: 2; /* below main image on mobile */
+    min-width: 0;
 }
 
 .gallery-thumbs::-webkit-scrollbar { display: none; }
@@ -83,11 +86,13 @@
 @media (min-width: 768px) {
     .gallery-thumbs {
         flex-direction: column;
+        flex-wrap: nowrap;
         overflow-x: hidden;
         overflow-y: visible;
         padding-bottom: 0;
         width: 72px;
         flex-shrink: 0;
+        order: 1; /* left side on desktop */
     }
 }
 
@@ -115,23 +120,9 @@
 .gallery-thumb:hover { border-color: #d1d5db; }
 .gallery-thumb.active { border-color: var(--fo); }
 
-/* Skeleton placeholder slots */
-.gallery-thumb--skeleton {
-    cursor: default;
-    background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
-    background-size: 200% 100%;
-    animation: gallery-skeleton 1.6s ease-in-out infinite;
-    border-color: transparent !important;
-}
-
-@keyframes gallery-skeleton {
-    0%   { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-}
-
 /* ---- Main gallery image ---- */
 .gallery-main {
-    flex: 1;
+    width: 100%;
     aspect-ratio: 1;
     background: #fff;
     border-radius: 0.5rem;
@@ -140,6 +131,17 @@
     cursor: zoom-in;
     position: relative;
     outline: none;
+    order: 1; /* above thumbs on mobile */
+    flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+    .gallery-main {
+        flex: 1;
+        width: auto;
+        order: 2; /* right of thumbs on desktop */
+        flex-shrink: 1;
+    }
 }
 
 .gallery-main img {
