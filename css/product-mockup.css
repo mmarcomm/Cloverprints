@@ -175,6 +175,21 @@
 
 .gallery-zoom-hint.fade-out { opacity: 0; }
 
+/* ---- Layout spacing overrides ---- */
+.product-page {
+    min-height: 0; /* product.css sets 100vh which creates blank space in 2-col layout */
+}
+
+.product-main {
+    gap: 2rem; /* product.css uses 3rem; tighter on all breakpoints */
+}
+
+@media (min-width: 768px) {
+    .product-main {
+        gap: 2.5rem;
+    }
+}
+
 /* ---- Product header (identity cluster) ---- */
 .product-header {
     display: flex;
