@@ -468,6 +468,10 @@
     border-bottom: 1px solid #e5e7eb;
 }
 
+.accordion-item:last-child {
+    border-bottom: none;
+}
+
 .accordion-trigger {
     width: 100%;
     text-align: left;
