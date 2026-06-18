@@ -91,16 +91,19 @@ header nav ul {
 .menu-close-btn { display: none; }
 .toggle-checkbox { display: none; }
 .menu-overlay   { display: none; }
+.menu__links    { display: none; }
 
 
 /* ============================================================
    Mobile / Tablet — top dropdown
+   checkbox is a direct sibling of .navbar, .menu-overlay and
+   .menu__links so the ~ selector reaches all three.
    ============================================================ */
 @media (max-width: 1400px) {
 
     .no-scroll { overflow: hidden; }
 
-    /* Fixed navbar bar */
+    /* Fixed navbar bar — z-index 100, sits above the dropdown (98) */
     .navbar {
         position: fixed;
         top: 0;
@@ -165,11 +168,12 @@ header nav ul {
         display: block;
     }
 
-    /* ✕ hidden by default, hamburger hidden when open */
+    /* ✕ hidden by default; toggled via checkbox sibling selector */
     .menu-close-btn { display: none; }
 
-    .toggle-checkbox:checked ~ .menu-open-btn  { display: none; }
-    .toggle-checkbox:checked ~ .menu-close-btn { display: inline-flex; }
+    /* checkbox ~ .navbar .menu-open-btn / .menu-close-btn */
+    .toggle-checkbox:checked ~ .navbar .menu-open-btn  { display: none; }
+    .toggle-checkbox:checked ~ .navbar .menu-close-btn { display: inline-flex; }
 
     /* ---- Dim overlay (below navbar, above page) ---- */
     .menu-overlay {
@@ -192,19 +196,17 @@ header nav ul {
         pointer-events: all;
     }
 
-    /* Reset desktop float so it doesn't escape the fixed dropdown panel */
-    nav { width: 100%; text-align: left; margin-right: 0; }
-    header nav ul { float: none; margin-top: 0; margin-bottom: 0; }
-
-    /* ---- Dropdown panel (slides down from below navbar) ---- */
+    /* ---- Dropdown panel ---- */
+    /* translateY(-100vh) keeps it fully off-screen regardless of panel height */
     .menu__links {
+        display: block;
         position: fixed;
         top: 56px;
         left: 0;
         right: 0;
         background: #fff;
-        z-index: 98; /* below navbar (100) so navbar stays on top */
-        transform: translateY(-100%);
+        z-index: 98;
+        transform: translateY(-100vh);
         transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
         padding: 4px 0 4px;
