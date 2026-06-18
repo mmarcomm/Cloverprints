@@ -1,469 +1,280 @@
 @charset "UTF-8";
 
+/* ============================================================
+   Header — desktop + mobile drawer
+   Desktop nav unchanged; hamburger drawer kicks in at ≤1400px
+   ============================================================ */
+
 header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
-.menubox {
-	display: flex;
-	justify-content: center;
-}
-.square {
-	display: flex;
-	justify-content: center;
-	height: 100px;
-	width: 100%;
-	z-index: 2;
-	background-color: white;
-}
-
+/* ---- Desktop navbar ---- */
 .navbar {
-	display: flex;
-	justify-content: center;
-	top: 0px;
-	background-color: transparent;
-	z-index: 2;
-	padding: 24px 10% 24px 10%;
-	background-color: var(--si);
+    display: flex;
+    justify-content: center;
+    top: 0;
+    padding: 24px 10%;
+    background-color: var(--si);
+    z-index: 2;
 }
 
-ul {
-	margin-top: 14px;
-	margin-bottom: 0px;
-
+.logo-container {
+    padding: 0;
+    margin-top: 22px;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    width: 240px;
 }
 
-/* Apresenta a cor do texto */
-.navbar ul li {
-	list-style: initial;
-	display: inline-block;
-	margin: 8px 21px;
-	position: relative;
+.logo {
+    width: 160px;
+    z-index: 1;
 }
 
-/* Apresenta a cor do texto e outras definições */
-.navbar ul li a {
-	text-decoration: none;
-	color: #212427;
-	text-transform: uppercase;
-	font-size: 20px;
-	font-weight: 300;
-	transition: color 0.25s ease;
-}
-
-/* Faz uma transição do sublinhado aparecer da esquerda para a direita a 100% */
-.navbar ul li::after {
-	content: '';
-	height: 2px;
-	width: 0%;
-	background: var(--primary-color);
-	display: block;
-	margin: auto;
-	position: absolute;
-	left: 0;
-	bottom: -10px;
-	transition: 0.5s;
-
-}
-
-/* Faz uma transição do sublinhado aparecer da esquerda para a direita a 100% */
-.navbar ul li:hover::after {
-	width: 100%;
-	background: #000;
-	position: absolute;
-	left: 0;
-	bottom: -10px;
-}
-
-
+/* Desktop nav links */
 nav {
-	width: 100%;
-	text-align: right;
-	margin-right: 25px;
+    width: 100%;
+    text-align: right;
+    margin-right: 25px;
 }
 
 header nav ul {
-	list-style: none;
-	float: right;
-}
-
-nav ul li {
-	float: middle;
-	color: var(--se);
-	font-size: 14px;
-	text-align: left;
-	margin-right: 25px;
-	letter-spacing: 2px;
-	transition: all 0.3s linear;
-}
-
-ul li a {
-	color: #FFFFFF;
-	text-decoration: none;
-}
-
-ul li:hover a {
-	color: var(--primary-color);
-}
-
-.logo-container {
-	right: 0;
-	/* Aligns the element to the right */
-	padding: 0;
-	margin-top: 22px;
-	background-color: transparent;
-	justify-content: center;
-	align-items: center;
-	z-index: 3;
-	width: 240px;
-	/* Maintains the specified width */
-}
-
-.logo {
-	width: 160px;
-	z-index: 1;
-}
-
-.menu-button {
-	display: none;
-}
-
-.toggle-checkbox {
-	display: none;
-}
-
-
-
-@media(max-width: 1400px) {
-.no-scroll { overflow: hidden; }
-
-.menubox {
-	display: flex;
-	justify-content: center;
-}
-
-.logo-container {
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 3;
-	justify-content: center;
-	align-items: center;
-	padding: 14px 42px 14px 14px;
-	margin: 0;
-}
-
-.logo-menu {
-	width: 140px;
-	/* Your desired logo size */
-
-}
-.logo {
-	width: 180px;
-}
-
-.square {
-	position: fixed;
-	height: 48px;
-	width: 100%;
-	z-index: 2;
-	background-color: white;
-	top: 0;
-	justify-content: unset;
-	margin: 0;
-	border-radius: 0;
-}
-
-nav {
-	width: 100%;
-	float: none;
-	margin: 0 0 0 0;
-}
-
-.logo {
-	width: 180px;
-}
-
-.navbar {
-	padding: 0px 46px 0px 46px;
-	height: 48px;
-	width: 100%;
-	z-index: 1;
-	background-color: white;
-	top: 0;
-	justify-content: unset;
-	margin: 0;
-	border-radius: 0;
-}
-
-
-/* ------------ */
-.menu__toggle {
-    position: fixed; 
-    top: 0;
-    right: 0;
-    z-index: 2;
-    width: 48px;
-    height: 48px;
-}
-
-.toggle-checkbox {
-	display: none;
-}
-
-/*width: 48px;
-	height: 48px;
-	display: flex;
-	justify-content: center;
-	align-items: center; 
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	background-color: transparent;
-	z-index: 2;*/
-
-.menu__links {
-	position: fixed;
-	width: 100vw;
-	height: 100vh;
-	top: 0;
-	left: 0;
-	background-color: white;
-	z-index: 0;
-	transform: translateY(-100%);
-	transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
-}
-
-.toggle-checkbox:checked~.menu__links {
-	transform: none;
-}
-/* keep this — now it actually matches because they're siblings */
-.toggle-checkbox:checked ~ .menu__links { transform: none; }
-
-.menu-button {
-	background: none;
-	border: none;
-	cursor: pointer;
-	padding: 0;
-	display: inline-flex;
-	align-items: center;
-	width: none;
-	justify-content: center;
-	position: relative;
-	/* Allows the label to be clickable */
-	z-index: 2;
-	/* Ensure it's above the menu */
-
-	height: 100%;
-}
-
-.hamburger-icon {
-	width: 24px;
-	height: 24px;
-}
-
-.menu__links a {
-	color: var(--se);
-	transition: color 0.3s ease;
-}
-
-
-
-.menu__links li {
-	font-size: 22px;
-}
-
-/* ------------ */
-
-
-.hamburger-icon:hover {
-	transform: scale(1.1);
-		/* Slight zoom effect on hover */
+    list-style: none;
+    float: right;
+    margin-top: 14px;
+    margin-bottom: 0;
 }
 
 .navbar ul li {
-	display: block;
-	margin: 24px 24px 24px 24px;
+    list-style: initial;
+    display: inline-block;
+    margin: 8px 21px;
+    position: relative;
 }
 
-
-
+.navbar ul li a {
+    text-decoration: none;
+    color: #212427;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 300;
+    transition: color 0.25s ease;
 }
 
-
-@media(max-width: 700px) {
-
-.no-scroll { overflow: hidden; }
-.logo-container {
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 3;
-	justify-content: center;
-	align-items: center;
-	padding: 14px 24px 14px 14px;
-	margin: 0;
+.navbar ul li::after {
+    content: '';
+    height: 2px;
+    width: 0%;
+    background: var(--primary-color);
+    display: block;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
 }
 
-.logo-menu {
-	width: 140px;
-	/* Your desired logo size */
-
-}
-.logo {
-	width: 180px;
-}
-
-
-.navbar {
-	padding: 0px 26px 0px 26px;
-	height: 48px;
-	width: 100%;
-	z-index: 1;
-	background-color: white;
-	top: 0;
-	justify-content: unset;
-	margin: 0;
-	border-radius: 0;
+.navbar ul li:hover::after {
+    width: 100%;
+    background: #000;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
 }
 
-
-/* ------------ */
-.menu__toggle {
-	position: relative;
-	z-index: 0;
-
-	width: 48px;
-	height: 48px;
-
-	justify-content: center;
-	align-items: center;
-	/* Centering vertically */
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	background-color: transparent;
+/* Hide hamburger + drawer on desktop */
+.menu-button    { display: none; }
+.toggle-checkbox { display: none; }
+.menu-overlay   { display: none; }
 
 
-	justify-content: flex-end;
-	/* Align to the right side */
-	align-items: center;
+/* ============================================================
+   Mobile / Tablet — right-side drawer
+   ============================================================ */
+@media (max-width: 1400px) {
+
+    .no-scroll { overflow: hidden; }
+
+    /* Navbar bar */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 56px;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #fff;
+        box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+        z-index: 100;
+    }
+
+    /* Logo in navbar bar */
+    .logo-container {
+        position: static;
+        margin: 0;
+        padding: 0;
+        width: auto;
+        display: flex;
+        align-items: center;
+    }
+
+    .logo {
+        width: 140px;
+        display: block;
+    }
+
+    /* Hamburger toggle area */
+    .menu__toggle {
+        position: static;
+        width: auto;
+        height: auto;
+    }
+
+    .toggle-checkbox { display: none; }
+
+    /* Hamburger button */
+    .menu-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: background 0.15s ease;
+        z-index: 102;
+        position: relative;
+    }
+
+    .menu-button:hover { background: #f3f4f6; }
+
+    .hamburger-icon {
+        width: 24px;
+        height: 24px;
+        display: block;
+    }
+
+    /* ---- Dim overlay behind the drawer ---- */
+    .menu-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+        z-index: 200;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        cursor: pointer;
+    }
+
+    .toggle-checkbox:checked ~ .menu-overlay {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    /* ---- Drawer panel ---- */
+    .menu__links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 78%;
+        max-width: 320px;
+        height: 100vh;
+        background: #fff;
+        z-index: 201;
+        display: flex;
+        flex-direction: column;
+        transform: translateX(100%);
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: -6px 0 24px rgba(0, 0, 0, 0.08);
+        overflow-y: auto;
+    }
+
+    .toggle-checkbox:checked ~ .menu__links {
+        transform: translateX(0);
+    }
+
+    /* Drawer header: logo + close */
+    .menu-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 20px;
+        border-bottom: 1px solid #f0f0f0;
+        flex-shrink: 0;
+    }
+
+    .menu-logo-link { display: flex; align-items: center; }
+
+    .menu-logo {
+        width: 120px;
+        display: block;
+    }
+
+    .menu-close {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        color: #212427;
+        cursor: pointer;
+        transition: background 0.15s ease;
+        flex-shrink: 0;
+    }
+
+    .menu-close:hover { background: #f3f4f6; }
+
+    /* Drawer nav links */
+    .navbar ul li {
+        display: block;
+        margin: 0;
+    }
+
+    #navgatorList {
+        list-style: none;
+        margin: 0;
+        padding: 8px 0;
+    }
+
+    #navgatorList li a {
+        display: block;
+        padding: 16px 24px;
+        font-size: 17px;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #212427;
+        text-decoration: none;
+        transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    #navgatorList li a:hover,
+    #navgatorList li a.activemenu {
+        background: #f9fafb;
+        color: #000;
+    }
+
+    #navgatorList li a.activemenu {
+        font-weight: 500;
+    }
+
+    /* Hide desktop nav inline underline animation */
+    .navbar ul li::after { display: none; }
 }
 
-.toggle-checkbox {
-	display: none;
-}
-
-/*width: 48px;
-	height: 48px;
-	display: flex;
-	justify-content: center;
-	align-items: center; 
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	background-color: transparent;
-	z-index: 2;*/
-
-.menu__links {
-	position: fixed;
-	width: 100vw;
-	height: 100vh;
-	top: 0;
-	left: 0;
-	background-color: white;
-	z-index: 0;
-	transform: translateY(-100%);
-	transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
-}
-
-.toggle-checkbox:checked~.menu__links {
-	transform: none;
-}
-
-.menu-button {
-	background: none;
-	border: none;
-	cursor: pointer;
-	padding: 0;
-	display: inline-flex;
-	align-items: center;
-	width: none;
-	justify-content: center;
-	position: relative;
-	/* Allows the label to be clickable */
-	z-index: 2;
-	/* Ensure it's above the menu */
-
-	height: 100%;
-}
-
-.hamburger-icon {
-	width: 24px;
-	height: 24px;
-}
-
-.menu__links a {
-	color: var(--secoundary-color);
-	transition: color 0.3s ease;
-}
-
-
-
-.menu__links li {
-	font-size: 22px;
-}
-
-/* ------------ */
-
-.hamburger-icon:hover {
-	transform: scale(1.1)
-		/* Slight zoom effect on hover */
-}
-
-
-/*
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  margin: 0 auto;
-  height: 70px;
-  width: 80%;
-  z-index: 1;
-  background-color: white;
-  top: 20px;
-  border-radius: 35px;
-*/
-
-.navbar ul li {
-	display: block;
-	margin: 24px 24px 24px 24px;
-}
-
-.menubutton {
-	color: 212427;
-	border: 2px solid #212427;
-	margin-left: 17%;
-	font-size: 13px;
-	background: transparent;
-	cursor: pointer;
-	border-radius: 25px;
-	height: 20px;
-	width: 20px;
-	z-index: 5;
-}
-
-/* Hidden checkbox for toggling menu */
-#menuToggle {
-	display: none;
-}
-
-/*  */
-.navbar.hidden>*:not(.menubutton) {
-	display: none;
-}
-
-
+@media (max-width: 700px) {
+    .navbar { padding: 0 16px; }
+    .logo { width: 130px; }
 }
