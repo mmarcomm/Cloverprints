@@ -30,11 +30,14 @@ const STOCK = {
 
 let selectedSize = 'M';
 let selectedColor = 'Branco';
+let currentGalleryIndex = 0;
+let _pswpLightbox = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     loadComponent('header.html', 'header-placeholder');
     loadComponent('footer.html', 'footer-placeholder');
     initGallery();
+    initGalleryZoom();
     initColorSwatches();
     initSizeSelector();
     initSizeGuide();
@@ -57,14 +60,47 @@ function loadComponent(url, placeholderId) {
 /* ---------------- Gallery ---------------- */
 function initGallery() {
     const mainImage = document.getElementById('mainImage');
-    document.querySelectorAll('.thumbnail').forEach(thumb => {
+
+    document.querySelectorAll('.gallery-thumb:not(.gallery-thumb--skeleton)').forEach(thumb => {
         thumb.addEventListener('click', () => {
-            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
             thumb.classList.add('active');
             const img = thumb.querySelector('img');
             if (mainImage && img) mainImage.src = img.src;
+            currentGalleryIndex = parseInt(thumb.dataset.index, 10) || 0;
         });
     });
+
+    // Fade out "Ampliar" hint after 2.5 s
+    const hint = document.getElementById('galleryZoomHint');
+    if (hint) setTimeout(() => hint.classList.add('fade-out'), 2500);
+}
+
+/* ---------------- Gallery zoom (PhotoSwipe lightbox) ---------------- */
+function initGalleryZoom() {
+    const galleryMain = document.getElementById('galleryMain');
+    if (!galleryMain) return;
+
+    const openAtCurrent = () => openLightbox(currentGalleryIndex);
+    galleryMain.addEventListener('click', openAtCurrent);
+    galleryMain.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openAtCurrent(); }
+    });
+}
+
+async function openLightbox(index) {
+    if (!_pswpLightbox) {
+        const { default: PhotoSwipeLightbox } = await import(
+            'https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe-lightbox.esm.js'
+        );
+        _pswpLightbox = new PhotoSwipeLightbox({
+            gallery: '#pswp-gallery',
+            children: 'a',
+            pswpModule: () => import('https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe.esm.js'),
+        });
+        _pswpLightbox.init();
+    }
+    _pswpLightbox.loadAndOpen(index);
 }
 
 /* ---------------- Color swatches ---------------- */
