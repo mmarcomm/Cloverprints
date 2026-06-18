@@ -196,21 +196,19 @@ header nav ul {
     nav { width: 100%; text-align: left; margin-right: 0; }
     header nav ul { float: none; margin-top: 0; margin-bottom: 0; }
 
-    /* ---- Bottom sheet (slides up from bottom) ---- */
+    /* ---- Dropdown panel (slides down from below navbar) ---- */
     .menu__links {
         position: fixed;
-        bottom: 0;
-        top: auto;
+        top: 56px;
         left: 0;
         right: 0;
         background: #fff;
-        z-index: 98;
-        transform: translateY(100%);
+        z-index: 98; /* below navbar (100) so navbar stays on top */
+        transform: translateY(-100%);
         transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.10);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
         padding: 4px 0 4px;
         overflow: hidden;
-        border-radius: 16px 16px 0 0;
     }
 
     .toggle-checkbox:checked ~ .menu__links {
