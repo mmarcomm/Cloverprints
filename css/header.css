@@ -192,6 +192,10 @@ header nav ul {
         pointer-events: all;
     }
 
+    /* Reset desktop float so it doesn't escape the fixed dropdown panel */
+    nav { width: 100%; text-align: left; margin-right: 0; }
+    header nav ul { float: none; margin-top: 0; margin-bottom: 0; }
+
     /* ---- Dropdown panel (slides from top, behind navbar) ---- */
     .menu__links {
         position: fixed;
@@ -203,7 +207,8 @@ header nav ul {
         transform: translateY(-100%);
         transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-        padding: 8px 0 16px;
+        padding: 8px 0 0;
+        overflow: hidden;
     }
 
     .toggle-checkbox:checked ~ .menu__links {
@@ -247,6 +252,21 @@ header nav ul {
 
     #navgatorList li a.activemenu {
         font-weight: 600;
+    }
+
+    /* ---- Menu footer branding ---- */
+    .menu-footer {
+        padding: 14px 24px 16px;
+        border-top: 1px solid #f0f0f0;
+        margin-top: 4px;
+    }
+
+    .menu-footer-brand {
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #b0b0b0;
     }
 }
 
