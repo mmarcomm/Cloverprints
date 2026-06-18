@@ -17,39 +17,33 @@
     <div class="menu__toggle">
       <input type="checkbox" class="toggle-checkbox" id="menu-toggle-checkbox" />
 
-      <!-- Hamburger button -->
+      <!-- Hamburger (visible when closed) -->
       <label for="menu-toggle-checkbox"
-             class="menu-button"
-             aria-label="Abrir menu"
-             aria-controls="menu-panel"
-             aria-expanded="false">
+             class="menu-button menu-open-btn"
+             aria-label="Abrir menu">
         <img src="SGVs/menu.svg" alt="" class="hamburger-icon" aria-hidden="true" />
       </label>
 
-      <!-- Dim overlay — clicking it closes the drawer -->
+      <!-- ✕ (visible when open) -->
+      <label for="menu-toggle-checkbox"
+             class="menu-button menu-close-btn"
+             aria-label="Fechar menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </label>
+
+      <!-- Dim overlay — clicking closes the menu -->
       <label for="menu-toggle-checkbox" class="menu-overlay" aria-hidden="true"></label>
 
-      <!-- Drawer -->
+      <!-- Dropdown panel (no logo — already in navbar above) -->
       <nav class="menu__links" id="menu-panel" role="navigation">
-
-        <div class="menu-header">
-          <a href="index.html" class="menu-logo-link">
-            <img src="SGVs/logo1.svg" alt="Clover Prints" class="menu-logo">
-          </a>
-          <label for="menu-toggle-checkbox" class="menu-close" aria-label="Fechar menu">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-            </svg>
-          </label>
-        </div>
-
         <ul id="navgatorList">
           <li><a href="index.html" class="activemenu">Produtos</a></li>
           <li><a href="Exposições.html">Projetos</a></li>
           <li><a href="Sobre.html">Sobre</a></li>
           <li><a href="Conectar.html">Conectar</a></li>
         </ul>
-
       </nav>
     </div>
   </div>

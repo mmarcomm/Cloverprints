@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
 /* ============================================================
-   Header — desktop + mobile drawer
-   Desktop nav unchanged; hamburger drawer kicks in at ≤1400px
+   Header — desktop nav + mobile top-dropdown
+   Desktop: inline links. Mobile (≤1400px): compact top dropdown.
    ============================================================ */
 
 header {
@@ -36,7 +36,6 @@ header {
     z-index: 1;
 }
 
-/* Desktop nav links */
 nav {
     width: 100%;
     text-align: right;
@@ -87,20 +86,21 @@ header nav ul {
     bottom: -10px;
 }
 
-/* Hide hamburger + drawer on desktop */
+/* Hide mobile elements on desktop */
 .menu-button    { display: none; }
+.menu-close-btn { display: none; }
 .toggle-checkbox { display: none; }
 .menu-overlay   { display: none; }
 
 
 /* ============================================================
-   Mobile / Tablet — right-side drawer
+   Mobile / Tablet — top dropdown
    ============================================================ */
 @media (max-width: 1400px) {
 
     .no-scroll { overflow: hidden; }
 
-    /* Navbar bar */
+    /* Fixed navbar bar */
     .navbar {
         position: fixed;
         top: 0;
@@ -112,11 +112,10 @@ header nav ul {
         align-items: center;
         justify-content: space-between;
         background-color: #fff;
-        box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+        border-bottom: 1px solid #f0f0f0;
         z-index: 100;
     }
 
-    /* Logo in navbar bar */
     .logo-container {
         position: static;
         margin: 0;
@@ -131,16 +130,17 @@ header nav ul {
         display: block;
     }
 
-    /* Hamburger toggle area */
     .menu__toggle {
         position: static;
         width: auto;
         height: auto;
+        display: flex;
+        align-items: center;
     }
 
     .toggle-checkbox { display: none; }
 
-    /* Hamburger button */
+    /* Hamburger + close share the same base style */
     .menu-button {
         display: inline-flex;
         align-items: center;
@@ -151,9 +151,10 @@ header nav ul {
         border: none;
         cursor: pointer;
         border-radius: 8px;
+        color: #212427;
         transition: background 0.15s ease;
-        z-index: 102;
         position: relative;
+        z-index: 101;
     }
 
     .menu-button:hover { background: #f3f4f6; }
@@ -164,13 +165,22 @@ header nav ul {
         display: block;
     }
 
-    /* ---- Dim overlay behind the drawer ---- */
+    /* ✕ hidden by default, hamburger hidden when open */
+    .menu-close-btn { display: none; }
+
+    .toggle-checkbox:checked ~ .menu-open-btn  { display: none; }
+    .toggle-checkbox:checked ~ .menu-close-btn { display: inline-flex; }
+
+    /* ---- Dim overlay (below navbar, above page) ---- */
     .menu-overlay {
         display: block;
         position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.35);
-        z-index: 200;
+        top: 56px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 97;
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.3s ease;
@@ -182,99 +192,65 @@ header nav ul {
         pointer-events: all;
     }
 
-    /* ---- Drawer panel ---- */
+    /* ---- Dropdown panel (slides from top, behind navbar) ---- */
     .menu__links {
         position: fixed;
-        top: 0;
+        top: 56px;
+        left: 0;
         right: 0;
-        width: 78%;
-        max-width: 320px;
-        height: 100vh;
         background: #fff;
-        z-index: 201;
-        display: flex;
-        flex-direction: column;
-        transform: translateX(100%);
-        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: -6px 0 24px rgba(0, 0, 0, 0.08);
-        overflow-y: auto;
+        z-index: 98; /* sits below navbar (100) so it slides "from" the navbar */
+        transform: translateY(-100%);
+        transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        padding: 8px 0 16px;
     }
 
     .toggle-checkbox:checked ~ .menu__links {
-        transform: translateX(0);
+        transform: translateY(0);
     }
 
-    /* Drawer header: logo + close */
-    .menu-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 14px 20px;
-        border-bottom: 1px solid #f0f0f0;
-        flex-shrink: 0;
-    }
-
-    .menu-logo-link { display: flex; align-items: center; }
-
-    .menu-logo {
-        width: 120px;
-        display: block;
-    }
-
-    .menu-close {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        color: #212427;
-        cursor: pointer;
-        transition: background 0.15s ease;
-        flex-shrink: 0;
-    }
-
-    .menu-close:hover { background: #f3f4f6; }
-
-    /* Drawer nav links */
+    /* Nav links */
     .navbar ul li {
         display: block;
         margin: 0;
     }
 
+    .navbar ul li::after { display: none; }
+
     #navgatorList {
         list-style: none;
         margin: 0;
-        padding: 8px 0;
+        padding: 0;
     }
 
     #navgatorList li a {
         display: block;
-        padding: 16px 24px;
-        font-size: 17px;
+        padding: 14px 24px;
+        font-size: 16px;
         font-weight: 400;
         text-transform: uppercase;
-        letter-spacing: 0.06em;
+        letter-spacing: 0.07em;
         color: #212427;
         text-decoration: none;
-        transition: background 0.15s ease, color 0.15s ease;
+        border-bottom: 1px solid #f4f4f4;
+        transition: background 0.15s ease;
     }
 
-    #navgatorList li a:hover,
-    #navgatorList li a.activemenu {
+    #navgatorList li:last-child a {
+        border-bottom: none;
+    }
+
+    #navgatorList li a:hover {
         background: #f9fafb;
-        color: #000;
     }
 
     #navgatorList li a.activemenu {
-        font-weight: 500;
+        font-weight: 600;
     }
-
-    /* Hide desktop nav inline underline animation */
-    .navbar ul li::after { display: none; }
 }
 
 @media (max-width: 700px) {
     .navbar { padding: 0 16px; }
-    .logo { width: 130px; }
+    .logo   { width: 130px; }
 }
