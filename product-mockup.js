@@ -46,6 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSizeAvailability();
     renderStockNote();
     renderAddToCartButtons();
+    // Register sticky bar hide/show as soon as Snipcart loads (for any trigger)
+    document.addEventListener('snipcart.ready', initSnipcartBarSync, { once: true });
 });
 
 function loadComponent(url, placeholderId) {
@@ -239,7 +241,6 @@ function addCurrentSelectionToCart() {
     window.LoadSnipcart && window.LoadSnipcart();
     document.addEventListener('snipcart.ready', () => {
         window.Snipcart.api.cart.items.add(productDefinition).then(onAdded);
-        initSnipcartBarSync();
     }, { once: true });
 }
 

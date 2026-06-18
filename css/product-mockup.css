@@ -643,7 +643,9 @@
     }
 }
 
-/* Hide sticky bar when Snipcart cart drawer is open */
+/* Hide sticky bar when Snipcart cart drawer is open.
+   Snipcart v3 adds snipcart-overscroll to <body>; both selectors for safety. */
+body.snipcart-overscroll .sticky-cta,
 html.snipcart-overscroll .sticky-cta {
     display: none !important;
 }
