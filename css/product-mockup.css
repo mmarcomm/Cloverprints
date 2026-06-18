@@ -342,9 +342,38 @@
     border-color: var(--fo);
 }
 
+/* ---- CTA button override: premium dark style ---- */
+.cta-primary {
+    background-color: #212427;
+    color: #fff;
+    padding: 0.9rem 1.75rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.cta-primary:hover {
+    background-color: #3a3d40;
+    box-shadow: 0 4px 14px rgba(33, 36, 39, 0.22);
+    transform: none;
+}
+
+.cta-primary:active {
+    transform: scale(0.97);
+    box-shadow: none;
+}
+
 .cta-primary:disabled {
-    background-color: #d1d5db;
-    color: #6b7280;
+    background-color: #e5e7eb;
+    color: #9ca3af;
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
@@ -568,16 +597,41 @@
     left: 0;
     right: 0;
     background: #fff;
-    box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
-    padding: 0.75rem 1rem;
+    box-shadow: 0 -1px 0 #f0f0f0, 0 -6px 20px rgba(0,0,0,0.07);
+    padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px)) 1rem;
     z-index: 40;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 0.75rem;
+}
+
+.sticky-cta__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex-shrink: 0;
 }
 
 .sticky-cta .price-current {
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #212427;
+    line-height: 1.1;
+}
+
+.sticky-size-label {
+    font-size: 11px;
+    font-weight: 400;
+    color: #9ca3af;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.sticky-cta .cta-primary {
+    flex: 1;
+    justify-content: center;
+    padding: 0.875rem 1rem;
+    font-size: 0.875rem;
 }
 
 @media (max-width: 768px) {

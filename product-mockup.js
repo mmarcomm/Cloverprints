@@ -121,6 +121,7 @@ function initColorSwatches() {
 /* ---------------- Size selector ---------------- */
 function initSizeSelector() {
     const valueLabel = document.getElementById('selectedSizeLabel');
+    const stickyChip = document.getElementById('stickySizeChip');
 
     document.querySelectorAll('.size-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -129,6 +130,7 @@ function initSizeSelector() {
             btn.classList.add('active');
             selectedSize = btn.dataset.size;
             if (valueLabel) valueLabel.textContent = selectedSize;
+            if (stickyChip) stickyChip.textContent = selectedSize;
 
             renderStockNote();
             renderAddToCartButtons();
