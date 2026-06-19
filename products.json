@@ -35,16 +35,16 @@
     "id": "minimal-essence",
     "name": "Minimal Essence",
     "price": 25.00,
-    "description": "Minimalismo aplicado ao design de moda, corte regular unissexo.",
+    "description": "Feito com o preço mais baixo, e qualidade para usar nos dias de verão mais quentes.",
     "category": "T-shirt",
     "cardImage": "Website_Imgs/6.png",
-    "url": "Product.html?nome=minimal-essence",
+    "url": "Product-minimal-essence.html",
     "badge": null,
     "images": {
-      "mainImage": "Website_Imgs/6.png",
-      "image2": "Website_Imgs/6.png",
-      "image3": "Website_Imgs/6.png",
-      "image4": "Website_Imgs/6.png"
+      "mainImage": "Website_Imgs/tshirt.svg",
+      "image2": "Website_Imgs/tshirtback-01.svg",
+      "image3": "Website_Imgs/tshirt3-01.svg",
+      "image4": "Website_Imgs/tshirt2.svg"
     }
   }
 }
