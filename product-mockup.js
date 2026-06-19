@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSizeAvailability();
     renderStockNote();
     renderAddToCartButtons();
-    initSnipcartBarSync();
 });
 
 function loadComponent(url, placeholderId) {
@@ -243,27 +242,3 @@ function addCurrentSelectionToCart() {
     }, { once: true });
 }
 
-function initSnipcartBarSync() {
-    const bar = document.querySelector('.sticky-cta');
-    if (!bar) return;
-
-    const sync = (el) => {
-        const isOpen = !el.hasAttribute('hidden');
-        bar.style.display = isOpen ? 'none' : '';
-    };
-
-    const watchSnipcart = (el) => {
-        sync(el);
-        new MutationObserver(() => sync(el))
-            .observe(el, { attributes: true, attributeFilter: ['hidden'] });
-    };
-
-    const existing = document.getElementById('snipcart');
-    if (existing) { watchSnipcart(existing); return; }
-
-    // #snipcart is injected dynamically — wait for it
-    new MutationObserver((_, obs) => {
-        const el = document.getElementById('snipcart');
-        if (el) { obs.disconnect(); watchSnipcart(el); }
-    }).observe(document.body, { childList: true });
-}
