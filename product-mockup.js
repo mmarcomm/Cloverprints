@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSizeAvailability();
     renderStockNote();
     renderAddToCartButtons();
+    initProductNav();
 });
 
 function loadComponent(url, placeholderId) {
@@ -234,5 +235,41 @@ function addCurrentSelectionToCart() {
     document.addEventListener('snipcart.ready', () => {
         window.Snipcart.api.cart.items.add(productDefinition).then(onAdded);
     }, { once: true });
+}
+
+/* ---------------- Prev / Next product navigation ---------------- */
+function initProductNav() {
+    fetch('products.json')
+        .then(r => r.json())
+        .then(data => {
+            const keys = Object.keys(data);
+            const idx  = keys.indexOf(PRODUCT.id);
+            if (idx === -1) return;
+
+            const prev = data[keys[(idx - 1 + keys.length) % keys.length]];
+            const next = data[keys[(idx + 1) % keys.length]];
+
+            const nav = document.createElement('div');
+            nav.className = 'product-nav';
+            nav.innerHTML = `
+                <a href="${prev.url}" class="product-nav__btn product-nav__btn--prev">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+                    <span class="product-nav__label">
+                        <span class="product-nav__hint">Anterior</span>
+                        <span class="product-nav__name">${prev.name}</span>
+                    </span>
+                </a>
+                <a href="${next.url}" class="product-nav__btn product-nav__btn--next">
+                    <span class="product-nav__label">
+                        <span class="product-nav__hint">Próximo</span>
+                        <span class="product-nav__name">${next.name}</span>
+                    </span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+                </a>`;
+
+            const reviews = document.querySelector('.reviews-section');
+            if (reviews) reviews.insertAdjacentElement('beforebegin', nav);
+        })
+        .catch(() => {});
 }
 
