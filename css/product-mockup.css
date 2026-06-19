@@ -644,7 +644,9 @@
 }
 
 /* Hide sticky bar when Snipcart cart drawer is open.
-   Snipcart v3 adds snipcart-overscroll to <body>; both selectors for safety. */
+   Primary: CSS :has() detects when #snipcart loses its [hidden] attribute.
+   Fallbacks: class-based selectors Snipcart may add to body/html. */
+body:has(#snipcart:not([hidden])) .sticky-cta,
 body.snipcart-overscroll .sticky-cta,
 html.snipcart-overscroll .sticky-cta {
     display: none !important;
