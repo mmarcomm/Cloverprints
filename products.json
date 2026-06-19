@@ -19,16 +19,16 @@
     "id": "urban-explorer-tshirt",
     "name": "Urban Explorer",
     "price": 60.00,
-    "description": "Design urbano e contemporâneo, tecido premium 100% algodão orgânico.",
+    "description": "Visitar um local como se tivesses a olhar às nuvens, passar o tempo que sentires.",
     "category": "T-shirt",
     "cardImage": "Website_Imgs/6.png",
-    "url": "Product.html?nome=urban-explorer-tshirt",
+    "url": "Product-urban-explorer.html",
     "badge": null,
     "images": {
-      "mainImage": "Website_Imgs/6.png",
-      "image2": "Website_Imgs/6.png",
-      "image3": "Website_Imgs/6.png",
-      "image4": "Website_Imgs/6.png"
+      "mainImage": "Website_Imgs/tshirt.svg",
+      "image2": "Website_Imgs/tshirtback-01.svg",
+      "image3": "Website_Imgs/tshirt3-01.svg",
+      "image4": "Website_Imgs/tshirt2.svg"
     }
   },
   "minimal-essence": {

@@ -1,14 +1,11 @@
 'use strict';
 
-const PRODUCT = {
+/* Per-page config — set window.__PRODUCT / window.__STOCK before this script.
+   Falls back to Wanderer Vessel defaults so Product-mockup.html needs no change. */
+const PRODUCT = window.__PRODUCT || {
     id: 'wanderer-vessel-tshirt',
     name: 'Wanderer Vessel',
     price: 45.00,
-    /* Must point to a public, crawlable page that contains a matching
-       product definition (same id + price + custom fields). Snipcart
-       validates against it server-side; custom fields absent from this
-       URL get stripped. We self-reference this mockup page, which carries
-       a hidden <button class="snipcart-add-item"> definition. */
     url: 'Product-mockup.html',
     image: 'Website_Imgs/tshirt.svg',
     description: 'Ilustração original inspirada em viagens marítimas, 100% algodão orgânico',
@@ -16,10 +13,7 @@ const PRODUCT = {
     weight: 200,
 };
 
-/* Simulated inventory (client-side only, resets on page reload).
-   In production this would come from Snipcart's variant inventory
-   management instead of a hardcoded object. */
-const STOCK = {
+const STOCK = window.__STOCK || {
     XS: 5,
     S: 2,
     M: 5,
