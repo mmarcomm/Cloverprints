@@ -22,21 +22,26 @@ document.addEventListener("DOMContentLoaded", function() {
     fetch("form.html")
         .then(response => response.text())
         .then(data => {
-            document.getElementById("form-placeholder").innerHTML = data;
+            if (document.getElementById("form-placeholder"))
+                document.getElementById("form-placeholder").innerHTML = data;
         });
 
     // Load footer
     fetch("footer.html")
         .then(response => response.text())
         .then(data => {
-            document.getElementById("footer-placeholder").innerHTML = data;
+            if (document.getElementById("footer-placeholder"))
+                document.getElementById("footer-placeholder").innerHTML = data;
         });
-    // Load Form
-    fetch("Form.html")
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById("Form-placeholder").innerHTML = data;
-        });
+
+    // Render product grid from JSON if on index page
+    const grid = document.getElementById("product-grid");
+    if (grid) {
+        fetch("products.json")
+            .then(r => r.json())
+            .then(products => renderProductGrid(products, grid))
+            .catch(err => console.error("Erro ao carregar produtos:", err));
+    }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -132,6 +137,33 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => console.error("Error loading JSON:", error));
     }, 100); // 100ms delay
 });
+
+/* ---- Product grid renderer (index.html) ---- */
+function renderProductGrid(products, grid) {
+    grid.innerHTML = '';
+    Object.values(products).forEach(p => {
+        const price = Number(p.price).toLocaleString('pt-PT', {
+            style: 'currency', currency: 'EUR', minimumFractionDigits: 0
+        });
+        const badge = p.badge
+            ? `<span class="product-badge">${p.badge}</span>`
+            : '';
+        const card = document.createElement('a');
+        card.href = p.url;
+        card.className = 'product-card';
+        card.innerHTML = `
+            <div class="product-image-container">
+                ${badge}
+                <img src="${p.cardImage}" alt="${p.name}" class="product-image">
+            </div>
+            <div class="product-info">
+                <h2 class="product-name">${p.name}</h2>
+                <span class="product-category">${p.category}</span>
+                <span class="product-price">${price}</span>
+            </div>`;
+        grid.appendChild(card);
+    });
+}
 
 function initHamburger() {
   const checkbox = document.getElementById('menu-toggle-checkbox');
