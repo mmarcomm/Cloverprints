@@ -635,7 +635,7 @@
 }
 
 @media (max-width: 1400px) {
-    .breadcrumb {
+    .mockup-banner {
         margin-top: 56px; /* offset for fixed navbar */
     }
 }
