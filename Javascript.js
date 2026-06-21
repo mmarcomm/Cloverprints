@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
             document.getElementById("header-placeholder").innerHTML = data;
             initHamburger();
+            setActiveNav();
         });
 
     // Load form
@@ -193,4 +194,25 @@ function initHamburger() {
     checkbox.checked = false;
     reflect();
   });
+}
+
+function setActiveNav() {
+    const current = window.location.pathname.split('/').pop() || 'index.html';
+    const productPages = [
+        'Product-mockup.html',
+        'Product-urban-explorer.html',
+        'Product-minimal-essence.html',
+    ];
+
+    document.querySelectorAll('#navgatorList a').forEach(a => a.classList.remove('activemenu'));
+
+    document.querySelectorAll('#navgatorList a').forEach(a => {
+        const href = a.getAttribute('href') || '';
+        // Skip anchor-only links (e.g. Sobre.html#conectar) — they are section links, not pages
+        if (href.includes('#')) return;
+
+        if (href === current || (productPages.includes(current) && href === 'index.html')) {
+            a.classList.add('activemenu');
+        }
+    });
 }
