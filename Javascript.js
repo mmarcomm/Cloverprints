@@ -10,7 +10,6 @@
 
 // placeholderes
 document.addEventListener("DOMContentLoaded", function() {
-    injectBannerDecoration();
     // Load header
     fetch("header.html")
         .then(response => response.text())
@@ -215,58 +214,5 @@ function setActiveNav() {
         if (href === current || (productPages.includes(current) && href === 'index.html')) {
             a.classList.add('activemenu');
         }
-    });
-}
-
-function injectBannerDecoration() {
-    const svg = `<svg class="banner-deco" viewBox="0 0 1440 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-  <!-- Editorial baseline grid -->
-  <g stroke="#00BFFF" stroke-width="0.5" opacity="0.065">
-    <line x1="0" y1="50"  x2="1440" y2="50"/>
-    <line x1="0" y1="100" x2="1440" y2="100"/>
-    <line x1="0" y1="150" x2="1440" y2="150"/>
-    <line x1="0" y1="200" x2="1440" y2="200"/>
-    <line x1="0" y1="250" x2="1440" y2="250"/>
-    <line x1="0" y1="300" x2="1440" y2="300"/>
-    <line x1="0" y1="350" x2="1440" y2="350"/>
-  </g>
-  <!-- Concentric arcs radiating from top-right corner -->
-  <g stroke="#00BFFF" fill="none">
-    <path d="M 1040,0 A 400,400 0 0 0 1440,400"   stroke-width="1.4" opacity="0.30"/>
-    <path d="M  840,0 A 600,600 0 0 0 1440,600"   stroke-width="1.1" opacity="0.22"/>
-    <path d="M  640,0 A 800,800 0 0 0 1440,800"   stroke-width="0.9" opacity="0.15"/>
-    <path d="M  440,0 A 1000,1000 0 0 0 1440,1000" stroke-width="0.7" opacity="0.10"/>
-    <path d="M  240,0 A 1200,1200 0 0 0 1440,1200" stroke-width="0.6" opacity="0.06"/>
-  </g>
-  <!-- Large circles off bottom-left — organic contrast -->
-  <circle cx="-50" cy="450" r="250" stroke="#00BFFF" stroke-width="1.4" fill="none" opacity="0.14"/>
-  <circle cx="-50" cy="450" r="170" stroke="#00BFFF" stroke-width="0.7" fill="none" opacity="0.08"/>
-  <!-- Registration mark — top-left -->
-  <g stroke="#00BFFF" stroke-width="0.9" fill="none" opacity="0.45">
-    <circle cx="52" cy="52" r="15"/>
-    <line x1="52" y1="29" x2="52" y2="75"/>
-    <line x1="29" y1="52" x2="75" y2="52"/>
-  </g>
-  <!-- Registration mark — bottom-right -->
-  <g stroke="#00BFFF" stroke-width="0.75" fill="none" opacity="0.32">
-    <circle cx="1388" cy="348" r="12"/>
-    <line x1="1388" y1="328" x2="1388" y2="368"/>
-    <line x1="1368" y1="348" x2="1408" y2="348"/>
-  </g>
-  <!-- Crop marks — top-right -->
-  <g stroke="#00BFFF" stroke-width="0.6" opacity="0.28">
-    <line x1="1416" y1="0"  x2="1416" y2="22"/>
-    <line x1="1418" y1="22" x2="1440" y2="22"/>
-  </g>
-  <!-- Crop marks — bottom-left -->
-  <g stroke="#00BFFF" stroke-width="0.6" opacity="0.28">
-    <line x1="0"  y1="378" x2="22"  y2="378"/>
-    <line x1="22" y1="378" x2="22"  y2="400"/>
-  </g>
-</svg>`;
-
-    document.querySelectorAll('.banner').forEach(banner => {
-        if (banner.querySelector('.banner-deco')) return;
-        banner.insertAdjacentHTML('afterbegin', svg);
     });
 }
