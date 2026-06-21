@@ -258,6 +258,7 @@ header nav ul {
 
     #navgatorList li a.activemenu {
         font-weight: 600;
+        color: var(--se);
     }
 
 }

@@ -197,7 +197,7 @@ function initHamburger() {
 }
 
 function setActiveNav() {
-    const current = window.location.pathname.split('/').pop() || 'index.html';
+    const current = decodeURIComponent(window.location.pathname.split('/').pop()) || 'index.html';
     const productPages = [
         'Product-mockup.html',
         'Product-urban-explorer.html',
