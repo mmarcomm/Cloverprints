@@ -129,31 +129,14 @@ h4 {
             z-index: 1;
         }
 
-        /* Banner decorative SVGs (injected via JS) */
+        /* Decorative SVG layer (injected via JS) */
         .banner-deco {
             position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
             z-index: 0;
-        }
-
-        .banner-deco--cube {
-            top: -8%;
-            right: -4%;
-            width: 44%;
-            min-width: 140px;
-            max-width: 280px;
-            height: auto;
-            opacity: 0.16;
-        }
-
-        .banner-deco--accents {
-            bottom: -4%;
-            left: -2%;
-            width: 36%;
-            min-width: 110px;
-            max-width: 220px;
-            height: auto;
-            opacity: 0.13;
         }
 
         .banner__eyebrow {
