@@ -634,11 +634,6 @@
     font-size: 0.875rem;
 }
 
-@media (max-width: 1400px) {
-    .mockup-banner {
-        margin-top: 56px; /* offset for fixed navbar */
-    }
-}
 
 @media (max-width: 768px) {
     .sticky-cta {

@@ -103,6 +103,10 @@ header nav ul {
 
     .no-scroll { overflow: hidden; }
 
+    body {
+        padding-top: 56px; /* offset for fixed navbar */
+    }
+
     /* Fixed navbar bar — z-index 100, sits above the dropdown (98) */
     .navbar {
         position: fixed;
