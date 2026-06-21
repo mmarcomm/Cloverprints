@@ -634,6 +634,12 @@
     font-size: 0.875rem;
 }
 
+@media (max-width: 1400px) {
+    .breadcrumb {
+        margin-top: 56px; /* offset for fixed navbar */
+    }
+}
+
 @media (max-width: 768px) {
     .sticky-cta {
         display: flex;
