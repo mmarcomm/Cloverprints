@@ -10,6 +10,7 @@
 
 // placeholderes
 document.addEventListener("DOMContentLoaded", function() {
+    injectBannerDecoration();
     // Load header
     fetch("header.html")
         .then(response => response.text())
@@ -214,5 +215,41 @@ function setActiveNav() {
         if (href === current || (productPages.includes(current) && href === 'index.html')) {
             a.classList.add('activemenu');
         }
+    });
+}
+
+function injectBannerDecoration() {
+    const cubeSvg = `<svg class="banner-deco banner-deco--cube" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <g stroke="#00BFFF" stroke-width="1.4" fill="none" stroke-linejoin="round">
+    <path d="M 100,8 L 182,54 L 100,100 L 18,54 Z"/>
+    <line x1="182" y1="54" x2="182" y2="146"/>
+    <line x1="182" y1="146" x2="100" y2="192"/>
+    <line x1="18"  y1="54" x2="18"  y2="146"/>
+    <line x1="18"  y1="146" x2="100" y2="192"/>
+    <line x1="100" y1="100" x2="100" y2="192"/>
+  </g>
+</svg>`;
+
+    const accentsSvg = `<svg class="banner-deco banner-deco--accents" viewBox="0 0 180 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <path d="M 44,28 L 66,40 L 44,52 L 22,40 Z" stroke="#00BFFF" stroke-width="0.9" fill="none"/>
+  <g stroke="#00BFFF" stroke-width="0.65">
+    <line x1="0"  y1="98"  x2="88" y2="48"/>
+    <line x1="0"  y1="122" x2="66" y2="84"/>
+    <line x1="12" y1="155" x2="72" y2="121"/>
+  </g>
+  <g fill="#00BFFF">
+    <circle cx="124" cy="18"  r="2.2"/>
+    <circle cx="158" cy="46"  r="1.5"/>
+    <circle cx="8"   cy="68"  r="1.6"/>
+    <circle cx="142" cy="128" r="2"/>
+    <circle cx="28"  cy="148" r="1.5"/>
+    <circle cx="92"  cy="8"   r="1.2"/>
+    <circle cx="168" cy="100" r="1.2"/>
+  </g>
+</svg>`;
+
+    document.querySelectorAll('.banner').forEach(banner => {
+        if (banner.querySelector('.banner-deco')) return;
+        banner.insertAdjacentHTML('afterbegin', cubeSvg + accentsSvg);
     });
 }
