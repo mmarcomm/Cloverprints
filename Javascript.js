@@ -167,16 +167,12 @@ function renderProductGrid(products, grid) {
 
 function initHamburger() {
   const checkbox = document.getElementById('menu-toggle-checkbox');
-  const button   = document.getElementById('menu-button');
   const panel    = document.getElementById('menu-panel');
 
-  if (!checkbox || !button || !panel) return;
+  if (!checkbox || !panel) return;
 
   const reflect = () => {
-    const expanded = checkbox.checked;
-    button.setAttribute('aria-expanded', String(expanded));
-    button.setAttribute('aria-label', expanded ? 'Close menu' : 'Open menu');
-    document.body.classList.toggle('no-scroll', expanded);
+    document.body.classList.toggle('no-scroll', checkbox.checked);
   };
 
   reflect();
@@ -187,11 +183,10 @@ function initHamburger() {
     if (e.key === 'Escape' && checkbox.checked) {
       checkbox.checked = false;
       reflect();
-      button.focus();
     }
   });
 
-  // Close when a menu link is clicked
+  // Close when a menu link is clicked (covers same-page anchors like #conectar)
   panel.addEventListener('click', (e) => {
     const a = e.target.closest('a');
     if (!a) return;
