@@ -306,6 +306,44 @@
     border: 1px solid #e5e7eb;
 }
 
+/* ---- Breadcrumb ---- */
+.breadcrumb {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    font-size: 0.8125rem;
+    color: #9ca3af;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.breadcrumb a {
+    color: #6b7280;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    color: var(--fo);
+}
+
+.breadcrumb-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.breadcrumb-back-icon {
+    width: 11px;
+    height: auto;
+    vertical-align: middle;
+    padding-top: 2px;
+}
+
+.breadcrumb-back:hover .breadcrumb-back-icon {
+    filter: brightness(0);
+}
+
 /* ---- Responsive ---- */
 @media (max-width: 900px) {
     .proj-grid {
