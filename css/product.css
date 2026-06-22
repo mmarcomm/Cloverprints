@@ -8,7 +8,6 @@
 
 /* Product Page Styles */
 .product-page {
-    min-height: 100vh;
     background-color: #f9fafb;
 }
 
@@ -350,13 +349,17 @@
 }
 
 .explore-card__image-wrap {
-    aspect-ratio: 1 / 1;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
     overflow: hidden;
     background: #f4f5f6;
     margin-top: 0.75rem;
 }
 
 .explore-card__image-wrap img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
