@@ -237,38 +237,57 @@ function addCurrentSelectionToCart() {
     }, { once: true });
 }
 
-/* ---------------- Prev / Next product navigation ---------------- */
+/* ---------------- Explorar Coleção (prev / next as product cards) ---------------- */
 function initProductNav() {
     fetch('products.json')
         .then(r => r.json())
         .then(data => {
             const keys = Object.keys(data);
             const idx  = keys.indexOf(PRODUCT.id);
-            if (idx === -1) return;
+            if (idx === -1 || keys.length < 2) return;
 
-            const prev = data[keys[(idx - 1 + keys.length) % keys.length]];
-            const next = data[keys[(idx + 1) % keys.length]];
+            const prevKey = keys[(idx - 1 + keys.length) % keys.length];
+            const nextKey = keys[(idx + 1) % keys.length];
+            const prev = data[prevKey];
+            const next = data[nextKey];
 
-            const nav = document.createElement('div');
-            nav.className = 'product-nav';
-            nav.innerHTML = `
-                <a href="${prev.url}" class="product-nav__btn product-nav__btn--prev">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-                    <span class="product-nav__label">
-                        <span class="product-nav__hint">Anterior</span>
-                        <span class="product-nav__name">${prev.name}</span>
-                    </span>
-                </a>
-                <a href="${next.url}" class="product-nav__btn product-nav__btn--next">
-                    <span class="product-nav__label">
-                        <span class="product-nav__hint">Próximo</span>
-                        <span class="product-nav__name">${next.name}</span>
-                    </span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-                </a>`;
+            const fmt = p => Number(p).toLocaleString('pt-PT', {
+                style: 'currency', currency: 'EUR', minimumFractionDigits: 0
+            });
+
+            const section = document.createElement('section');
+            section.className = 'explore-section';
+            section.innerHTML = `
+                <div class="explore-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Explorar Coleção</h2>
+                    </div>
+                    <div class="explore-grid">
+                        <a class="explore-card" href="${prev.url}">
+                            <div class="explore-card__direction">← Anterior</div>
+                            <div class="explore-card__image-wrap">
+                                <img src="${prev.cardImage || ''}" alt="${prev.name}">
+                            </div>
+                            <div class="explore-card__info">
+                                <span class="explore-card__name">${prev.name}</span>
+                                <span class="explore-card__price">${fmt(prev.price)}</span>
+                            </div>
+                        </a>
+                        <a class="explore-card" href="${next.url}">
+                            <div class="explore-card__direction">Próximo →</div>
+                            <div class="explore-card__image-wrap">
+                                <img src="${next.cardImage || ''}" alt="${next.name}">
+                            </div>
+                            <div class="explore-card__info">
+                                <span class="explore-card__name">${next.name}</span>
+                                <span class="explore-card__price">${fmt(next.price)}</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>`;
 
             const reviews = document.querySelector('.reviews-section');
-            if (reviews) reviews.insertAdjacentElement('beforebegin', nav);
+            if (reviews) reviews.insertAdjacentElement('beforebegin', section);
         })
         .catch(() => {});
 }
