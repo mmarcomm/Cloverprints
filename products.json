@@ -1,45 +1,50 @@
 {
-
-    "wanderer-vessel-tshirt": {
-  "id": "wanderer-vessel-tshirt",
-  "name": "Wanderer Vessel",
-  "price": "25.00",
-  "description": "Great quality T-shirt made to last",
-  "category": "T-shirt",
-  "url": "/Product.html?id=wanderer-vessel-tshirt",
-  "images": {
-            "mainImage": "Website_Imgs/12.png",
-            "mainImage2": "Website_Imgs/12.png",
-            "image2": "Website_Imgs/12.png",
-            "image3": "Website_Imgs/12.png"
-      }
-},
-        "urban-explorer-tshirt": {
-      "id": "urban-explorer-tshirt",
-      "name": "Urban Explorer",
-      "price": "25.00",
-      "description": "Great quality T-shirt made to last",
-      "category": "T-shirt",
-      "url": "/Product.html?id=urban-explorer-tshirt",
-      "images": {
-            "mainImage": "Website_Imgs/12.png",
-            "mainImage2": "Website_Imgs/12.png",
-            "image2": "Website_Imgs/12.png",
-            "image3": "Website_Imgs/12.png"
-      }
-    },
-        "minimal-essence": {
-      "id": "minimal-essence",
-      "name": "Minimal Essence",
-      "price": "25.00",
-      "description": "Great quality T-shirt made to last",
-      "category": "T-shirt",
-      "url": "/Product.html?id=minimal-essence",
-      "images": {
-            "mainImage": "Website_Imgs/12.png",
-            "mainImage2": "Website_Imgs/12.png",
-            "image2": "Website_Imgs/12.png",
-            "image3": "Website_Imgs/12.png"
-      }
-      }
+  "wanderer-vessel-tshirt": {
+    "id": "wanderer-vessel-tshirt",
+    "name": "Wanderer Vessel",
+    "price": 45.00,
+    "description": "Ilustração original inspirada em viagens marítimas, 100% algodão orgânico.",
+    "category": "T-shirt",
+    "cardImage": "Website_Imgs/5.png",
+    "url": "Product-mockup.html",
+    "badge": "Novo",
+    "images": {
+      "mainImage": "Website_Imgs/tshirt.svg",
+      "image2": "Website_Imgs/tshirtback-01.svg",
+      "image3": "Website_Imgs/tshirt3-01.svg",
+      "image4": "Website_Imgs/tshirt2.svg"
+    }
+  },
+  "urban-explorer-tshirt": {
+    "id": "urban-explorer-tshirt",
+    "name": "Urban Explorer",
+    "price": 60.00,
+    "description": "Visitar um local como se tivesses a olhar às nuvens, passar o tempo que sentires.",
+    "category": "T-shirt",
+    "cardImage": "Website_Imgs/6.png",
+    "url": "Product-urban-explorer.html",
+    "badge": null,
+    "images": {
+      "mainImage": "Website_Imgs/tshirt.svg",
+      "image2": "Website_Imgs/tshirtback-01.svg",
+      "image3": "Website_Imgs/tshirt3-01.svg",
+      "image4": "Website_Imgs/tshirt2.svg"
+    }
+  },
+  "minimal-essence": {
+    "id": "minimal-essence",
+    "name": "Minimal Essence",
+    "price": 25.00,
+    "description": "Feito com o preço mais baixo, e qualidade para usar nos dias de verão mais quentes.",
+    "category": "T-shirt",
+    "cardImage": "Website_Imgs/6.png",
+    "url": "Product-minimal-essence.html",
+    "badge": null,
+    "images": {
+      "mainImage": "Website_Imgs/tshirt.svg",
+      "image2": "Website_Imgs/tshirtback-01.svg",
+      "image3": "Website_Imgs/tshirt3-01.svg",
+      "image4": "Website_Imgs/tshirt2.svg"
+    }
   }
+}

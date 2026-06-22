@@ -11,57 +11,25 @@
     </head>
     <body>
         <header id="header-placeholder"></header>
-    <!-- Call to Action Banner -->
+    <!-- Hero Banner -->
     <div class="banner">
-        <div class="content">
-            <h1 class="heading">New Collection Available Now</h1>
-            <p class="text">Unique Designer T-shirts, limited edition, limited stock.</p>
+        <div class="banner__inner">
+            <span class="banner__eyebrow">Coleção 2025</span>
+            <h1 class="banner__heading">Ilustrações<br>de Autor</h1>
+            <p class="banner__sub">T-shirts em algodão orgânico, edição limitada.<br>Cada peça, uma história.</p>
         </div>
     </div>
-  <style>
-    .activemenu {
-      color: var(--se) !important;
-      font-weight: 400;
-    }
-  </style>
+
 
     <!-- Product Grid -->
-    <section class="product-section">
+    <section class="product-section" id="produtos">
         <div class="product-container">
-            <div class="product-grid">
-                <a href="Product.html?nome=wanderer-vessel-tshirt" class="product-card" data-item-id="wanderer-vessel-tshirt" data-item-price="25.00" data-item-name="Wanderer Vessel" data-item-description="T-shirt Design">
-                    <div class="product-image-container" id="product-wanderer-vessel-tshirt">
-                        <img src="Website_Imgs/5.png" alt="Wanderer Vessel T-shirt" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <h2 class="product-name">Wanderer Vessel</h2>
-                        <span class="product-category">Tshirt</span>
-                        <span class="product-price">€25.00</span>
-                    </div>
-                </a>
-
-                <a href="Product.html?nome=urban-explorer-tshirt" class="product-card" data-item-id="urban-explorer-tshirt" data-item-price="28.00" data-item-name="Urban Explorer" data-item-description="T-shirt Design">
-                    <div class="product-image-container" id="product-urban-explorer-tshirt">
-                        <img src="Website_Imgs/6.png" alt="Urban Explorer T-shirt" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <h2 class="product-name">Urban Explorer</h2>
-                        <span class="product-category">Tshirt</span>
-                        <span class="product-price">€28.00</span>
-                    </div>
-                </a>
-
-                <a href="Product.html?nome=minimal-essence" class="product-card" data-item-id="minimal-essence" data-item-price="22.00" data-item-name="Minimal Essence" data-item-description="T-shirt Design">
-                    <div class="product-image-container" id="product-minimal-essence-tshirt">
-                        <img src="Website_Imgs/6.png" class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <h2 class="product-name">Minimal Essence</h2>
-                        <span class="product-category">Tshirt</span>
-                        <span class="product-price">€35.00</span>
-                    </div>
-                </a>
-                </a>
+            <div class="section-header">
+                <h2 class="section-title">Produtos</h2>
+                <span class="section-badge">Edição Limitada</span>
+            </div>
+            <div class="product-grid" id="product-grid">
+                <!-- preenchido dinamicamente via products.json -->
             </div>
         </div>
     </section>
