@@ -304,7 +304,7 @@ function navigateProducts(direction, data) {
 function updateExploreCards(data) {
     const total = productKeys.length;
     const section = document.getElementById('explore-section');
-    if (!section) return;
+    if (!section || total === 0) return;          // too early — wait for next call
     if (total < 2) { section.style.display = 'none'; return; }
 
     const prevIdx = (currentIndex - 1 + total) % total;
