@@ -287,21 +287,50 @@ if (buyButton) {
       buyButton.style.display = "none";
   }
 }
+
+updateExploreCards(data);
 }
 //left and right with everything else
 //left and right with everything else
 
 function navigateProducts(direction, data) {
-    // Update current index in a circular way
     currentIndex = (currentIndex + direction + productKeys.length) % productKeys.length;
     let newProductKey = productKeys[currentIndex];
-
-    // Update the displayed product
     updateProduct(data, newProductKey);
-
-    // Update the URL without reloading the page
     const newUrl = `Product.html?nome=${newProductKey}`;
     window.history.pushState({ path: newUrl }, "", newUrl);
+}
+
+function updateExploreCards(data) {
+    const total = productKeys.length;
+    const section = document.getElementById('explore-section');
+    if (!section) return;
+    if (total < 2) { section.style.display = 'none'; return; }
+
+    const prevIdx = (currentIndex - 1 + total) % total;
+    const nextIdx = (currentIndex + 1) % total;
+    const prev = data[productKeys[prevIdx]];
+    const next = data[productKeys[nextIdx]];
+
+    const fmt = (price) => Number(price).toLocaleString('pt-PT', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0 });
+
+    const prevCard = document.getElementById('explore-prev');
+    if (prevCard && prev) {
+        prevCard.href = `Product.html?nome=${productKeys[prevIdx]}`;
+        document.getElementById('explore-prev-img').src = prev.cardImage || '';
+        document.getElementById('explore-prev-img').alt = prev.name;
+        document.getElementById('explore-prev-name').textContent = prev.name;
+        document.getElementById('explore-prev-price').textContent = fmt(prev.price);
+    }
+
+    const nextCard = document.getElementById('explore-next');
+    if (nextCard && next) {
+        nextCard.href = `Product.html?nome=${productKeys[nextIdx]}`;
+        document.getElementById('explore-next-img').src = next.cardImage || '';
+        document.getElementById('explore-next-img').alt = next.name;
+        document.getElementById('explore-next-name').textContent = next.name;
+        document.getElementById('explore-next-price').textContent = fmt(next.price);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
