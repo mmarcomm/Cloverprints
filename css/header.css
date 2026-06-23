@@ -20,6 +20,7 @@ header {
     align-items: center;
     max-width: 80rem;
     margin: 0 auto;
+    padding: 24px 0 24px 0;
 }
 
 .logo-container {
