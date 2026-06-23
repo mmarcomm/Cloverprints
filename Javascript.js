@@ -16,27 +16,33 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
             document.getElementById("header-placeholder").innerHTML = data;
             initHamburger();
+            setActiveNav();
         });
 
     // Load form
     fetch("form.html")
         .then(response => response.text())
         .then(data => {
-            document.getElementById("form-placeholder").innerHTML = data;
+            if (document.getElementById("form-placeholder"))
+                document.getElementById("form-placeholder").innerHTML = data;
         });
 
     // Load footer
     fetch("footer.html")
         .then(response => response.text())
         .then(data => {
-            document.getElementById("footer-placeholder").innerHTML = data;
+            if (document.getElementById("footer-placeholder"))
+                document.getElementById("footer-placeholder").innerHTML = data;
         });
-    // Load Form
-    fetch("Form.html")
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById("Form-placeholder").innerHTML = data;
-        });
+
+    // Render product grid from JSON if on index page
+    const grid = document.getElementById("product-grid");
+    if (grid) {
+        fetch("products.json")
+            .then(r => r.json())
+            .then(products => renderProductGrid(products, grid))
+            .catch(err => console.error("Erro ao carregar produtos:", err));
+    }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -133,18 +139,41 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 100); // 100ms delay
 });
 
+/* ---- Product grid renderer (index.html) ---- */
+function renderProductGrid(products, grid) {
+    grid.innerHTML = '';
+    Object.values(products).forEach(p => {
+        const price = Number(p.price).toLocaleString('pt-PT', {
+            style: 'currency', currency: 'EUR', minimumFractionDigits: 0
+        });
+        const badge = p.badge
+            ? `<span class="product-badge">${p.badge}</span>`
+            : '';
+        const card = document.createElement('a');
+        card.href = p.url;
+        card.className = 'product-card';
+        card.innerHTML = `
+            <div class="product-image-container">
+                ${badge}
+                <img src="${p.cardImage}" alt="${p.name}" class="product-image">
+            </div>
+            <div class="product-info">
+                <h2 class="product-name">${p.name}</h2>
+                <span class="product-category">${p.category}</span>
+                <span class="product-price">${price}</span>
+            </div>`;
+        grid.appendChild(card);
+    });
+}
+
 function initHamburger() {
   const checkbox = document.getElementById('menu-toggle-checkbox');
-  const button   = document.getElementById('menu-button');
   const panel    = document.getElementById('menu-panel');
 
-  if (!checkbox || !button || !panel) return;
+  if (!checkbox || !panel) return;
 
   const reflect = () => {
-    const expanded = checkbox.checked;
-    button.setAttribute('aria-expanded', String(expanded));
-    button.setAttribute('aria-label', expanded ? 'Close menu' : 'Open menu');
-    document.body.classList.toggle('no-scroll', expanded);
+    document.body.classList.toggle('no-scroll', checkbox.checked);
   };
 
   reflect();
@@ -155,15 +184,35 @@ function initHamburger() {
     if (e.key === 'Escape' && checkbox.checked) {
       checkbox.checked = false;
       reflect();
-      button.focus();
     }
   });
 
-  // Close when a menu link is clicked
+  // Close when a menu link is clicked (covers same-page anchors like #conectar)
   panel.addEventListener('click', (e) => {
     const a = e.target.closest('a');
     if (!a) return;
     checkbox.checked = false;
     reflect();
   });
+}
+
+function setActiveNav() {
+    const current = decodeURIComponent(window.location.pathname.split('/').pop()) || 'index.html';
+    const productPages = [
+        'Product-mockup.html',
+        'Product-urban-explorer.html',
+        'Product-minimal-essence.html',
+    ];
+
+    document.querySelectorAll('#navgatorList a').forEach(a => a.classList.remove('activemenu'));
+
+    document.querySelectorAll('#navgatorList a').forEach(a => {
+        const href = a.getAttribute('href') || '';
+        // Skip anchor-only links (e.g. Sobre.html#conectar) — they are section links, not pages
+        if (href.includes('#')) return;
+
+        if (href === current || (productPages.includes(current) && href === 'index.html')) {
+            a.classList.add('activemenu');
+        }
+    });
 }

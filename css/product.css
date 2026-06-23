@@ -8,7 +8,6 @@
 
 /* Product Page Styles */
 .product-page {
-    min-height: 100vh;
     background-color: #f9fafb;
     max-width: 1200px;
     margin: 0 auto;
