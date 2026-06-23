@@ -163,7 +163,9 @@
 .proj-card__visual--slate  { background: #4a5568; }
 .proj-card__visual--warm   { background: #5c4b3a; }
 .proj-card__visual--sage   { background: #5a6b58; }
-.proj-card__visual--green  { background: #3d7a50; }
+.proj-card__visual--green  {
+    background: #3d7a50 url('../Website_Imgs/Imagem-C.jpg') center/cover no-repeat;
+}
 
 .proj-card__year {
     font-size: 0.625rem;
