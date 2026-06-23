@@ -221,14 +221,17 @@
     background-color: var(--si);
 }
 
+.events-section .section-header {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 1.5rem;
+}
+
 .events-list {
     display: flex;
     flex-direction: column;
     margin-top: 0;
-}
-
-.events-section .section-header {
-    margin-bottom: 0;
+    border-top: 1px solid #e5e7eb;
 }
 
 .event-item {
