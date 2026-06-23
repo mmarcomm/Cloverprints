@@ -10,7 +10,8 @@ header {
     position: sticky;
     top: 0;
     z-index: 10;
-    background-color: var(--si);  /* full-width background here */
+    background-color: var(--si);
+    padding: 0 1.5rem;  /* mirrors .banner padding */
 }
 
 /* ---- Desktop navbar ---- */
@@ -19,7 +20,7 @@ header {
     align-items: center;
     max-width: 80rem;
     margin: 0 auto;
-    padding: 24px 1.5rem;
+    padding: 24px 0;  /* no horizontal padding — content starts at 80rem box edge */
 }
 
 .logo-container {
@@ -41,7 +42,6 @@ header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-right: 25px;
 }
 
 .nav-desktop ul {
@@ -106,6 +106,10 @@ header {
 
     body {
         padding-top: 56px;
+    }
+
+    header {
+        padding: 0;  /* remove desktop horizontal padding — fixed navbar ignores it anyway */
     }
 
     /* Fixed navbar bar */
