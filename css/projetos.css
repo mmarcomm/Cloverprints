@@ -236,8 +236,8 @@
     border-bottom: 1px solid #e5e7eb;
 }
 
-.event-item:first-child {
-    border-top: 1px solid #e5e7eb;
+.event-item:last-child {
+    border-bottom: none;
 }
 
 .event-item__date {
