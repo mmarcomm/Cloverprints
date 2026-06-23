@@ -224,7 +224,11 @@
 .events-list {
     display: flex;
     flex-direction: column;
-    margin-top: 2rem;
+    margin-top: 0;
+}
+
+.events-section .section-header {
+    margin-bottom: 0;
 }
 
 .event-item {
