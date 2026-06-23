@@ -7,7 +7,7 @@
 </head>
 <body>
 <header>
-  <!-- Checkbox fora da navbar para o seletor ~ alcançar overlay e nav -->
+  <!-- Checkbox sibling of overlay + mobile panel (used by ~ selector) -->
   <input type="checkbox" class="toggle-checkbox" id="menu-toggle-checkbox" />
 
   <div class="navbar">
@@ -17,15 +17,23 @@
       </a>
     </div>
 
+    <!-- Desktop inline nav -->
+    <nav class="nav-desktop">
+      <ul id="navgatorList">
+        <li><a href="index.html">Produtos</a></li>
+        <li><a href="Exposições.html">Projetos</a></li>
+        <li><a href="Sobre.html">Sobre</a></li>
+        <li><a href="Sobre.html#conectar">Conectar</a></li>
+      </ul>
+    </nav>
+
+    <!-- Mobile hamburger / close -->
     <div class="menu__toggle">
-      <!-- Hamburger (visible when closed) -->
       <label for="menu-toggle-checkbox"
              class="menu-button menu-open-btn"
              aria-label="Abrir menu">
         <img src="SGVs/menu.svg" alt="" class="hamburger-icon" aria-hidden="true" />
       </label>
-
-      <!-- ✕ (visible when open) -->
       <label for="menu-toggle-checkbox"
              class="menu-button menu-close-btn"
              aria-label="Fechar menu">
@@ -36,11 +44,11 @@
     </div>
   </div>
 
-  <!-- Overlay e dropdown fora da navbar: z-index global correto -->
+  <!-- Overlay and mobile dropdown panel (siblings of checkbox) -->
   <label for="menu-toggle-checkbox" class="menu-overlay" aria-hidden="true"></label>
 
   <nav class="menu__links" id="menu-panel" role="navigation">
-    <ul id="navgatorList">
+    <ul class="mobile-nav-list">
       <li><a href="index.html">Produtos</a></li>
       <li><a href="Exposições.html">Projetos</a></li>
       <li><a href="Sobre.html">Sobre</a></li>
