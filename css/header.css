@@ -10,16 +10,16 @@ header {
     position: sticky;
     top: 0;
     z-index: 10;
+    background-color: var(--si);  /* full-width background here */
 }
 
 /* ---- Desktop navbar ---- */
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 24px 10%;
-    background-color: var(--si);
-    z-index: 2;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 24px 1.5rem;
 }
 
 .logo-container {
@@ -114,6 +114,7 @@ header {
         top: 0;
         left: 0;
         right: 0;
+        max-width: none;
         height: 56px;
         padding: 0 20px;
         display: flex;
