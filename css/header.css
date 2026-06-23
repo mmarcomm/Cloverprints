@@ -20,7 +20,6 @@ header {
     align-items: center;
     max-width: 80rem;
     margin: 0 auto;
-    padding: 24px 0;  /* no horizontal padding — content starts at 80rem box edge */
 }
 
 .logo-container {
@@ -38,10 +37,10 @@ header {
 
 /* ---- Desktop inline nav ---- */
 .nav-desktop {
-    width: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    margin-left: auto;
 }
 
 .nav-desktop ul {
