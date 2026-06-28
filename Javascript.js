@@ -204,9 +204,9 @@ function setActiveNav() {
         'Product-minimal-essence.html',
     ];
 
-    document.querySelectorAll('#navgatorList a').forEach(a => a.classList.remove('activemenu'));
+    document.querySelectorAll('#navgatorList a, .mobile-nav-list a').forEach(a => a.classList.remove('activemenu'));
 
-    document.querySelectorAll('#navgatorList a').forEach(a => {
+    document.querySelectorAll('#navgatorList a, .mobile-nav-list a').forEach(a => {
         const href = a.getAttribute('href') || '';
         // Skip anchor-only links (e.g. Sobre.html#conectar) — they are section links, not pages
         if (href.includes('#')) return;

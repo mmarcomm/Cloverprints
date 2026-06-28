@@ -1,62 +1,64 @@
 @charset "UTF-8";
 
 /* ============================================================
-   Header — desktop nav + mobile top-dropdown
-   Desktop: inline links. Mobile (≤1400px): compact top dropdown.
+   Header — desktop inline nav + mobile top-dropdown
+   Desktop (>1400px): inline links inside navbar.
+   Mobile (≤1400px): compact fixed bar + top dropdown.
    ============================================================ */
 
 header {
     position: sticky;
     top: 0;
     z-index: 10;
+    background-color: var(--si);
+    padding: 0 1.5rem;  /* mirrors .banner padding */
 }
 
 /* ---- Desktop navbar ---- */
 .navbar {
     display: flex;
-    justify-content: center;
-    top: 0;
-    padding: 24px 10%;
-    background-color: var(--si);
-    z-index: 2;
+    align-items: center;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 24px 0 24px 0;
 }
 
 .logo-container {
     padding: 0;
     margin-top: 22px;
     background-color: transparent;
-    justify-content: center;
-    align-items: center;
     z-index: 3;
     width: 240px;
+    flex-shrink: 0;
 }
 
 .logo {
     width: 160px;
-    z-index: 1;
 }
 
-nav {
-    width: 100%;
-    text-align: right;
-    margin-right: 25px;
+/* ---- Desktop inline nav ---- */
+.nav-desktop {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: auto;
 }
 
-header nav ul {
+.nav-desktop ul {
     list-style: none;
-    float: right;
-    margin-top: 14px;
-    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    margin: 14px 0 0 0;
+    padding: 0;
 }
 
-.navbar ul li {
-    list-style: initial;
+.nav-desktop ul li {
     display: inline-block;
-    margin: 8px 21px;
+    margin: 4px 0px 0px 42px;
     position: relative;
 }
 
-.navbar ul li a {
+.nav-desktop ul li a {
     text-decoration: none;
     color: #212427;
     text-transform: uppercase;
@@ -65,7 +67,11 @@ header nav ul {
     transition: color 0.25s ease;
 }
 
-.navbar ul li::after {
+.nav-desktop ul li a.activemenu {
+    color: var(--se);
+}
+
+.nav-desktop ul li::after {
     content: '';
     height: 2px;
     width: 0%;
@@ -78,41 +84,41 @@ header nav ul {
     transition: 0.5s;
 }
 
-.navbar ul li:hover::after {
+.nav-desktop ul li:hover::after {
     width: 100%;
     background: #000;
-    position: absolute;
-    left: 0;
-    bottom: -10px;
 }
 
 /* Hide mobile elements on desktop */
+.menu__toggle   { display: none; }
 .menu-button    { display: none; }
-.menu-close-btn { display: none; }
 .toggle-checkbox { display: none; }
 .menu-overlay   { display: none; }
 .menu__links    { display: none; }
 
 
 /* ============================================================
-   Mobile / Tablet — top dropdown
-   checkbox is a direct sibling of .navbar, .menu-overlay and
-   .menu__links so the ~ selector reaches all three.
+   Mobile / Tablet — fixed bar + top dropdown (≤1400px)
    ============================================================ */
 @media (max-width: 1400px) {
 
     .no-scroll { overflow: hidden; }
 
     body {
-        padding-top: 56px; /* offset for fixed navbar */
+        padding-top: 56px;
     }
 
-    /* Fixed navbar bar — z-index 100, sits above the dropdown (98) */
+    header {
+        padding: 0;  /* remove desktop horizontal padding — fixed navbar ignores it anyway */
+    }
+
+    /* Fixed navbar bar */
     .navbar {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
+        max-width: none;
         height: 56px;
         padding: 0 20px;
         display: flex;
@@ -137,17 +143,19 @@ header nav ul {
         display: block;
     }
 
+    /* Hide desktop nav, show hamburger */
+    .nav-desktop { display: none; }
+
     .menu__toggle {
+        display: flex;
+        align-items: center;
         position: static;
         width: auto;
         height: auto;
-        display: flex;
-        align-items: center;
     }
 
     .toggle-checkbox { display: none; }
 
-    /* Hamburger + close share the same base style */
     .menu-button {
         display: inline-flex;
         align-items: center;
@@ -172,14 +180,12 @@ header nav ul {
         display: block;
     }
 
-    /* ✕ hidden by default; toggled via checkbox sibling selector */
     .menu-close-btn { display: none; }
 
-    /* checkbox ~ .navbar .menu-open-btn / .menu-close-btn */
     .toggle-checkbox:checked ~ .navbar .menu-open-btn  { display: none; }
     .toggle-checkbox:checked ~ .navbar .menu-close-btn { display: inline-flex; }
 
-    /* ---- Dim overlay (below navbar, above page) ---- */
+    /* Dim overlay */
     .menu-overlay {
         display: block;
         position: fixed;
@@ -200,8 +206,7 @@ header nav ul {
         pointer-events: all;
     }
 
-    /* ---- Dropdown panel ---- */
-    /* translateY(-100vh) keeps it fully off-screen regardless of panel height */
+    /* Dropdown panel */
     .menu__links {
         display: block;
         position: fixed;
@@ -213,7 +218,7 @@ header nav ul {
         transform: translateY(-100vh);
         transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-        padding: 4px 0 4px;
+        padding: 4px 0;
         overflow: hidden;
     }
 
@@ -221,21 +226,13 @@ header nav ul {
         transform: translateY(0);
     }
 
-    /* Nav links */
-    .navbar ul li {
-        display: block;
-        margin: 0;
-    }
-
-    .navbar ul li::after { display: none; }
-
-    #navgatorList {
+    .mobile-nav-list {
         list-style: none;
         margin: 0;
         padding: 0;
     }
 
-    #navgatorList li a {
+    .mobile-nav-list li a {
         display: block;
         padding: 11px 24px;
         font-size: 16px;
@@ -248,19 +245,18 @@ header nav ul {
         transition: background 0.15s ease;
     }
 
-    #navgatorList li:last-child a {
+    .mobile-nav-list li:last-child a {
         border-bottom: none;
     }
 
-    #navgatorList li a:hover {
+    .mobile-nav-list li a:hover {
         background: #f9fafb;
     }
 
-    #navgatorList li a.activemenu {
+    .mobile-nav-list li a.activemenu {
         font-weight: 600;
         color: var(--se);
     }
-
 }
 
 @media (max-width: 700px) {

@@ -16,18 +16,28 @@
     background-color: var(--si);
 }
 
+.proj-featured__visual {
+    aspect-ratio: 4/3;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.proj-featured__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 .proj-featured__card {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     align-items: start;
     margin-top: 2rem;
-}
-
-.proj-featured__visual {
-    aspect-ratio: 4/3;
-    border-radius: 0.75rem;
-    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
 }
 
 .proj-placeholder-img {
@@ -163,6 +173,21 @@
 .proj-card__visual--slate  { background: #4a5568; }
 .proj-card__visual--warm   { background: #5c4b3a; }
 .proj-card__visual--sage   { background: #5a6b58; }
+.proj-card__visual--green  { background: #3d7a50; }
+
+.proj-card__bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.proj-card__bg-img--contain {
+    object-fit: contain;
+    padding: 1.25rem;
+}
 
 .proj-card__year {
     font-size: 0.625rem;
@@ -196,10 +221,17 @@
     background-color: var(--si);
 }
 
+.events-section .section-header {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 1.5rem;
+}
+
 .events-list {
     display: flex;
     flex-direction: column;
-    margin-top: 2rem;
+    margin-top: 0;
+    border-top: 1px solid #e5e7eb;
 }
 
 .event-item {
@@ -211,8 +243,8 @@
     border-bottom: 1px solid #e5e7eb;
 }
 
-.event-item:first-child {
-    border-top: 1px solid #e5e7eb;
+.event-item:last-child {
+    border-bottom: none;
 }
 
 .event-item__date {
@@ -303,6 +335,44 @@
     background: #f9fafb;
     color: #9ca3af;
     border: 1px solid #e5e7eb;
+}
+
+/* ---- Breadcrumb ---- */
+.breadcrumb {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    font-size: 0.8125rem;
+    color: #9ca3af;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.breadcrumb a {
+    color: #6b7280;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    color: var(--fo);
+}
+
+.breadcrumb-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.breadcrumb-back-icon {
+    width: 11px;
+    height: auto;
+    vertical-align: middle;
+    padding-top: 2px;
+}
+
+.breadcrumb-back:hover .breadcrumb-back-icon {
+    filter: brightness(0);
 }
 
 /* ---- Responsive ---- */

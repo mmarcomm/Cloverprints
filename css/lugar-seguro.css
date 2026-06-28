@@ -1,0 +1,376 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   Lugar Seguro — project detail page
+   ========================================================================== */
+
+:root {
+    --ls-green: #3d7a50;
+    --ls-green-light: #e8f5ed;
+    --ls-dark: #181c1f;
+}
+
+/* ---- Hero ---- */
+.ls-hero {
+    position: relative;
+    background-color: #fff;
+    padding: 5rem 1.5rem 4.5rem;
+    overflow: hidden;
+}
+
+.ls-hero__inner {
+    max-width: 80rem;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.ls-hero__logo {
+    display: block;
+    width: clamp(220px, 38vw, 520px);
+    height: auto;
+    margin-bottom: 2.5rem;
+}
+
+.ls-hero__eyebrow {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 1.25rem;
+}
+
+.ls-hero__title {
+    font-size: clamp(2.75rem, 8vw, 6rem);
+    font-weight: 200;
+    color: #000;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    margin-bottom: 1.25rem;
+}
+
+.ls-hero__tagline {
+    font-size: clamp(1rem, 2.5vw, 1.375rem);
+    font-weight: 300;
+    color: #000;
+    line-height: 1.5;
+    max-width: 36rem;
+    margin-bottom: 2.5rem;
+}
+
+.ls-hero__authors {
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    color: var(--ls-green);
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.ls-hero__stripe {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--ls-green);
+}
+
+/* ---- Sections ---- */
+.ls-section {
+    padding: 4rem 1.5rem;
+    background-color: var(--fi);
+}
+
+.ls-section--alt {
+    background-color: var(--si);
+}
+
+.ls-section--dark {
+    background-color: var(--ls-dark);
+}
+
+.ls-section--green {
+    background-color: var(--ls-green);
+}
+
+.ls-container {
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.ls-section__title {
+    font-size: clamp(1.625rem, 4vw, 2.375rem);
+    font-weight: 300;
+    color: #212427;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+}
+
+.ls-section__title--light {
+    color: #fff;
+}
+
+/* ---- Intro grid ---- */
+.ls-intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.ls-intro__body p {
+    font-size: 0.9375rem;
+    line-height: 1.85;
+    color: #374151;
+    margin-bottom: 1rem;
+}
+
+.ls-intro__body p:last-child {
+    margin-bottom: 0;
+}
+
+/* ---- Quote ---- */
+.ls-quote {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.ls-quote__text {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 200;
+    color: #fff;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+}
+
+.ls-quote__sub {
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    max-width: 42rem;
+    margin: 0 auto;
+}
+
+/* ---- Murals grid ---- */
+.ls-murals-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+}
+
+.ls-mural-card {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 0.75rem;
+    padding: 1.75rem 1.5rem;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.ls-mural-card:hover {
+    box-shadow: 0 8px 28px rgba(0,0,0,0.07);
+    border-color: #e0e0e0;
+}
+
+.ls-mural-card--featured {
+    grid-column: span 1;
+    border-left: 3px solid var(--ls-green);
+}
+
+.ls-mural-card__number {
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--ls-green);
+    margin-bottom: 0.75rem;
+}
+
+.ls-mural-card__title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #212427;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.ls-mural-card__desc {
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: #6b7280;
+}
+
+/* ---- Approach ---- */
+.ls-approach-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.ls-principles {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.ls-principle {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 1.25rem;
+    align-items: start;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.ls-principle:first-child {
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.ls-principle__num {
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--ls-green);
+    padding-top: 0.2rem;
+}
+
+.ls-principle__title {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+}
+
+.ls-principle__desc {
+    font-size: 0.875rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.5);
+}
+
+/* ---- Deliverables ---- */
+.ls-deliverables-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+}
+
+.ls-del {
+    padding: 1.5rem 1.25rem;
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 0.75rem;
+}
+
+.ls-del__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ls-green);
+    margin-bottom: 1rem;
+}
+
+.ls-del__title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #212427;
+    margin-bottom: 0.4rem;
+    line-height: 1.35;
+}
+
+.ls-del__desc {
+    font-size: 0.75rem;
+    line-height: 1.7;
+    color: #6b7280;
+}
+
+/* ---- Team ---- */
+.ls-team-grid {
+    display: flex;
+    gap: 3rem;
+    margin-top: 1.5rem;
+}
+
+.ls-team-member {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+}
+
+.ls-team-member__avatar {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: var(--ls-green);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+}
+
+.ls-team-member__name {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #212427;
+}
+
+.ls-team-member__role {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    letter-spacing: 0.04em;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1024px) {
+    .ls-deliverables-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .ls-murals-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ls-approach-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .ls-intro-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .ls-murals-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ls-deliverables-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ls-team-grid {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .ls-deliverables-grid {
+        grid-template-columns: 1fr;
+    }
+}
