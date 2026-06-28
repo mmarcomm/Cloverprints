@@ -144,6 +144,14 @@
     margin-top: 2rem;
 }
 
+.proj-grid--two {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.photo-section {
+    background-color: var(--si);
+}
+
 .proj-card {
     background: #fff;
     border: 1px solid #f0f0f0;
