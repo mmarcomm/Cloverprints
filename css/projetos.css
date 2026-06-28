@@ -87,9 +87,9 @@
 
 .proj-featured__year {
     font-size: 0.8125rem;
-    color: #9ca3af;
+    color: #6b7280;
     margin-bottom: 1.75rem;
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: 0.04em;
 }
 
@@ -194,7 +194,8 @@
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
+    color: rgba(255,255,255,0.9);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
 
 .proj-card__content {
