@@ -197,13 +197,27 @@
     padding: 1.25rem;
 }
 
+/* Scrim so the year stays legible over photos */
+.proj-card__visual:has(.proj-card__bg-img:not(.proj-card__bg-img--contain))::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 45%;
+    background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0));
+    pointer-events: none;
+}
+
 .proj-card__year {
+    position: relative;
+    z-index: 1;
     font-size: 0.625rem;
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.9);
-    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    color: rgba(255,255,255,0.95);
+    text-shadow: 0 1px 4px rgba(0,0,0,0.55);
 }
 
 .proj-card__content {
