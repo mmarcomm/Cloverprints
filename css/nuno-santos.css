@@ -11,6 +11,10 @@
     --ns-cream: #eef1ea;
 }
 
+/* Overflow safety net — no element should cause horizontal scroll */
+.ns-hero,
+.ns-section { overflow-x: clip; }
+
 /* ---- Hero ---- */
 .ns-hero {
     background-color: #fff;
@@ -304,12 +308,14 @@
     overflow: hidden;
 }
 
-.ns-laptop__frame {
+.ns-laptop__shot {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    border: 0;
+    object-fit: contain;
+    background: var(--ns-sage);
+    padding: 2.5rem;
     display: block;
 }
 
