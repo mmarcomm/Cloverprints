@@ -89,6 +89,58 @@ header {
     background: #000;
 }
 
+/* ---- Right-side actions + cart (desktop: top-right, after nav) ---- */
+.navbar__actions {
+    display: flex;
+    align-items: center;
+    margin-top: 14px;
+    margin-left: 38px;
+}
+
+.cart-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    color: #212427;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.cart-button:hover {
+    background: #f3f4f6;
+    color: var(--se);
+}
+
+.cart-icon {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+.cart-count {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    min-width: 17px;
+    height: 17px;
+    padding: 0 4px;
+    box-sizing: border-box;
+    background: var(--se);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 17px;
+    text-align: center;
+    border-radius: 999px;
+    border: 2px solid var(--si);
+}
+
+.cart-count--empty { display: none; }
+
 /* Hide mobile elements on desktop */
 .menu__toggle   { display: none; }
 .menu-button    { display: none; }
@@ -152,6 +204,23 @@ header {
         position: static;
         width: auto;
         height: auto;
+    }
+
+    /* Cart sits to the LEFT of the hamburger on mobile */
+    .navbar__actions {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        margin: 0;
+    }
+
+    .cart-button {
+        width: 44px;
+        height: 44px;
+    }
+
+    .cart-count {
+        border-color: #fff;
     }
 
     .toggle-checkbox { display: none; }

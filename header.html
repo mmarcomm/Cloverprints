@@ -27,20 +27,31 @@
       </ul>
     </nav>
 
-    <!-- Mobile hamburger / close -->
-    <div class="menu__toggle">
-      <label for="menu-toggle-checkbox"
-             class="menu-button menu-open-btn"
-             aria-label="Abrir menu">
-        <img src="SGVs/menu.svg" alt="" class="hamburger-icon" aria-hidden="true" />
-      </label>
-      <label for="menu-toggle-checkbox"
-             class="menu-button menu-close-btn"
-             aria-label="Fechar menu">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    <!-- Right-side actions: cart + mobile hamburger -->
+    <div class="navbar__actions">
+      <a href="#" class="cart-button snipcart-checkout" aria-label="Abrir carrinho">
+        <svg class="cart-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 8h12l-.9 11.1a1.5 1.5 0 0 1-1.5 1.4H8.4a1.5 1.5 0 0 1-1.5-1.4L6 8Z"/>
+          <path d="M9 8V6.2a3 3 0 0 1 6 0V8"/>
         </svg>
-      </label>
+        <span class="cart-count snipcart-items-count" aria-hidden="true">0</span>
+      </a>
+
+      <!-- Mobile hamburger / close -->
+      <div class="menu__toggle">
+        <label for="menu-toggle-checkbox"
+               class="menu-button menu-open-btn"
+               aria-label="Abrir menu">
+          <img src="SGVs/menu.svg" alt="" class="hamburger-icon" aria-hidden="true" />
+        </label>
+        <label for="menu-toggle-checkbox"
+               class="menu-button menu-close-btn"
+               aria-label="Fechar menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </label>
+      </div>
     </div>
   </div>
 
