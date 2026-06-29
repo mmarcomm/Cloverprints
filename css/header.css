@@ -123,20 +123,13 @@ header {
 
 .cart-count {
     position: absolute;
-    top: -2px;
-    right: -2px;
-    min-width: 17px;
-    height: 17px;
-    padding: 0 4px;
-    box-sizing: border-box;
-    background: var(--se);
-    color: #fff;
-    font-size: 10px;
-    font-weight: 600;
-    line-height: 17px;
+    top: -3px;
+    right: -3px;
+    color: var(--se);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
     text-align: center;
-    border-radius: 999px;
-    border: 2px solid var(--si);
 }
 
 .cart-count--empty { display: none; }
@@ -217,10 +210,6 @@ header {
     .cart-button {
         width: 44px;
         height: 44px;
-    }
-
-    .cart-count {
-        border-color: #fff;
     }
 
     .toggle-checkbox { display: none; }
