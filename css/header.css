@@ -124,12 +124,12 @@ header {
 .cart-count {
     position: absolute;
     top: 9px;
-    right: 11px;
+    left: 25px;
     color: var(--se);
     font-size: 13px;
     font-weight: 800;
     line-height: 1;
-    text-align: center;
+    text-align: left;
     pointer-events: none;
 }
 
