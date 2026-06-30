@@ -3,15 +3,185 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Temporário: a landing da marca será construída nesta página.
-         Por agora redireciona para a loja. -->
-    <meta http-equiv="refresh" content="0; url=store.html">
-    <link rel="canonical" href="store.html">
-    <title>Cloverprints</title>
+    <meta name="description" content="Cloverprints — estúdio criativo de Faro, Algarve. Ilustração de autor, t-shirts de edição limitada, identidade visual e design de impacto social.">
+    <link href="styles.css" rel="stylesheet" type="text/css">
+    <link href="css/header.css" rel="stylesheet" type="text/css">
+    <link href="css/projects.css" rel="stylesheet" type="text/css">
+    <link href="css/home.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://use.typekit.net/uhg8sos.css">
+    <link rel="stylesheet" href="https://use.typekit.net/yiz2qnq.css">
+    <title>Cloverprints — Estúdio criativo do Algarve</title>
     <link rel="icon" href="SGVs/M.svg" type="image/x-icon" />
 </head>
 <body>
-    <p>A redirecionar para a <a href="store.html">loja</a>…</p>
-    <script>window.location.replace('store.html');</script>
+    <header id="header-placeholder"></header>
+
+    <!-- Hero -->
+    <section class="home-hero">
+        <img src="Website_Imgs/home-hero.jpg" alt="Objecto encontrado no sul de Portugal — fotografia de autor Cloverprints" class="home-hero__img">
+        <div class="home-hero__overlay"></div>
+        <div class="home-hero__inner">
+            <span class="home-hero__eyebrow">Estúdio criativo · Faro, Algarve</span>
+            <h1 class="home-hero__title">Impressos com proveniência.</h1>
+            <p class="home-hero__sub">Ilustração de autor, identidade visual e design de impacto social. Tudo o que assinamos é datado e intencional — mesmo um sticker tem autoria.</p>
+            <div class="home-hero__actions">
+                <a href="store.html" class="home-btn home-btn--primary">Ver loja</a>
+                <a href="about.html" class="home-btn home-btn--ghost">O estúdio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3 Pillars -->
+    <section class="home-section">
+        <div class="home-container">
+            <div class="home-section__head">
+                <span class="home-section__eyebrow">O que fazemos</span>
+                <h2 class="home-section__title">Três registos, uma assinatura</h2>
+                <p class="home-section__lead">A loja constrói audiência e vocabulário visual; o estúdio treina o ofício; o impacto social leva a cor a quem mais precisa. Tudo se alimenta mutuamente.</p>
+            </div>
+            <div class="home-pillars">
+                <a href="store.html" class="home-pillar">
+                    <span class="home-pillar__num">01 — Loja</span>
+                    <h3 class="home-pillar__title">Merch ilustrado</h3>
+                    <p class="home-pillar__desc">T-shirts em algodão orgânico, edição limitada. Ilustração de autor desenhada à mão, impressa com durabilidade. Cada peça, uma história.</p>
+                    <span class="home-pillar__cta">Ver loja →</span>
+                </a>
+                <a href="about.html" class="home-pillar">
+                    <span class="home-pillar__num">02 — Estúdio</span>
+                    <h3 class="home-pillar__title">Identidade &amp; design</h3>
+                    <p class="home-pillar__desc">Identidade visual, editorial e ilustração para clientes seleccionados. Trabalhamos com quem valoriza ofício acima de soluções rápidas.</p>
+                    <span class="home-pillar__cta">Conhecer o estúdio →</span>
+                </a>
+                <a href="lugar-seguro.html" class="home-pillar">
+                    <span class="home-pillar__num">03 — Impacto social</span>
+                    <h3 class="home-pillar__title">A cor como cuidado</h3>
+                    <p class="home-pillar__desc">Projetos como o Lugar Seguro — murais, identidade e materiais para espaços de atendimento e apoio. Queremos levar cores a quem mais precisa.</p>
+                    <span class="home-pillar__cta">Ver projeto →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured products -->
+    <section class="product-section" id="produtos">
+        <div class="product-container">
+            <div class="home-head-row">
+                <h2 class="home-head-row__title">Em destaque</h2>
+                <span class="section-badge">Edição Limitada</span>
+                <a href="store.html" class="home-link">Ver toda a loja →</a>
+            </div>
+            <div class="product-grid" id="product-grid">
+                <!-- preenchido dinamicamente via products.json -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured projects -->
+    <section class="home-section home-section--alt">
+        <div class="home-container">
+            <div class="home-head-row">
+                <h2 class="home-head-row__title">Projetos</h2>
+                <a href="projects.html" class="home-link">Ver todos os projetos →</a>
+            </div>
+            <div class="proj-grid">
+                <a class="proj-card" href="lugar-seguro.html">
+                    <div class="proj-card__visual proj-card__visual--green">
+                        <img src="Website_Imgs/Imagem-C.jpg" alt="Lugar Seguro" class="proj-card__bg-img">
+                        <span class="proj-card__year">2023–2026</span>
+                    </div>
+                    <div class="proj-card__content">
+                        <span class="proj-tag">Iniciativa Social · Murais</span>
+                        <h3 class="proj-card__title">Lugar Seguro</h3>
+                        <p class="proj-card__desc">Seis murais para a CPCJ de Olhão — a cor como ferramenta de cuidado em espaços de atendimento e apoio.</p>
+                    </div>
+                </a>
+                <a class="proj-card" href="nuno-santos-landscaping.html">
+                    <div class="proj-card__visual proj-card__visual--sage">
+                        <img src="Website_Imgs/nuno-santos-landscaping.png" alt="Nuno Santos Landscaping" class="proj-card__bg-img proj-card__bg-img--contain">
+                        <span class="proj-card__year">2026</span>
+                    </div>
+                    <div class="proj-card__content">
+                        <span class="proj-tag">Identidade Gráfica · Website</span>
+                        <h3 class="proj-card__title">Nuno Santos Landscaping</h3>
+                        <p class="proj-card__desc">Logótipo, identidade gráfica, website e planeamento de redes sociais para uma empresa de paisagismo no Algarve.</p>
+                    </div>
+                </a>
+                <a class="proj-card" href="projects.html">
+                    <div class="proj-card__visual proj-card__visual--dark">
+                        <img src="Website_Imgs/designfao-2023-1.jpg" alt="designFAO 2023" class="proj-card__bg-img">
+                        <span class="proj-card__year">2020–2023</span>
+                    </div>
+                    <div class="proj-card__content">
+                        <span class="proj-tag">Fotografia · Evento</span>
+                        <h3 class="proj-card__title">Fotografia</h3>
+                        <p class="proj-card__desc">Registo de eventos e casamentos — momentos, pessoas e atmosfera. designFAO 2023 e mais.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About teaser -->
+    <section class="home-section">
+        <div class="home-container">
+            <div class="home-section__head">
+                <span class="home-section__eyebrow">Quem somos</span>
+                <h2 class="home-section__title">Um estúdio que assina o que publica</h2>
+            </div>
+            <div class="home-about__grid">
+                <div class="home-about__body">
+                    <p>Cloverprints existe para preencher um espaço que raramente se encontra num só lugar: objectos artísticos com personalidade gráfica que contam algo, e um estúdio que trabalha identidade visual com o mesmo rigor.</p>
+                    <p>Começou como um exercício de autor em 2023 — prints isométricos do sul de Portugal — e cresceu para dois registos paralelos que se alimentam mutuamente. Sediado em Faro, com olho no sul de Portugal e horizonte no resto da Europa.</p>
+                    <blockquote class="home-about__quote">Não vendemos volume — vendemos presença.</blockquote>
+                    <p style="margin-top:1.5rem"><a href="about.html" class="home-btn home-btn--dark">Sobre o estúdio</a></p>
+                </div>
+                <div class="home-values">
+                    <div class="home-value">
+                        <span class="home-value__num">01</span>
+                        <div>
+                            <h4 class="home-value__title">Ofício antes de tendência</h4>
+                            <p class="home-value__desc">Preferimos um detalhe bem resolvido a uma estética que envelhece em seis meses. O que fazemos tem de resistir ao tempo.</p>
+                        </div>
+                    </div>
+                    <div class="home-value">
+                        <span class="home-value__num">02</span>
+                        <div>
+                            <h4 class="home-value__title">Pequeno por escolha</h4>
+                            <p class="home-value__desc">Drops curados, não quantidade. Cada edição tem contexto, cada peça tem intenção.</p>
+                        </div>
+                    </div>
+                    <div class="home-value">
+                        <span class="home-value__num">03</span>
+                        <div>
+                            <h4 class="home-value__title">Lugar importa</h4>
+                            <p class="home-value__desc">O sul de Portugal é mais do que cenário. Luz específica, ritmo próprio, uma certa forma de estar que aparece no trabalho.</p>
+                        </div>
+                    </div>
+                    <div class="home-value">
+                        <span class="home-value__num">04</span>
+                        <div>
+                            <h4 class="home-value__title">Autoria visível</h4>
+                            <p class="home-value__desc">Cada objecto tem proveniência clara — quem fez, quando, como e porquê. Sem anonimato de produção em série.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="home-cta">
+        <span class="home-cta__eyebrow">Conectar</span>
+        <h2 class="home-cta__title">Fala connosco.</h2>
+        <p class="home-cta__sub">Para projectos de estúdio, encomendas especiais ou simplesmente para dizer olá. Respondemos a todas as mensagens.</p>
+        <div class="home-cta__actions">
+            <a href="store.html" class="home-btn home-btn--primary">Ver loja</a>
+            <a href="about.html#conectar" class="home-btn home-btn--ghost">Contactar</a>
+        </div>
+        <p class="home-cta__meta"><a href="mailto:info@cloverprints.com">info@cloverprints.com</a> · Faro, Algarve · resposta em 2–3 dias úteis</p>
+    </section>
+
+    <div id="footer-placeholder"></div>
+    <script src="main.js"></script>
 </body>
 </html>
