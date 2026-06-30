@@ -1,12 +1,12 @@
 'use strict';
 
 /* Per-page config — set window.__PRODUCT / window.__STOCK before this script.
-   Falls back to Wanderer Vessel defaults so Product-mockup.html needs no change. */
+   Falls back to Wanderer Vessel defaults so product-wanderer-vessel.html needs no change. */
 const PRODUCT = window.__PRODUCT || {
     id: 'wanderer-vessel-tshirt',
     name: 'Wanderer Vessel',
     price: 45.00,
-    url: 'Product-mockup.html',
+    url: 'product-wanderer-vessel.html',
     image: 'Website_Imgs/tshirt.svg',
     description: 'Ilustração original inspirada em viagens marítimas, 100% algodão orgânico',
     categories: ['T-shirt'],

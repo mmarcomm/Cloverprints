@@ -1,4 +1,4 @@
-// Filename: Javascript.js
+// Filename: main.js
 // Author: Marco
 // Description: JavaScript file for custom functionality
 // Created on: [Insert Date]
@@ -44,16 +44,6 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(products => renderProductGrid(products, grid))
             .catch(err => console.error("Erro ao carregar produtos:", err));
     }
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll('.product-card').forEach(card => {
-    card.addEventListener('click', (e) => {
-      e.preventDefault();
-      const id = card.dataset.itemId;
-      if (id) window.location.href = `Product.html?id=${encodeURIComponent(id)}`;
-    });
-  });
 });
 
 
@@ -140,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 100); // 100ms delay
 });
 
-/* ---- Product grid renderer (index.html) ---- */
+/* ---- Product grid renderer (store.html) ---- */
 function renderProductGrid(products, grid) {
     grid.innerHTML = '';
     Object.values(products).forEach(p => {
@@ -214,19 +204,19 @@ function initCart() {
 function setActiveNav() {
     const current = decodeURIComponent(window.location.pathname.split('/').pop()) || 'index.html';
     const productPages = [
-        'Product-mockup.html',
-        'Product-urban-explorer.html',
-        'Product-minimal-essence.html',
+        'product-wanderer-vessel.html',
+        'product-urban-explorer.html',
+        'product-minimal-essence.html',
     ];
 
     document.querySelectorAll('#navgatorList a, .mobile-nav-list a').forEach(a => a.classList.remove('activemenu'));
 
     document.querySelectorAll('#navgatorList a, .mobile-nav-list a').forEach(a => {
         const href = a.getAttribute('href') || '';
-        // Skip anchor-only links (e.g. Sobre.html#conectar) — they are section links, not pages
+        // Skip anchor-only links (e.g. about.html#conectar) — they are section links, not pages
         if (href.includes('#')) return;
 
-        if (href === current || (productPages.includes(current) && href === 'index.html')) {
+        if (href === current || (productPages.includes(current) && href === 'store.html')) {
             a.classList.add('activemenu');
         }
     });
