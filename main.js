@@ -8,41 +8,44 @@
 
 // Your code starts here
 
-// placeholderes
-document.addEventListener("DOMContentLoaded", function() {
-    // Load header
-    fetch("header.html")
+// Inject a partial (header/footer/form) into a placeholder element.
+function loadPartial(url, targetId, done) {
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    fetch(url)
         .then(response => response.text())
-        .then(data => {
-            document.getElementById("header-placeholder").innerHTML = data;
-            initHamburger();
-            setActiveNav();
-            initCart();
-        });
+        .then(html => { target.innerHTML = html; if (typeof done === "function") done(); })
+        .catch(err => console.error(`Erro ao carregar ${url}:`, err));
+}
 
-    // Load form
-    fetch("form.html")
-        .then(response => response.text())
-        .then(data => {
-            if (document.getElementById("form-placeholder"))
-                document.getElementById("form-placeholder").innerHTML = data;
-        });
+// Progressive loading — header/menu first, then above-the-fold content,
+// then below-the-fold partials (footer/form) when the browser is idle.
+document.addEventListener("DOMContentLoaded", function () {
+    // 1) Header / menu first — it's the critical navigation
+    loadPartial("header.html", "header-placeholder", () => {
+        initHamburger();
+        setActiveNav();
+        initCart();
+    });
 
-    // Load footer
-    fetch("footer.html")
-        .then(response => response.text())
-        .then(data => {
-            if (document.getElementById("footer-placeholder"))
-                document.getElementById("footer-placeholder").innerHTML = data;
-        });
-
-    // Render product grid from JSON if on index page
+    // 2) Above-the-fold content next — the product grid on the store page
     const grid = document.getElementById("product-grid");
     if (grid) {
         fetch("products.json")
             .then(r => r.json())
             .then(products => renderProductGrid(products, grid))
             .catch(err => console.error("Erro ao carregar produtos:", err));
+    }
+
+    // 3) Below-the-fold partials — defer until the browser is idle
+    const loadBelowFold = () => {
+        loadPartial("form.html", "form-placeholder");
+        loadPartial("footer.html", "footer-placeholder");
+    };
+    if ("requestIdleCallback" in window) {
+        requestIdleCallback(loadBelowFold, { timeout: 1500 });
+    } else {
+        setTimeout(loadBelowFold, 200);
     }
 });
 
@@ -98,36 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-});
-
-// 100ms delay
-document.addEventListener("DOMContentLoaded", function () {
-    setTimeout(() => {
-        fetch("products.json")
-            .then(response => response.json())
-            .then(data => {
-                productData = data; // Store globally
-                productKeys = Object.keys(data);
-
-                const params = new URLSearchParams(window.location.search);
-                const productName = params.get("nome");
-
-                // Load product from URL or default to the first one
-                currentIndex = productKeys.indexOf(productName) !== -1 ? productKeys.indexOf(productName) : 0;
-                if (productKeys.length > 0) {
-                    updateProduct(data, productKeys[currentIndex]);
-                }
-
-                document.querySelector(".sidebutton-left")?.addEventListener("click", function () {
-                    navigateProducts(-1);
-                });
-
-                document.querySelector(".sidebutton-right")?.addEventListener("click", function () {
-                    navigateProducts(1);
-                });
-            })
-            .catch(error => console.error("Error loading JSON:", error));
-    }, 100); // 100ms delay
 });
 
 /* ---- Product grid renderer (store.html) ---- */
