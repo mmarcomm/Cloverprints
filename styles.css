@@ -99,7 +99,6 @@ h2 {
 	line-height: normal;
 	font-weight: 500;
 	margin: 8px 0 12px 0;
-	cursor: pointer;
 }
 
 	/*para títulos do tipo - */
@@ -375,5 +374,5 @@ h4 {
    navbar is fixed and body padding-top handles the spacing, so no reserve. */
 #header-placeholder { display: block; }
 @media (min-width: 1401px) {
-    #header-placeholder { min-height: 104px; }
+    #header-placeholder { min-height: 98px; }
 }
