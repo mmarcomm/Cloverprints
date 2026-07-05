@@ -374,5 +374,5 @@ h4 {
    navbar is fixed and body padding-top handles the spacing, so no reserve. */
 #header-placeholder { display: block; }
 @media (min-width: 1401px) {
-    #header-placeholder { min-height: 98px; }
+    #header-placeholder { min-height: 80px; }
 }
