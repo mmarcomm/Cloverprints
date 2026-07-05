@@ -30,13 +30,16 @@
         linear-gradient(to right, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 55%);
 }
 
+/* Rule-of-thirds: lift the text block off the bottom edge so it sits
+   roughly on the lower third line instead of flush against the edge. */
 .home-hero__inner {
     position: relative;
     z-index: 1;
     width: 100%;
     max-width: 80rem;
     margin: 0 auto;
-    padding: 2rem 1.5rem 3.5rem;
+    padding: 2rem 1.5rem;
+    padding-bottom: max(3.5rem, 16vh);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
