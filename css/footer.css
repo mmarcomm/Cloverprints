@@ -165,6 +165,15 @@ span.link:hover {
 	font-weight: 300;
 }
 
+/* Left-align the icon row and cancel the first icon's inner padding so
+   its glyph lines up with the logo and email. */
+.icons-footer {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-left: 11px;
+}
+
 a.footer-icons {
 	background-color: transparent;
 	display: inline-flex;
