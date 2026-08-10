@@ -167,11 +167,26 @@ span.link:hover {
 
 /* Left-align the icon row and cancel the first icon's inner padding so
    its glyph lines up with the logo and email. */
+/* Mobile: centre the brand column (logo, icons, email) together */
+.c2 {
+	text-align: center;
+}
 .icons-footer {
 	display: flex;
-	justify-content: flex-start;
+	justify-content: center;
 	align-items: center;
-	margin-left: 11px;
+	margin-left: 0;
+}
+
+/* Desktop: columns spread out — left-align everything in the column */
+@media (min-width: 800px) {
+	.c2 {
+		text-align: left;
+	}
+	.icons-footer {
+		justify-content: flex-start;
+		margin-left: -5px; /* cancel first icon's inner padding to line up with the email */
+	}
 }
 
 a.footer-icons {
