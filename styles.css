@@ -376,3 +376,15 @@ h4 {
 @media (min-width: 1401px) {
     #header-placeholder { min-height: 86px; }
 }
+
+/* Smooth, non-abrupt in-page anchor navigation (e.g. "Conectar" -> #conectar).
+   scroll-padding-top offsets the sticky/fixed header so the target section
+   lands just below it instead of hidden underneath. Respects reduced-motion. */
+html {
+    scroll-padding-top: 6rem;
+}
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
