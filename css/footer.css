@@ -165,21 +165,40 @@ span.link:hover {
 	font-weight: 300;
 }
 
+/* Left-align the icon row and cancel the first icon's inner padding so
+   its glyph lines up with the logo and email. */
+.icons-footer {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-left: 11px;
+}
+
 a.footer-icons {
 	background-color: transparent;
-	color: var(--sixth-color);
-	display: inline-block;
-	font-size: 16px;
-	margin: 12px 8px 12px 0px;
-	font-weight: 400;
-	line-height: 1.2em;
-	max-width: 100%;
-	opacity: .8;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin: 10px 6px 10px 0px;
+	padding: 5px;
+	line-height: 0;
 	text-decoration: none;
 }
 
+/* Icons are <img> SVGs, so recolour via filter: black -> muted grey */
+a.footer-icons img {
+	display: block;
+	filter: invert(45%);
+	transition: filter .2s ease, transform .2s ease;
+}
+
+/* Hover: darken to the brand ink + subtle lift */
+a.footer-icons:hover img {
+	filter: invert(13%);
+	transform: translateY(-1px);
+}
+
 a.footer-icons:hover {
-	opacity: 2;
 	outline: 0;
 }
 
