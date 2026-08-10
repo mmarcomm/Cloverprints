@@ -99,7 +99,6 @@ h2 {
 	line-height: normal;
 	font-weight: 500;
 	margin: 8px 0 12px 0;
-	cursor: pointer;
 }
 
 	/*para títulos do tipo - */
@@ -370,3 +369,22 @@ h4 {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
+/* Reserve header space so the page doesn't jump while the menu loads (CLS).
+   The injected <header> is sticky/in-flow on desktop (~104px); on mobile the
+   navbar is fixed and body padding-top handles the spacing, so no reserve. */
+#header-placeholder { display: block; }
+@media (min-width: 1401px) {
+    #header-placeholder { min-height: 86px; }
+}
+
+/* Smooth, non-abrupt in-page anchor navigation (e.g. "Conectar" -> #conectar).
+   scroll-padding-top offsets the sticky/fixed header so the target section
+   lands just below it instead of hidden underneath. Respects reduced-motion. */
+html {
+    scroll-padding-top: 6rem;
+}
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
