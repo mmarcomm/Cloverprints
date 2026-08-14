@@ -105,7 +105,8 @@ footer {
 .c1,
 .c2,
 .c3,
-.c4 {
+.c4,
+.c5 {
 	max-width: 400px;
 	min-width: 170px;
 	float: none;
@@ -243,7 +244,8 @@ a.footer-icons:hover {
 .c1,
 .c2,
 .c3,
-.c4 {
+.c4,
+.c5 {
 	margin-right: 0; /* Remove right margin for stacked elements */
     margin-bottom: 24px;
 	padding: 0 24px;
@@ -287,7 +289,8 @@ footer {
 .c1,
 .c2,
 .c3,
-.c4 {
+.c4,
+.c5 {
 	width: 100%;
 	float: none;
 	margin-bottom: 24px;
