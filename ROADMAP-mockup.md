@@ -31,6 +31,7 @@ Branch: `claude/snipcart-tshirt-research-W2bnj`
 - **Email de confirmação de encomenda** — template HTML personalizado no dashboard Snipcart
 - **Email de pedido de review** — 10 dias pós-compra via webhook Snipcart + Brevo (grátis)
   - Precisa de: conta Brevo + Make/Zapier (automação) + Google Forms (receber reviews)
+- **[FUTURO] Aliases de reencaminhamento** — hoje só existe `info@cloverprints.com`; páginas de apoio usam subject prefills (`?subject=...`) para simular routing por assunto num único inbox. Mais tarde criar aliases dedicados (ex: `privacidade@`, `devolucoes@`, `envios@`) a reencaminhar para a caixa principal, sem custo extra de mailbox.
 
 ### 💶 Preços
 - **Locale pt-PT no Snipcart** — para o checkout mostrar `45,00 €`
