@@ -139,9 +139,16 @@ h3.titles {
 
 a {
 	background-color: transparent;
+	text-decoration: none;
+}
+
+/* Scoped to the footer on purpose. This file is injected into every page with
+   the footer partial, so as a bare `a` rule the metrics below leaked to the
+   whole document: any link inside prose rendered at 18px on 1.2 leading,
+   larger and tighter than the sentence containing it. */
+footer a {
 	font-size: 18px;
 	line-height: 1.2em;
-	text-decoration: none;
 }
 
 a:active {

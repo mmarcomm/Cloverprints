@@ -406,9 +406,11 @@
 }
 
 /* ---- Inline links ----
-   Ink with a hairline rule rather than cyan text: at body size a saturated
-   link colour pulls the eye off the sentence it belongs to. Scoped to prose
-   containers so it doesn't reach the nav above. */
+   A link inside a sentence must carry the metrics of that sentence, so
+   font-size and line-height are pinned to inherit rather than left to
+   whatever a global `a` rule happens to say. Colour plus a hairline rule
+   does the signalling. Scoped to prose containers so the cross-link nav
+   keeps its own sizing. */
 .legal-section__lead a,
 .legal-section__text a,
 .legal-section__note a,
@@ -416,10 +418,12 @@
 .legal-item p a,
 .legal-contact__value a,
 .faq-item__a a {
-    color: #212427;
+    font-size: inherit;
+    line-height: inherit;
+    color: var(--se);
     text-decoration: none;
-    border-bottom: 1px solid #cbd5e1;
-    transition: color 0.15s ease, border-color 0.15s ease;
+    border-bottom: 1px solid rgba(0, 191, 255, 0.45);
+    transition: border-color 0.15s ease;
 }
 
 @media (hover: hover) {
@@ -430,7 +434,6 @@
     .legal-item p a:hover,
     .legal-contact__value a:hover,
     .faq-item__a a:hover {
-        color: var(--se);
         border-bottom-color: var(--se);
     }
 }
