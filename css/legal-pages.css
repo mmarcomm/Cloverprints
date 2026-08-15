@@ -286,6 +286,73 @@
     color: #374151;
 }
 
+/* ---- FAQ accordion ----
+   Native <details>/<summary>: keyboard and screen-reader behaviour for free,
+   and the answers stay in the DOM for search engines and Ctrl+F. */
+.faq-list {
+    border-top: 1px solid #e5e7eb;
+}
+
+.faq-item {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.faq-item__q {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding: 1.125rem 0;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #212427;
+    cursor: pointer;
+    list-style: none;          /* Firefox */
+    transition: color 0.15s ease;
+}
+
+.faq-item__q::-webkit-details-marker { display: none; }   /* Safari */
+
+.faq-item__q:hover { color: var(--se); }
+
+.faq-item__q:focus-visible {
+    outline: 2px solid var(--se);
+    outline-offset: 2px;
+}
+
+/* Own marker, so the control reads the same in every browser */
+.faq-item__q::after {
+    content: "+";
+    margin-left: auto;
+    flex: none;
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1;
+    color: #9ca3af;
+    transition: color 0.15s ease;
+}
+
+.faq-item[open] .faq-item__q { color: #212427; }
+
+.faq-item[open] .faq-item__q::after {
+    content: "–";
+    color: var(--se);
+}
+
+.faq-item__a {
+    padding: 0 3rem 1.375rem 0;
+    max-width: 46rem;
+}
+
+.faq-item__a p {
+    font-size: 0.9375rem;
+    line-height: 1.85;
+    color: #374151;
+    margin-bottom: 0.875rem;
+}
+
+.faq-item__a p:last-child { margin-bottom: 0; }
+
 /* ---- Cross-links to the sibling legal pages ---- */
 .legal-nav {
     max-width: 52rem;
@@ -399,6 +466,9 @@
     .legal-subsection {
         padding-left: 1.125rem;
     }
+
+    .faq-item__q { gap: 1rem; }
+    .faq-item__a { padding-right: 1.5rem; }
 
     .legal-item {
         padding: 1.25rem;
