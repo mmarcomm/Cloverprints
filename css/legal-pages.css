@@ -416,6 +416,8 @@
 .legal-section__note a,
 .legal-list a,
 .legal-item p a,
+.legal-fact__value a,
+.legal-table__cell a,
 .legal-contact__value a,
 .faq-item__a a {
     font-size: inherit;
@@ -432,6 +434,8 @@
     .legal-section__note a:hover,
     .legal-list a:hover,
     .legal-item p a:hover,
+    .legal-fact__value a:hover,
+    .legal-table__cell a:hover,
     .legal-contact__value a:hover,
     .faq-item__a a:hover {
         border-bottom-color: var(--se);
