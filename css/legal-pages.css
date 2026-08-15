@@ -368,14 +368,17 @@
     border-top: 1px solid #e5e7eb;
 }
 
+/* Reads as a title, not a caption — the block closes the page and has to be
+   found, so it borrows the section-title voice one tier down. */
 .legal-nav__label {
     display: block;
-    font-size: 0.625rem;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #9ca3af;
-    margin-bottom: 1rem;
+    font-size: clamp(1.375rem, 3vw, 1.75rem);
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    text-transform: none;
+    color: #212427;
+    margin-bottom: 1.5rem;
 }
 
 .legal-nav__links {
@@ -385,7 +388,7 @@
 }
 
 .legal-nav__links a {
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     font-weight: 400;
     color: #374151;
     text-decoration: none;
