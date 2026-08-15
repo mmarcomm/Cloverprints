@@ -289,8 +289,10 @@
 /* ---- FAQ accordion ----
    Native <details>/<summary>: keyboard and screen-reader behaviour for free,
    and the answers stay in the DOM for search engines and Ctrl+F. */
+/* No border-top here: the section head already draws a rule directly above,
+   and the two together read as a double line with an empty band between. */
 .faq-list {
-    border-top: 1px solid #e5e7eb;
+    margin-top: -0.25rem;
 }
 
 .faq-item {
@@ -313,7 +315,12 @@
 
 .faq-item__q::-webkit-details-marker { display: none; }   /* Safari */
 
-.faq-item__q:hover { color: var(--se); }
+/* Guarded: on touch screens :hover sticks after the tap and leaves the
+   question tinted until something else is touched. */
+@media (hover: hover) {
+    .faq-item__q:hover { color: var(--se); }
+    .faq-item__q:hover::after { color: var(--se); }
+}
 
 .faq-item__q:focus-visible {
     outline: 2px solid var(--se);
@@ -386,9 +393,11 @@
     transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-.legal-nav__links a:hover {
-    color: var(--se);
-    border-bottom-color: var(--se);
+@media (hover: hover) {
+    .legal-nav__links a:hover {
+        color: var(--se);
+        border-bottom-color: var(--se);
+    }
 }
 
 .legal-nav__links a[aria-current="page"] {
@@ -396,14 +405,34 @@
     pointer-events: none;
 }
 
-/* ---- Inline links ---- */
-.legal-content a {
-    color: var(--se);
+/* ---- Inline links ----
+   Ink with a hairline rule rather than cyan text: at body size a saturated
+   link colour pulls the eye off the sentence it belongs to. Scoped to prose
+   containers so it doesn't reach the nav above. */
+.legal-section__lead a,
+.legal-section__text a,
+.legal-section__note a,
+.legal-list a,
+.legal-item p a,
+.legal-contact__value a,
+.faq-item__a a {
+    color: #212427;
     text-decoration: none;
+    border-bottom: 1px solid #cbd5e1;
+    transition: color 0.15s ease, border-color 0.15s ease;
 }
 
-.legal-content a:hover {
-    text-decoration: underline;
+@media (hover: hover) {
+    .legal-section__lead a:hover,
+    .legal-section__text a:hover,
+    .legal-section__note a:hover,
+    .legal-list a:hover,
+    .legal-item p a:hover,
+    .legal-contact__value a:hover,
+    .faq-item__a a:hover {
+        color: var(--se);
+        border-bottom-color: var(--se);
+    }
 }
 
 /* ==========================================================================
