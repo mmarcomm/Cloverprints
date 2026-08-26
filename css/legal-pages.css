@@ -167,7 +167,7 @@
 /* ---- Facts (identity block) ---- */
 .legal-facts {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
     gap: 1.75rem 2.5rem;
 }
 
@@ -194,7 +194,7 @@
 /* ---- Cards (site convention: white, hairline border, soft radius) ---- */
 .legal-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr));
     gap: 1.25rem;
     margin-bottom: 1.25rem;
 }
@@ -259,7 +259,9 @@
 /* ---- Contact block ---- */
 .legal-contact {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    /* min() so the track can fall below 15rem when the viewport is narrower
+       than the minimum — plain minmax(15rem, 1fr) overflows at large font sizes */
+    grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
     gap: 1.75rem 2.5rem;
     padding: 2rem;
     background: var(--fi);
