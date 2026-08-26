@@ -327,31 +327,11 @@ h4 {
 	padding: 10px;
 }
 
-.sidebutton {
-	display: flex;
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 100%;
-	z-index: 1;
-	pointer-events: none;
-}
-
-.sidebutton-left {
-	cursor: pointer;
-	display: flex;
-	margin: 435px 0px 0px 54px;
-	pointer-events: auto;
-}
-
-.sidebutton-right {
-	cursor: pointer;
-	display: flex;
-    position: absolute;
-    right: 0;
-	margin: 435px 54px 0px 0px;
-	pointer-events: auto;
-	}
+/* .sidebutton / .sidebutton-left / .sidebutton-right removed — dead rules from
+   the previous product layout. No markup referenced them, and they pinned the
+   arrows with a hardcoded `margin: 435px`, which broke on any viewport height
+   other than the one it was measured on. The live prev/next control is
+   .product-nav in css/product-detail.css. */
 
 
         /* Responsive Design */
