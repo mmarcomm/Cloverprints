@@ -48,6 +48,17 @@
     color: rgba(255,255,255,0.72);
 }
 
+/* The banner CTA jumps here, and the header is sticky — without this the
+   section heading lands underneath it. 86px on desktop, 56px on the fixed
+   mobile bar, plus breathing room. (scroll-behavior: smooth is in styles.css.) */
+#conectar {
+    scroll-margin-top: 6.5rem;
+}
+
+@media (max-width: 1400px) {
+    #conectar { scroll-margin-top: 4.5rem; }
+}
+
 /* Mirrors .home-btn from css/home.css, which this page does not load. */
 .banner__actions {
     display: flex;
