@@ -10,43 +10,8 @@
     padding: 0 1.5rem;
 }
 
-/* ---- Banner variant: photograph behind the type ----
-   Same structure as .home-hero, so swapping the <img> for a <video> later is
-   a markup change only — nothing here assumes an image element. */
-.banner--photo {
-    position: relative;
-    overflow: hidden;
-    padding-top: 7rem;
-    padding-bottom: 7rem;
-}
-
-.banner__media {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 45%;
-}
-
-/* Darker on the left, where the text sits; lighter on the right so the
-   photograph is still legible as a photograph. */
-.banner__scrim {
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(to right, rgba(24,26,28,0.93) 0%, rgba(24,26,28,0.78) 42%, rgba(24,26,28,0.52) 100%),
-        linear-gradient(to top, rgba(24,26,28,0.55) 0%, rgba(24,26,28,0) 60%);
-}
-
-.banner--photo .banner__inner {
-    position: relative;
-    z-index: 1;
-}
-
-.banner--photo .banner__sub {
-    color: rgba(255,255,255,0.72);
-}
+/* .banner--photo and friends now live in styles.css, beside .banner — two
+   pages use the variant, so it is no longer this page's business. */
 
 /* The banner CTA jumps here, and the header is sticky — without this the
    section heading lands underneath it. 86px on desktop, 56px on the fixed
@@ -94,25 +59,6 @@
     outline-offset: 3px;
 }
 
-.banner__credit {
-    position: absolute;
-    right: 1.25rem;
-    bottom: 1rem;
-    z-index: 1;
-    font-size: 0.625rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-}
-
-@media (max-width: 640px) {
-    .banner--photo {
-        padding-top: 5rem;
-        padding-bottom: 5.5rem;
-    }
-
-    .banner__credit { display: none; }
-}
 
 /* ---- Brand story ---- */
 .sobre-story {
