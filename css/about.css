@@ -13,17 +13,6 @@
 /* .banner--photo and friends now live in styles.css, beside .banner — two
    pages use the variant, so it is no longer this page's business. */
 
-/* The banner CTA jumps here, and the header is sticky — without this the
-   section heading lands underneath it. 86px on desktop, 56px on the fixed
-   mobile bar, plus breathing room. (scroll-behavior: smooth is in styles.css.) */
-#conectar {
-    scroll-margin-top: 6.5rem;
-}
-
-@media (max-width: 1400px) {
-    #conectar { scroll-margin-top: 4.5rem; }
-}
-
 /* Mirrors .home-btn from css/home.css, which this page does not load. */
 .banner__actions {
     display: flex;
@@ -302,10 +291,18 @@
 }
 
 /* ---- Conectar ---- */
+/* scroll-margin-top because the banner CTA jumps here and the header is sticky
+   — 86px on desktop, a 56px fixed bar below 1400px. Without it the heading
+   lands underneath. (scroll-behavior: smooth is set globally in styles.css.) */
 #conectar {
     padding: 5rem 1.5rem;
     background: #212427;
     color: #fff;
+    scroll-margin-top: 6.5rem;
+}
+
+@media (max-width: 1400px) {
+    #conectar { scroll-margin-top: 4.5rem; }
 }
 
 .conectar-inner {
