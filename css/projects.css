@@ -259,7 +259,7 @@
 
 .event-item {
     display: grid;
-    grid-template-columns: 4.5rem 1fr auto;
+    grid-template-columns: 4.5rem minmax(0, 1fr) auto;
     gap: 1.5rem;
     align-items: start;
     padding: 1.75rem 0;
@@ -321,7 +321,8 @@
 
 .event-meta {
     display: flex;
-    gap: 1.25rem;
+    flex-wrap: wrap;   /* rigid row: the spans cannot shrink and overflowed */
+    gap: 0.25rem 1.25rem;
     font-size: 0.75rem;
     color: #9ca3af;
 }
@@ -415,8 +416,11 @@
         grid-template-columns: 1fr;
     }
 
+    /* minmax(0, 1fr), not 1fr: a bare `1fr` is minmax(auto, 1fr) and refuses to
+       shrink below the track's min-content, so at a bumped system font size the
+       text column pushed past the viewport instead of wrapping. */
     .event-item {
-        grid-template-columns: 3.5rem 1fr;
+        grid-template-columns: 3.5rem minmax(0, 1fr);
         gap: 1rem;
     }
 

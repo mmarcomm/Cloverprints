@@ -151,6 +151,64 @@ h4 {
             max-width: 28rem;
         }
 
+        /* ---- Banner variant: photograph behind the type ----
+           Same structure as .home-hero, so swapping the <img> for a <video>
+           later is a markup change only — nothing here assumes an image. */
+        .banner--photo {
+            position: relative;
+            overflow: hidden;
+            padding-top: 7rem;
+            padding-bottom: 7rem;
+        }
+
+        .banner__media {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 45%;
+        }
+
+        /* Darker on the left, where the text sits; lighter on the right so the
+           photograph is still legible as a photograph. */
+        .banner__scrim {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(to right, rgba(24,26,28,0.93) 0%, rgba(24,26,28,0.78) 42%, rgba(24,26,28,0.52) 100%),
+                linear-gradient(to top, rgba(24,26,28,0.55) 0%, rgba(24,26,28,0) 60%);
+        }
+
+        .banner--photo .banner__inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .banner--photo .banner__sub {
+            color: rgba(255,255,255,0.72);
+        }
+
+        .banner__credit {
+            position: absolute;
+            right: 1.25rem;
+            bottom: 1rem;
+            z-index: 1;
+            font-size: 0.625rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+        }
+
+        @media (max-width: 640px) {
+            .banner--photo {
+                padding-top: 5rem;
+                padding-bottom: 5.5rem;
+            }
+
+            .banner__credit { display: none; }
+        }
+
         /* ---- Product Grid ---- */
         .product-section {
             padding: 3rem 1.5rem 5rem;
@@ -164,8 +222,9 @@ h4 {
 
         .section-header {
             display: flex;
+            flex-wrap: wrap;
             align-items: baseline;
-            gap: 1rem;
+            gap: 0.5rem 1rem;
             margin-bottom: 2rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid #e5e7eb;
@@ -326,31 +385,11 @@ h4 {
 	padding: 10px;
 }
 
-.sidebutton {
-	display: flex;
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 100%;
-	z-index: 1;
-	pointer-events: none;
-}
-
-.sidebutton-left {
-	cursor: pointer;
-	display: flex;
-	margin: 435px 0px 0px 54px;
-	pointer-events: auto;
-}
-
-.sidebutton-right {
-	cursor: pointer;
-	display: flex;
-    position: absolute;
-    right: 0;
-	margin: 435px 54px 0px 0px;
-	pointer-events: auto;
-	}
+/* .sidebutton / .sidebutton-left / .sidebutton-right removed — dead rules from
+   the previous product layout. No markup referenced them, and they pinned the
+   arrows with a hardcoded `margin: 435px`, which broke on any viewport height
+   other than the one it was measured on. The live prev/next control is
+   .product-nav in css/product-detail.css. */
 
 
         /* Responsive Design */
