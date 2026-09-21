@@ -97,22 +97,51 @@ header {
     margin-left: 38px;
 }
 
+/* The 3px nudge is an optical correction, not a guess, and it is a transform
+   rather than a margin on purpose. The nav labels are uppercase, so their
+   optical line is the cap band, not the line box: measured in the browser the
+   caps centre at 52.5 while the bag drawn inside the 24px viewBox centres at
+   47.85, leaving the icon reading high. Correcting it with margin grew the
+   actions box, and .navbar centres its children — so the nav text moved down
+   with it and half the error came straight back. transform paints the shift
+   without touching layout, so nothing else moves. */
 .cart-button {
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 42px;
+    width: 42px;      /* hit area only — nothing is painted on it */
     height: 42px;
-    border-radius: 8px;
     color: #212427;
     text-decoration: none;
-    transition: background 0.15s ease, color 0.15s ease;
+    transform: translateY(3px);
 }
 
-.cart-button:hover {
-    background: #f3f4f6;
-    color: var(--se);
+/* Same device as the nav links: a 2px rule that grows in beneath on hover.
+   The header carries no button or tile language anywhere else, so a filled
+   rounded box read as borrowed from another design. Centred rather than
+   left-anchored because the mark is symmetrical, and sized to the icon rather
+   than to the 42px hit area so the rule belongs to the bag, not to the box. */
+.cart-button::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0.5px;    /* lands the rule on the same line as the nav underlines */
+    width: 0;
+    height: 2px;
+    background: #000;
+    transform: translateX(-50%);
+    transition: width 0.5s ease;
+}
+
+@media (hover: hover) {
+    .cart-button:hover::after { width: 24px; }
+}
+
+.cart-button:focus-visible {
+    outline: 2px solid var(--se);
+    outline-offset: 2px;
+    border-radius: 4px;
 }
 
 .cart-icon {
@@ -211,7 +240,13 @@ header {
     .cart-button {
         width: 44px;
         height: 44px;
+        /* The optical nudge exists to line the bag up with the uppercase nav
+           labels, and there are none here — the bar holds the cart beside the
+           hamburger, so it must sit level with it instead. */
+        transform: none;
     }
+
+    .cart-button::after { display: none; }
 
     .toggle-checkbox { display: none; }
 
@@ -231,7 +266,9 @@ header {
         z-index: 101;
     }
 
-    .menu-button:hover { background: #f3f4f6; }
+    @media (hover: hover) {
+        .menu-button:hover { background: #f3f4f6; }
+    }
 
     .hamburger-icon {
         width: 24px;
