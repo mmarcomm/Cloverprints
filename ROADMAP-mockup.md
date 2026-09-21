@@ -55,6 +55,20 @@ Branch: `claude/snipcart-tshirt-research-W2bnj`
 - Hover preview (miniatura + nome + preço), labels/aria, teclas ←/→, esconder em mobile
 - **[FUTURO]** Faixa de "Produtos relacionados" no fundo
 
+### 🖼️ Imagens e banners
+- **[PROVISÓRIO] Banner do `projects.html`** — está com a `Website_Imgs/4.jpg`
+  (canas contra parede), escolhida só para a página deixar de parecer vazia.
+  Substituir por uma imagem pensada para a página. Trocar é uma linha:
+  o `src` do `.banner__media` no `projects.html`.
+- **Rever o banner do `about.html`** — usa a `10.jpg` (horário de autocarros
+  rasgado). Foi escolha deliberada, mas confirmar se serve.
+- **Vídeo em vez de foto** — o `.banner--photo` não assume que o media é uma
+  imagem; trocar `<img class="banner__media">` por `<video class="banner__media"
+  autoplay muted loop playsinline poster="...">` funciona sem tocar no CSS.
+- **Fotografias reais dos produtos** — os três produtos partilham as mesmas
+  imagens, e dois partilham o mesmo `cardImage`.
+- **Foto do retrato em `about.html`** — a secção "pessoa" tem um placeholder.
+
 ### 🔍 SEO + Legal (obrigatório para lançar)
 - Meta tags + OG tags (partilha no Instagram/WhatsApp)
 - Política de privacidade (RGPD — obrigatório em PT)
