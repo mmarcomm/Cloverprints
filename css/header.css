@@ -93,6 +93,11 @@ header {
     position: absolute;
     left: 0;
     bottom: -10px;
+    /* The rule belongs to the <li> but overlaps the link's bottom padding, and
+       being positioned it hit-tests above it — so the last 2px of the target
+       resolved to the <li> and the click went nowhere. It is decoration; it
+       should never take a click. */
+    pointer-events: none;
     transition: width 0.5s ease, background-color 0.5s ease;
 }
 
