@@ -71,22 +71,26 @@ header {
     color: var(--se);
 }
 
+/* Transparent at rest, black on hover, with both the width and the colour
+   animating — so the rule grows in and fades out rather than just retracting.
+   That fade used to happen by accident: the colour here was var(--primary-color),
+   a token that is not defined anywhere, which made the declaration invalid and
+   left the rule transparent. Same result, now on purpose. */
 .nav-desktop ul li::after {
     content: '';
     height: 2px;
     width: 0%;
-    background: var(--primary-color);
+    background-color: transparent;
     display: block;
-    margin: auto;
     position: absolute;
     left: 0;
     bottom: -10px;
-    transition: 0.5s;
+    transition: width 0.5s ease, background-color 0.5s ease;
 }
 
 .nav-desktop ul li:hover::after {
     width: 100%;
-    background: #000;
+    background-color: #000;
 }
 
 /* ---- Right-side actions + cart (desktop: top-right, after nav) ---- */
@@ -129,13 +133,16 @@ header {
     bottom: 0.5px;    /* lands the rule on the same line as the nav underlines */
     width: 0;
     height: 2px;
-    background: #000;
+    background-color: transparent;
     transform: translateX(-50%);
-    transition: width 0.5s ease;
+    transition: width 0.5s ease, background-color 0.5s ease;
 }
 
 @media (hover: hover) {
-    .cart-button:hover::after { width: 24px; }
+    .cart-button:hover::after {
+        width: 24px;
+        background-color: #000;
+    }
 }
 
 .cart-button:focus-visible {
