@@ -57,39 +57,46 @@
       transition: width 0.4s ease;
     }
 
-    /* Red card — the IATA code to drag */
+    /* Red card */
     .red-card {
-      width: 140px;
-      height: 140px;
+      width: 160px;
+      height: 160px;
       background: #e94560;
       border-radius: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-size: 2.4rem;
-      font-weight: 900;
-      letter-spacing: 3px;
       cursor: grab;
       user-select: none;
       box-shadow: 0 0 30px #e9456055;
       touch-action: none;
-      transition: transform 0.15s, box-shadow 0.15s;
-      position: relative;
+      transition: transform 0.15s, box-shadow 0.15s, background 0.12s;
     }
-    .red-card span {
-      font-size: 0.7rem;
+    #code-label {
+      font-size: 4rem;
+      font-weight: 900;
+      letter-spacing: 4px;
+      line-height: 1;
+    }
+    .red-card .hint {
+      font-size: 0.65rem;
       font-weight: 400;
       letter-spacing: 1px;
-      opacity: 0.8;
-      margin-top: 4px;
+      opacity: 0.75;
+      margin-top: 6px;
     }
     .red-card.dragging {
       transform: scale(1.08);
       box-shadow: 0 0 40px #e9456099;
+      cursor: grabbing;
+    }
+    .red-card.flash-green {
+      background: #22c55e !important;
+      box-shadow: 0 0 40px #22c55e88 !important;
     }
 
-    /* Blue cards — city names */
+    /* Blue cards */
     .options-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -108,7 +115,7 @@
       font-weight: 600;
       cursor: pointer;
       user-select: none;
-      transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s, background 0.12s;
       min-height: 70px;
       display: flex;
       align-items: center;
@@ -124,8 +131,13 @@
       border-color: #ff4444;
       background: #2a0f0f;
     }
-    .blue-card.correct {
-      animation: pop-correct 0.5s ease forwards;
+    .blue-card.flash-green {
+      background: #166534 !important;
+      border-color: #22c55e !important;
+      box-shadow: 0 0 20px #22c55e66 !important;
+    }
+    .blue-card.vanish {
+      animation: pop-out 0.2s ease forwards;
     }
 
     @keyframes shake {
@@ -135,35 +147,32 @@
       60%      { transform: translateX(-6px); }
       80%      { transform: translateX(6px); }
     }
-    @keyframes pop-correct {
-      0%   { transform: scale(1); opacity: 1; }
-      50%  { transform: scale(1.15); opacity: 0.8; }
-      100% { transform: scale(0); opacity: 0; }
+    @keyframes pop-out {
+      0%   { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(0);    opacity: 0; }
     }
 
-    /* Floating clone while dragging on touch */
+    /* Touch drag clone */
     .drag-clone {
       position: fixed;
       pointer-events: none;
       z-index: 9999;
-      width: 120px;
-      height: 120px;
+      width: 130px;
+      height: 130px;
       background: #e94560;
       border-radius: 18px;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
+      font-size: 3.2rem;
       font-weight: 900;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       color: white;
       opacity: 0.92;
       box-shadow: 0 8px 30px #e9456077;
       transform: scale(1.08);
     }
 
-    /* Result overlay */
     .overlay {
       display: none;
       position: fixed;
@@ -197,17 +206,17 @@
   <header>
     <h1>✈ Ryanair Code Match</h1>
     <div class="score-row">
-      <span id="score-label">Score: <b id="score">0</b></span>
-      <span id="remain-label"><b id="remain">185</b> left</span>
+      <span>Score: <b id="score">0</b></span>
+      <span><b id="remain">185</b> left</span>
     </div>
     <div class="progress-bar"><div class="progress-fill" id="progress" style="width:0%"></div></div>
   </header>
 
-  <p style="opacity:.45; font-size:.8rem; text-align:center">Drag the code onto the correct city</p>
+  <p style="opacity:.4; font-size:.78rem; text-align:center">Drag the code onto the correct city</p>
 
   <div class="red-card" id="red-card" draggable="true">
     <span id="code-label">---</span>
-    <span>drag me</span>
+    <span class="hint">drag me</span>
   </div>
 
   <div class="options-grid" id="options"></div>
@@ -219,153 +228,181 @@
   </div>
 
   <script>
+    // [code, city, region]
     const ALL = [
-      ["DUB","Dublin"],["ORK","Cork"],["SNN","Shannon"],["NOC","Knock"],["KIR","Kerry"],
-      ["STN","London Stansted"],["LTN","London Luton"],["LGW","London Gatwick"],
-      ["MAN","Manchester"],["BHX","Birmingham"],["EDI","Edinburgh"],["GLA","Glasgow"],
-      ["BRS","Bristol"],["LBA","Leeds Bradford"],["NCL","Newcastle"],["LPL","Liverpool"],
-      ["EMA","East Midlands"],["BFS","Belfast"],["ABZ","Aberdeen"],["CWL","Cardiff"],
-      ["BOH","Bournemouth"],["INV","Inverness"],["NQY","Newquay"],["LDY","Derry"],
-      ["EXT","Exeter"],
-      ["MAD","Madrid"],["BCN","Barcelona"],["VLC","Valencia"],["SVQ","Seville"],
-      ["AGP","Malaga"],["ALC","Alicante"],["PMI","Palma"],["IBZ","Ibiza"],
-      ["ACE","Lanzarote"],["FUE","Fuerteventura"],["LPA","Gran Canaria"],
-      ["TFS","Tenerife South"],["GRO","Girona"],["REU","Reus"],["SDR","Santander"],
-      ["BIO","Bilbao"],["SCQ","Santiago de Compostela"],["OVD","Asturias"],
-      ["LEI","Almeria"],["GRX","Granada"],["XRY","Jerez"],["MAH","Menorca"],
-      ["LIS","Lisbon"],["OPO","Porto"],["FAO","Faro"],["FNC","Funchal"],["PDL","Ponta Delgada"],
-      ["CIA","Rome Ciampino"],["FCO","Rome Fiumicino"],["BGY","Milan Bergamo"],
-      ["MXP","Milan Malpensa"],["NAP","Naples"],["VCE","Venice"],["BLQ","Bologna"],
-      ["BRI","Bari"],["CTA","Catania"],["PMO","Palermo"],["PSA","Pisa"],["TRN","Turin"],
-      ["BDS","Brindisi"],["SUF","Lamezia Terme"],["TPS","Trapani"],["AOI","Ancona"],
-      ["PSR","Pescara"],["TRS","Trieste"],["VRN","Verona"],["AHO","Alghero"],["CAG","Cagliari"],
-      ["BVA","Paris Beauvais"],["CDG","Paris CDG"],["MRS","Marseille"],["NCE","Nice"],
-      ["LYS","Lyon"],["BOD","Bordeaux"],["TLS","Toulouse"],["NTE","Nantes"],
-      ["SXB","Strasbourg"],["MPL","Montpellier"],["PGF","Perpignan"],["BIQ","Biarritz"],
-      ["CCF","Carcassonne"],["LRH","La Rochelle"],["LIG","Limoges"],["GNB","Grenoble"],
-      ["FNI","Nimes"],["BES","Brest"],["CFE","Clermont-Ferrand"],["TLN","Toulon"],
-      ["FRA","Frankfurt"],["BER","Berlin"],["MUC","Munich"],["CGN","Cologne Bonn"],
-      ["HAM","Hamburg"],["BRE","Bremen"],["DTM","Dortmund"],["NUE","Nuremberg"],
-      ["STR","Stuttgart"],["FMM","Memmingen"],["NRN","Weeze"],["LEJ","Leipzig"],
-      ["WMI","Warsaw Modlin"],["KRK","Krakow"],["GDN","Gdansk"],["KTW","Katowice"],
-      ["WRO","Wroclaw"],["POZ","Poznan"],["LUZ","Lublin"],["RZE","Rzeszow"],
-      ["AMS","Amsterdam"],["EIN","Eindhoven"],
-      ["CRL","Brussels Charleroi"],["BRU","Brussels"],
-      ["PRG","Prague"],["BRQ","Brno"],["OSR","Ostrava"],
-      ["BTS","Bratislava"],["KSC","Kosice"],
-      ["BUD","Budapest"],["DEB","Debrecen"],
-      ["VIE","Vienna"],["SZG","Salzburg"],["INN","Innsbruck"],["GRZ","Graz"],
-      ["ATH","Athens"],["SKG","Thessaloniki"],["CFU","Corfu"],["RHO","Rhodes"],
-      ["KGS","Kos"],["HER","Heraklion"],["CHQ","Chania"],["JTR","Santorini"],
-      ["JMK","Mykonos"],["ZTH","Zakynthos"],["EFL","Kefalonia"],["JSI","Skiathos"],
-      ["ZAG","Zagreb"],["SPU","Split"],["DBV","Dubrovnik"],["ZAD","Zadar"],["PUY","Pula"],
-      ["OTP","Bucharest"],["CLJ","Cluj-Napoca"],["TSR","Timisoara"],["IAS","Iasi"],
-      ["SBZ","Sibiu"],["CRA","Craiova"],["BCM","Bacau"],
-      ["SOF","Sofia"],["VAR","Varna"],["BOJ","Burgas"],
-      ["BEG","Belgrade"],["INI","Nis"],
-      ["SKP","Skopje"],
-      ["TIA","Tirana"],
-      ["SJJ","Sarajevo"],["TZL","Tuzla"],["BNX","Banja Luka"],
-      ["PRN","Pristina"],
-      ["TIV","Tivat"],["TGD","Podgorica"],
-      ["LJU","Ljubljana"],
-      ["MLA","Malta"],
-      ["LCA","Larnaca"],["PFO","Paphos"],
-      ["RAK","Marrakech"],["AGA","Agadir"],["FEZ","Fez"],["CMN","Casablanca"],
-      ["TNG","Tangier"],["RBA","Rabat"],
-      ["AMM","Amman"],["TLV","Tel Aviv"],
-      ["VNO","Vilnius"],["KUN","Kaunas"],
-      ["RIX","Riga"],
-      ["TLL","Tallinn"],
-      ["TMP","Tampere"],["HEL","Helsinki"],
-      ["NYO","Stockholm Skavsta"],
-      ["SVG","Stavanger"],["BGO","Bergen"],
-      ["CPH","Copenhagen"],["BLL","Billund"],
-      ["TBS","Tbilisi"]
+      ["DUB","Dublin","IE"],["ORK","Cork","IE"],["SNN","Shannon","IE"],
+      ["NOC","Knock","IE"],["KIR","Kerry","IE"],
+      ["STN","London Stansted","UK"],["LTN","London Luton","UK"],["LGW","London Gatwick","UK"],
+      ["MAN","Manchester","UK"],["BHX","Birmingham","UK"],["EDI","Edinburgh","UK"],
+      ["GLA","Glasgow","UK"],["BRS","Bristol","UK"],["LBA","Leeds Bradford","UK"],
+      ["NCL","Newcastle","UK"],["LPL","Liverpool","UK"],["EMA","East Midlands","UK"],
+      ["BFS","Belfast","UK"],["ABZ","Aberdeen","UK"],["CWL","Cardiff","UK"],
+      ["BOH","Bournemouth","UK"],["INV","Inverness","UK"],["NQY","Newquay","UK"],
+      ["LDY","Derry","UK"],["EXT","Exeter","UK"],
+      ["MAD","Madrid","ES"],["BCN","Barcelona","ES"],["VLC","Valencia","ES"],
+      ["SVQ","Seville","ES"],["AGP","Malaga","ES"],["ALC","Alicante","ES"],
+      ["PMI","Palma","ES"],["IBZ","Ibiza","ES"],
+      ["ACE","Lanzarote","ES_CAN"],["FUE","Fuerteventura","ES_CAN"],
+      ["LPA","Gran Canaria","ES_CAN"],["TFS","Tenerife South","ES_CAN"],
+      ["GRO","Girona","ES"],["REU","Reus","ES"],["SDR","Santander","ES"],
+      ["BIO","Bilbao","ES"],["SCQ","Santiago de Compostela","ES"],["OVD","Asturias","ES"],
+      ["LEI","Almeria","ES"],["GRX","Granada","ES"],["XRY","Jerez","ES"],["MAH","Menorca","ES"],
+      ["LIS","Lisbon","PT"],["OPO","Porto","PT"],["FAO","Faro","PT"],
+      ["FNC","Funchal","PT"],["PDL","Ponta Delgada","PT"],
+      ["CIA","Rome Ciampino","IT"],["FCO","Rome Fiumicino","IT"],
+      ["BGY","Milan Bergamo","IT"],["MXP","Milan Malpensa","IT"],
+      ["NAP","Naples","IT"],["VCE","Venice","IT"],["BLQ","Bologna","IT"],
+      ["BRI","Bari","IT"],["CTA","Catania","IT"],["PMO","Palermo","IT"],
+      ["PSA","Pisa","IT"],["TRN","Turin","IT"],["BDS","Brindisi","IT"],
+      ["SUF","Lamezia Terme","IT"],["TPS","Trapani","IT"],["AOI","Ancona","IT"],
+      ["PSR","Pescara","IT"],["TRS","Trieste","IT"],["VRN","Verona","IT"],
+      ["AHO","Alghero","IT"],["CAG","Cagliari","IT"],
+      ["BVA","Paris Beauvais","FR"],["CDG","Paris CDG","FR"],
+      ["MRS","Marseille","FR"],["NCE","Nice","FR"],["LYS","Lyon","FR"],
+      ["BOD","Bordeaux","FR"],["TLS","Toulouse","FR"],["NTE","Nantes","FR"],
+      ["SXB","Strasbourg","FR"],["MPL","Montpellier","FR"],["PGF","Perpignan","FR"],
+      ["BIQ","Biarritz","FR"],["CCF","Carcassonne","FR"],["LRH","La Rochelle","FR"],
+      ["LIG","Limoges","FR"],["GNB","Grenoble","FR"],["FNI","Nimes","FR"],
+      ["BES","Brest","FR"],["CFE","Clermont-Ferrand","FR"],["TLN","Toulon","FR"],
+      ["FRA","Frankfurt","DE"],["BER","Berlin","DE"],["MUC","Munich","DE"],
+      ["CGN","Cologne Bonn","DE"],["HAM","Hamburg","DE"],["BRE","Bremen","DE"],
+      ["DTM","Dortmund","DE"],["NUE","Nuremberg","DE"],["STR","Stuttgart","DE"],
+      ["FMM","Memmingen","DE"],["NRN","Weeze","DE"],["LEJ","Leipzig","DE"],
+      ["WMI","Warsaw Modlin","PL"],["KRK","Krakow","PL"],["GDN","Gdansk","PL"],
+      ["KTW","Katowice","PL"],["WRO","Wroclaw","PL"],["POZ","Poznan","PL"],
+      ["LUZ","Lublin","PL"],["RZE","Rzeszow","PL"],
+      ["AMS","Amsterdam","NL"],["EIN","Eindhoven","NL"],
+      ["CRL","Brussels Charleroi","BE"],["BRU","Brussels","BE"],
+      ["PRG","Prague","CZ"],["BRQ","Brno","CZ"],["OSR","Ostrava","CZ"],
+      ["BTS","Bratislava","SK"],["KSC","Kosice","SK"],
+      ["BUD","Budapest","HU"],["DEB","Debrecen","HU"],
+      ["VIE","Vienna","AT"],["SZG","Salzburg","AT"],["INN","Innsbruck","AT"],["GRZ","Graz","AT"],
+      ["ATH","Athens","GR"],["SKG","Thessaloniki","GR"],["CFU","Corfu","GR"],
+      ["RHO","Rhodes","GR"],["KGS","Kos","GR"],["HER","Heraklion","GR"],
+      ["CHQ","Chania","GR"],["JTR","Santorini","GR"],["JMK","Mykonos","GR"],
+      ["ZTH","Zakynthos","GR"],["EFL","Kefalonia","GR"],["JSI","Skiathos","GR"],
+      ["ZAG","Zagreb","HR"],["SPU","Split","HR"],["DBV","Dubrovnik","HR"],
+      ["ZAD","Zadar","HR"],["PUY","Pula","HR"],
+      ["OTP","Bucharest","RO"],["CLJ","Cluj-Napoca","RO"],["TSR","Timisoara","RO"],
+      ["IAS","Iasi","RO"],["SBZ","Sibiu","RO"],["CRA","Craiova","RO"],["BCM","Bacau","RO"],
+      ["SOF","Sofia","BG"],["VAR","Varna","BG"],["BOJ","Burgas","BG"],
+      ["BEG","Belgrade","RS"],["INI","Nis","RS"],
+      ["SKP","Skopje","MK"],
+      ["TIA","Tirana","AL"],
+      ["SJJ","Sarajevo","BA"],["TZL","Tuzla","BA"],["BNX","Banja Luka","BA"],
+      ["PRN","Pristina","XK"],
+      ["TIV","Tivat","ME"],["TGD","Podgorica","ME"],
+      ["LJU","Ljubljana","SI"],
+      ["MLA","Malta","MT"],
+      ["LCA","Larnaca","CY"],["PFO","Paphos","CY"],
+      ["RAK","Marrakech","MA"],["AGA","Agadir","MA"],["FEZ","Fez","MA"],
+      ["CMN","Casablanca","MA"],["TNG","Tangier","MA"],["RBA","Rabat","MA"],
+      ["AMM","Amman","JO"],["TLV","Tel Aviv","IL"],
+      ["VNO","Vilnius","LT"],["KUN","Kaunas","LT"],
+      ["RIX","Riga","LV"],
+      ["TLL","Tallinn","EE"],
+      ["TMP","Tampere","FI"],["HEL","Helsinki","FI"],
+      ["NYO","Stockholm Skavsta","SE"],
+      ["SVG","Stavanger","NO"],["BGO","Bergen","NO"],
+      ["CPH","Copenhagen","DK"],["BLL","Billund","DK"],
+      ["TBS","Tbilisi","GE"]
     ];
 
-    let pool, answered, score, currentEntry, currentCorrectCard;
+    const TOTAL = ALL.length;
+    let pool, answered, score, currentEntry, busy;
 
     function shuffle(arr) {
-      for (let i = arr.length - 1; i > 0; i--) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
+        [a[i], a[j]] = [a[j], a[i]];
       }
-      return arr;
+      return a;
+    }
+
+    // Re-shuffles every call so the same code never gets the same 3 decoys twice.
+    // Prefers same-region airports to make the choice genuinely tricky.
+    function pickDistractors(entry) {
+      const [code, , region] = entry;
+      const sameRegion  = shuffle(ALL.filter(d => d[0] !== code && d[2] === region));
+      const otherRegion = shuffle(ALL.filter(d => d[0] !== code && d[2] !== region));
+      return shuffle([...sameRegion.slice(0, 2), ...otherRegion].slice(0, 3));
     }
 
     function startGame() {
-      pool = shuffle([...ALL]);
+      pool     = shuffle([...ALL]);
       answered = 0;
-      score = 0;
+      score    = 0;
+      busy     = false;
       document.getElementById('overlay').classList.remove('show');
       nextRound();
     }
 
     function nextRound() {
-      if (pool.length === 0) {
-        endGame(); return;
-      }
-
+      if (pool.length === 0) { endGame(); return; }
       currentEntry = pool.pop();
       answered++;
+      busy = false;
 
-      // update header
       document.getElementById('code-label').textContent = currentEntry[0];
-      document.getElementById('score').textContent = score;
-      document.getElementById('remain').textContent = pool.length;
-      const pct = (answered / ALL.length) * 100;
-      document.getElementById('progress').style.width = pct + '%';
+      document.getElementById('score').textContent      = score;
+      document.getElementById('remain').textContent     = pool.length;
+      document.getElementById('progress').style.width   = (answered / TOTAL * 100) + '%';
 
-      // build 4 options: 1 correct + 3 wrong
-      const wrongs = shuffle(ALL.filter(d => d[0] !== currentEntry[0])).slice(0, 3);
-      const opts = shuffle([currentEntry, ...wrongs]);
+      const rc = document.getElementById('red-card');
+      rc.style.transition = '';
+      rc.style.transform  = '';
+      rc.style.opacity    = '';
+      rc.classList.remove('flash-green');
 
+      // Fresh random distractors every round
+      const opts = shuffle([currentEntry, ...pickDistractors(currentEntry)]);
       const grid = document.getElementById('options');
       grid.innerHTML = '';
       opts.forEach(([code, city]) => {
         const card = document.createElement('div');
-        card.className = 'blue-card';
-        card.textContent = city;
+        card.className    = 'blue-card';
+        card.textContent  = city;
         card.dataset.code = code;
-        grid.appendChild(card);
-
-        // tap support (for when user just taps instead of dragging)
         card.addEventListener('click', () => tryMatch(card));
+        grid.appendChild(card);
       });
     }
 
     function tryMatch(card) {
+      if (busy) return;
       if (card.dataset.code === currentEntry[0]) {
-        // correct
+        busy = true;
         score++;
         document.getElementById('score').textContent = score;
-        currentCorrectCard = card;
-        card.classList.add('correct');
-        const redCard = document.getElementById('red-card');
-        redCard.style.transition = 'transform .4s, opacity .4s';
-        redCard.style.transform = 'scale(0)';
-        redCard.style.opacity = '0';
+
+        // Flash both green for 200 ms, then vanish
+        const rc = document.getElementById('red-card');
+        card.classList.add('flash-green');
+        rc.classList.add('flash-green');
+
         setTimeout(() => {
-          redCard.style.transition = '';
-          redCard.style.transform = '';
-          redCard.style.opacity = '';
-          nextRound();
-        }, 500);
+          card.classList.remove('flash-green');
+          card.classList.add('vanish');
+          rc.style.transition = 'transform 0.2s, opacity 0.2s';
+          rc.style.transform  = 'scale(0)';
+          rc.style.opacity    = '0';
+          setTimeout(nextRound, 220);
+        }, 200);
+
       } else {
-        // wrong
         card.classList.add('wrong');
-        setTimeout(() => card.classList.remove('wrong'), 500);
+        setTimeout(() => card.classList.remove('wrong'), 450);
       }
     }
 
     function endGame() {
       document.getElementById('final-score').textContent =
-        `You scored ${score} out of ${ALL.length}!`;
+        `You scored ${score} out of ${TOTAL}!`;
       document.getElementById('overlay').classList.add('show');
     }
 
-    // ── Drag (desktop) ──────────────────────────────────────────────
+    // ── Desktop drag ──────────────────────────────────────────────
     const redCard = document.getElementById('red-card');
 
     redCard.addEventListener('dragstart', e => {
@@ -377,59 +414,60 @@
       document.querySelectorAll('.blue-card').forEach(c => c.classList.remove('highlight'));
     });
 
-    document.getElementById('options').addEventListener('dragover', e => {
+    const optionsEl = document.getElementById('options');
+    optionsEl.addEventListener('dragover', e => {
       e.preventDefault();
       const card = e.target.closest('.blue-card');
       document.querySelectorAll('.blue-card').forEach(c => c.classList.remove('highlight'));
       if (card) card.classList.add('highlight');
     });
-    document.getElementById('options').addEventListener('dragleave', e => {
-      if (!e.currentTarget.contains(e.relatedTarget))
+    optionsEl.addEventListener('dragleave', e => {
+      if (!optionsEl.contains(e.relatedTarget))
         document.querySelectorAll('.blue-card').forEach(c => c.classList.remove('highlight'));
     });
-    document.getElementById('options').addEventListener('drop', e => {
+    optionsEl.addEventListener('drop', e => {
       e.preventDefault();
       const card = e.target.closest('.blue-card');
-      if (card) tryMatch(card);
       document.querySelectorAll('.blue-card').forEach(c => c.classList.remove('highlight'));
+      if (card) tryMatch(card);
     });
 
-    // ── Touch (mobile) ───────────────────────────────────────────────
+    // ── Mobile touch ──────────────────────────────────────────────
     let dragClone = null, touchOffX = 0, touchOffY = 0;
 
     redCard.addEventListener('touchstart', e => {
+      if (busy) return;
       const t = e.touches[0];
       const rect = redCard.getBoundingClientRect();
       touchOffX = t.clientX - rect.left;
       touchOffY = t.clientY - rect.top;
 
       dragClone = document.createElement('div');
-      dragClone.className = 'drag-clone';
+      dragClone.className   = 'drag-clone';
       dragClone.textContent = currentEntry[0];
-      dragClone.style.left = (t.clientX - touchOffX) + 'px';
-      dragClone.style.top  = (t.clientY - touchOffY) + 'px';
+      dragClone.style.left  = (t.clientX - touchOffX) + 'px';
+      dragClone.style.top   = (t.clientY - touchOffY) + 'px';
       document.body.appendChild(dragClone);
       redCard.style.opacity = '0.3';
     }, { passive: true });
 
     redCard.addEventListener('touchmove', e => {
+      if (!dragClone) return;
       e.preventDefault();
       const t = e.touches[0];
       dragClone.style.left = (t.clientX - touchOffX) + 'px';
       dragClone.style.top  = (t.clientY - touchOffY) + 'px';
 
-      // highlight whichever blue card is under finger
-      const cloneRect = dragClone.getBoundingClientRect();
-      const cx = cloneRect.left + cloneRect.width / 2;
-      const cy = cloneRect.top  + cloneRect.height / 2;
       document.querySelectorAll('.blue-card').forEach(card => {
         const r = card.getBoundingClientRect();
-        const over = cx >= r.left && cx <= r.right && cy >= r.top && cy <= r.bottom;
-        card.classList.toggle('highlight', over);
+        card.classList.toggle('highlight',
+          t.clientX >= r.left && t.clientX <= r.right &&
+          t.clientY >= r.top  && t.clientY <= r.bottom);
       });
     }, { passive: false });
 
     redCard.addEventListener('touchend', e => {
+      if (!dragClone) return;
       const t = e.changedTouches[0];
       dragClone.remove(); dragClone = null;
       redCard.style.opacity = '1';
@@ -444,7 +482,6 @@
       });
     });
 
-    // Start!
     startGame();
   </script>
 </body>
