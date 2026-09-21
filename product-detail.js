@@ -237,57 +237,56 @@ function addCurrentSelectionToCart() {
     }, { once: true });
 }
 
-/* ---------------- Explorar Coleção (prev / next as product cards) ---------------- */
+/* ---------------- Prev / next product navigation ----------------
+   A single text strip (no thumbnails) so it stays out of the way at the
+   foot of the page. Renders nothing at all if products.json is missing,
+   malformed, or doesn't contain this product. */
 function initProductNav() {
+    const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[ch]));
+
     fetch('products.json')
-        .then(r => r.json())
+        .then(res => (res.ok ? res.json() : Promise.reject(res.status)))
         .then(data => {
-            const keys = Object.keys(data);
-            const idx  = keys.indexOf(PRODUCT.id);
-            if (idx === -1 || keys.length < 2) return;
+            // Only entries we can actually link to.
+            const items = Object.values(data || {}).filter(p => p && p.url && p.name);
+            const idx = items.findIndex(p => p.id === PRODUCT.id);
+            if (idx === -1 || items.length < 2) return;
 
-            const prevKey = keys[(idx - 1 + keys.length) % keys.length];
-            const nextKey = keys[(idx + 1) % keys.length];
-            const prev = data[prevKey];
-            const next = data[nextKey];
+            const prev = items[(idx - 1 + items.length) % items.length];
+            const next = items[(idx + 1) % items.length];
 
-            const fmt = p => Number(p).toLocaleString('pt-PT', {
-                style: 'currency', currency: 'EUR', minimumFractionDigits: 0
-            });
+            // With exactly two products prev and next are the same page — point
+            // the left slot at the store instead of linking the same peça twice.
+            const left = prev === next
+                ? { url: 'store.html', name: 'Toda a loja', hint: 'Coleção' }
+                : { url: prev.url, name: prev.name, hint: 'Anterior' };
 
-            const section = document.createElement('section');
-            section.className = 'explore-section';
-            section.innerHTML = `
-                <div class="explore-container">
-                    <div class="section-header">
-                        <h2 class="section-title">Explorar Coleção</h2>
-                    </div>
-                    <div class="explore-grid">
-                        <a class="explore-card" href="${prev.url}">
-                            <div class="explore-card__direction">← Anterior</div>
-                            <div class="explore-card__image-wrap">
-                                <img src="${prev.cardImage || ''}" alt="${prev.name}">
-                            </div>
-                            <div class="explore-card__info">
-                                <span class="explore-card__name">${prev.name}</span>
-                                <span class="explore-card__price">${fmt(prev.price)}</span>
-                            </div>
-                        </a>
-                        <a class="explore-card" href="${next.url}">
-                            <div class="explore-card__direction">Próximo →</div>
-                            <div class="explore-card__image-wrap">
-                                <img src="${next.cardImage || ''}" alt="${next.name}">
-                            </div>
-                            <div class="explore-card__info">
-                                <span class="explore-card__name">${next.name}</span>
-                                <span class="explore-card__price">${fmt(next.price)}</span>
-                            </div>
-                        </a>
-                    </div>
+            const nav = document.createElement('nav');
+            nav.className = 'product-nav';
+            nav.setAttribute('aria-label', 'Navegação entre produtos');
+            nav.innerHTML = `
+                <div class="product-nav__inner">
+                    <a class="product-nav__btn product-nav__btn--prev" href="${esc(left.url)}">
+                        <span class="product-nav__arrow" aria-hidden="true">←</span>
+                        <span class="product-nav__label">
+                            <span class="product-nav__hint">${esc(left.hint)}</span>
+                            <span class="product-nav__name">${esc(left.name)}</span>
+                        </span>
+                    </a>
+                    <a class="product-nav__btn product-nav__btn--next" href="${esc(next.url)}">
+                        <span class="product-nav__arrow" aria-hidden="true">→</span>
+                        <span class="product-nav__label">
+                            <span class="product-nav__hint">Próximo</span>
+                            <span class="product-nav__name">${esc(next.name)}</span>
+                        </span>
+                    </a>
                 </div>`;
 
-            const reviews = document.querySelector('.reviews-section');
-            if (reviews) reviews.insertAdjacentElement('beforebegin', section);
+            const anchor = document.querySelector('.reviews-section')
+                || document.getElementById('footer-placeholder');
+            if (anchor) anchor.insertAdjacentElement('beforebegin', nav);
         })
         .catch(() => {});
 }

@@ -1,0 +1,515 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   Legal — Privacidade, Termos, Devoluções, Envios
+   Extends styles.css. Reuses the site type scale:
+     banner heading      clamp(2.5,8vw,4.5)rem / 300   -> here a calmer utility size
+     section title       clamp(1.75,4vw,2.75)rem / 300
+     section eyebrow     0.6875rem / 600 / 0.16em / cyan
+     lead                1.0625rem / 1.7 / #4b5563
+     body                0.9375rem / 1.85 / #374151
+     card tag            0.625rem / 500 / 0.12em / #9ca3af
+     card body           0.875rem / 1.75 / #6b7280
+   ========================================================================== */
+
+/* ---- Banner (utility variant: same family, quieter voice) ---- */
+.banner--legal .banner__heading {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    max-width: 20ch;
+}
+
+.banner__meta {
+    display: block;
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 1.75rem;
+}
+
+/* ---- Shell ---- */
+.legal-content {
+    padding: 4.5rem 1.5rem;
+    background-color: var(--si);
+}
+
+.legal-inner {
+    max-width: 52rem;   /* measure: ~75 characters at body size */
+    margin: 0 auto;
+}
+
+/* ---- Section ---- */
+.legal-section {
+    margin-bottom: 3.5rem;
+}
+
+.legal-section:last-child {
+    margin-bottom: 0;
+}
+
+/* Rule sits under the header block only — mirrors .home-head-row */
+.legal-section__head {
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.875rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.legal-section__num {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--se);
+    margin-bottom: 0.75rem;
+}
+
+.legal-section__title {
+    font-size: clamp(1.5rem, 3.2vw, 2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: #212427;
+}
+
+.legal-section__lead {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: #4b5563;
+    margin-bottom: 1.25rem;
+}
+
+.legal-section__text {
+    font-size: 0.9375rem;
+    line-height: 1.85;
+    color: #374151;
+    margin-bottom: 1.125rem;
+}
+
+.legal-section__text:last-child {
+    margin-bottom: 0;
+}
+
+.legal-section__note {
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: #9ca3af;
+    margin-top: 1rem;
+}
+
+/* ---- Subsection (a tier below the section title) ---- */
+.legal-subsection {
+    margin: 2rem 0;
+    padding-left: 1.5rem;
+    border-left: 2px solid #e5e7eb;
+}
+
+.legal-subsection__title {
+    font-size: 1.0625rem;
+    font-weight: 500;
+    line-height: 1.3;
+    color: #212427;
+    margin-bottom: 0.75rem;
+}
+
+/* ---- Lists ---- */
+.legal-list {
+    list-style: none;
+    margin: 0 0 1.25rem 0;
+    padding: 0;
+}
+
+.legal-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.9375rem;
+    line-height: 1.8;
+    color: #374151;
+}
+
+.legal-list li:last-child {
+    margin-bottom: 0;
+}
+
+.legal-list li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: #d1d5db;
+}
+
+.legal-list strong {
+    font-weight: 500;
+    color: #212427;
+}
+
+/* Numbered steps */
+.legal-list--numbered {
+    counter-reset: step;
+}
+
+.legal-list--numbered li {
+    counter-increment: step;
+    padding-left: 2.25rem;
+    margin-bottom: 1rem;
+}
+
+.legal-list--numbered li::before {
+    content: counter(step, decimal-leading-zero);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--se);
+    top: 0.28em;
+}
+
+/* ---- Facts (identity block) ---- */
+.legal-facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1.75rem 2.5rem;
+}
+
+.legal-fact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.legal-fact__label {
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #9ca3af;
+}
+
+.legal-fact__value {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: #374151;
+}
+
+/* ---- Cards (site convention: white, hairline border, soft radius) ---- */
+.legal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.legal-item {
+    padding: 1.5rem 1.5rem 1.625rem;
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 0.75rem;
+}
+
+.legal-item__title {
+    display: block;
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin-bottom: 0.75rem;
+}
+
+.legal-item p {
+    font-size: 0.875rem;
+    line-height: 1.75;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* ---- Table ---- */
+.legal-table {
+    margin-bottom: 1.25rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.legal-table__row {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 0.7fr;
+    gap: 1rem;
+    padding: 0.875rem 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.legal-table__row--header .legal-table__cell {
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #9ca3af;
+}
+
+.legal-table__cell {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: #374151;
+}
+
+.legal-table__cell:last-child {
+    font-weight: 500;
+    color: #212427;
+}
+
+/* ---- Contact block ---- */
+.legal-contact {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1.75rem 2.5rem;
+    padding: 2rem;
+    background: var(--fi);
+    border-radius: 0.75rem;
+}
+
+.legal-contact__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.legal-contact__label {
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #9ca3af;
+}
+
+.legal-contact__value {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: #374151;
+}
+
+/* ---- FAQ accordion ----
+   Native <details>/<summary>: keyboard and screen-reader behaviour for free,
+   and the answers stay in the DOM for search engines and Ctrl+F. */
+/* No border-top here: the section head already draws a rule directly above,
+   and the two together read as a double line with an empty band between. */
+.faq-list {
+    margin-top: -0.25rem;
+}
+
+.faq-item {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.faq-item__q {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding: 1.125rem 0;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #212427;
+    cursor: pointer;
+    list-style: none;          /* Firefox */
+    transition: color 0.15s ease;
+}
+
+.faq-item__q::-webkit-details-marker { display: none; }   /* Safari */
+
+/* Guarded: on touch screens :hover sticks after the tap and leaves the
+   question tinted until something else is touched. */
+@media (hover: hover) {
+    .faq-item__q:hover { color: var(--se); }
+    .faq-item__q:hover::after { color: var(--se); }
+}
+
+.faq-item__q:focus-visible {
+    outline: 2px solid var(--se);
+    outline-offset: 2px;
+}
+
+/* Own marker, so the control reads the same in every browser */
+.faq-item__q::after {
+    content: "+";
+    margin-left: auto;
+    flex: none;
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1;
+    color: #9ca3af;
+    transition: color 0.15s ease;
+}
+
+.faq-item[open] .faq-item__q { color: #212427; }
+
+.faq-item[open] .faq-item__q::after {
+    content: "–";
+    color: var(--se);
+}
+
+.faq-item__a {
+    padding: 0 3rem 1.375rem 0;
+    max-width: 46rem;
+}
+
+.faq-item__a p {
+    font-size: 0.9375rem;
+    line-height: 1.85;
+    color: #374151;
+    margin-bottom: 0.875rem;
+}
+
+.faq-item__a p:last-child { margin-bottom: 0; }
+
+/* ---- Cross-links to the sibling legal pages ---- */
+.legal-nav {
+    max-width: 52rem;
+    margin: 4rem auto 0;
+    padding-top: 2rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Reads as a title, not a caption — the block closes the page and has to be
+   found, so it borrows the section-title voice one tier down. */
+.legal-nav__label {
+    display: block;
+    font-size: clamp(1.375rem, 3vw, 1.75rem);
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    text-transform: none;
+    color: #212427;
+    margin-bottom: 1.5rem;
+}
+
+.legal-nav__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.75rem;
+}
+
+.legal-nav__links a {
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: #374151;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+@media (hover: hover) {
+    .legal-nav__links a:hover {
+        color: var(--se);
+        border-bottom-color: var(--se);
+    }
+}
+
+.legal-nav__links a[aria-current="page"] {
+    color: #9ca3af;
+    pointer-events: none;
+}
+
+/* ---- Inline links ----
+   A link inside a sentence must carry the metrics of that sentence, so
+   font-size and line-height are pinned to inherit rather than left to
+   whatever a global `a` rule happens to say. Colour plus a hairline rule
+   does the signalling. Scoped to prose containers so the cross-link nav
+   keeps its own sizing. */
+.legal-section__lead a,
+.legal-section__text a,
+.legal-section__note a,
+.legal-list a,
+.legal-item p a,
+.legal-fact__value a,
+.legal-table__cell a,
+.legal-contact__value a,
+.faq-item__a a {
+    font-size: inherit;
+    line-height: inherit;
+    color: var(--se);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 191, 255, 0.45);
+    transition: border-color 0.15s ease;
+}
+
+@media (hover: hover) {
+    .legal-section__lead a:hover,
+    .legal-section__text a:hover,
+    .legal-section__note a:hover,
+    .legal-list a:hover,
+    .legal-item p a:hover,
+    .legal-fact__value a:hover,
+    .legal-table__cell a:hover,
+    .legal-contact__value a:hover,
+    .faq-item__a a:hover {
+        border-bottom-color: var(--se);
+    }
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 900px) {
+    .legal-table__row {
+        grid-template-columns: 1fr;
+        gap: 0.35rem;
+        padding: 1rem 0;
+    }
+
+    /* Header row is meaningless once the grid collapses — labels move inline */
+    .legal-table__row--header {
+        display: none;
+    }
+
+    .legal-table__cell::before {
+        content: attr(data-label) " ";
+        font-size: 0.625rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #9ca3af;
+    }
+
+    .legal-table__cell:first-child {
+        font-weight: 500;
+        color: #212427;
+    }
+
+    .legal-table__cell:first-child::before {
+        content: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .legal-content {
+        padding: 3rem 1.25rem;
+    }
+
+    .legal-section {
+        margin-bottom: 2.75rem;
+    }
+
+    .legal-contact {
+        padding: 1.5rem;
+    }
+
+    .legal-nav {
+        margin-top: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .legal-content {
+        padding: 2.5rem 1rem;
+    }
+
+    .legal-subsection {
+        padding-left: 1.125rem;
+    }
+
+    .faq-item__q { gap: 1rem; }
+    .faq-item__a { padding-right: 1.5rem; }
+
+    .legal-item {
+        padding: 1.25rem;
+    }
+}
