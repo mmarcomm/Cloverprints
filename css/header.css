@@ -65,6 +65,14 @@ header {
     font-size: 20px;
     font-weight: 300;
     transition: color 0.25s ease;
+    /* The label's own box is 22px tall, so the target was the text and nothing
+       else. Padding grows it to 42px, matching the cart button. The link stays
+       inline on purpose: vertical padding on an inline box enlarges what you
+       can hit without touching the line height, so the <li> keeps its size and
+       the underline hanging off it does not move. Only the horizontal padding
+       affects layout, and the negative margin hands that back. */
+    padding: 10px;
+    margin: 0 -10px;
 }
 
 .nav-desktop ul li a.activemenu {
