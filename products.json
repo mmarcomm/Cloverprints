@@ -5,7 +5,7 @@
     "price": 45.00,
     "description": "Ilustração original inspirada em viagens marítimas, 100% algodão orgânico.",
     "category": "T-shirt",
-    "cardImage": "Website_Imgs/5.png",
+    "cardImage": "Website_Imgs/wanderer-card.jpg",
     "url": "product-wanderer-vessel.html",
     "badge": "Novo",
     "images": {
@@ -21,7 +21,7 @@
     "price": 60.00,
     "description": "Visitar um local como se tivesses a olhar às nuvens, passar o tempo que sentires.",
     "category": "T-shirt",
-    "cardImage": "Website_Imgs/6.png",
+    "cardImage": "Website_Imgs/urban-card.jpg",
     "url": "product-urban-explorer.html",
     "badge": null,
     "images": {
@@ -37,7 +37,7 @@
     "price": 25.00,
     "description": "Feito com o preço mais baixo, e qualidade para usar nos dias de verão mais quentes.",
     "category": "T-shirt",
-    "cardImage": "Website_Imgs/6.png",
+    "cardImage": "Website_Imgs/urban-card.jpg",
     "url": "product-minimal-essence.html",
     "badge": null,
     "images": {

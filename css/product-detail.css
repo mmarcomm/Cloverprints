@@ -336,6 +336,15 @@
     border-color: var(--fo);
 }
 
+/* Keyboard users had no way to tell which size was selected — the button
+   carried no focus treatment at all. */
+.size-btn:focus-visible,
+.swatch:focus-visible,
+.size-guide-link:focus-visible {
+    outline: 2px solid var(--se);
+    outline-offset: 2px;
+}
+
 .size-btn.active {
     background-color: var(--fo);
     color: #fff;

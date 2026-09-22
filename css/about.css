@@ -10,6 +10,45 @@
     padding: 0 1.5rem;
 }
 
+/* .banner--photo and friends now live in styles.css, beside .banner — two
+   pages use the variant, so it is no longer this page's business. */
+
+/* Mirrors .home-btn from css/home.css, which this page does not load. */
+.banner__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+}
+
+.banner-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.85rem 1.6rem;
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.banner-btn--primary { background: #fff; color: #212427; }
+.banner-btn--ghost   { background: transparent; color: #fff; border-color: rgba(255,255,255,0.55); }
+
+@media (hover: hover) {
+    .banner-btn:hover { transform: translateY(-2px); }
+    .banner-btn--primary:hover { background: #f0f0f0; }
+    .banner-btn--ghost:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
+}
+
+.banner-btn:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}
+
+
 /* ---- Brand story ---- */
 .sobre-story {
     padding: 4rem 1.5rem;
@@ -252,10 +291,18 @@
 }
 
 /* ---- Conectar ---- */
+/* scroll-margin-top because the banner CTA jumps here and the header is sticky
+   — 86px on desktop, a 56px fixed bar below 1400px. Without it the heading
+   lands underneath. (scroll-behavior: smooth is set globally in styles.css.) */
 #conectar {
     padding: 5rem 1.5rem;
     background: #212427;
     color: #fff;
+    scroll-margin-top: 6.5rem;
+}
+
+@media (max-width: 1400px) {
+    #conectar { scroll-margin-top: 4.5rem; }
 }
 
 .conectar-inner {
