@@ -169,8 +169,48 @@
     background: #fff;
     border: 1px solid #f0f0f0;
     border-radius: 0.75rem;
-    padding: 1.75rem 1.5rem;
+    /* The photograph runs edge to edge, so the padding moved off the card and
+       onto .ls-mural-card__body. overflow: hidden clips the image to the
+       card's own radius instead of restating it on the image. */
+    overflow: hidden;
     transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.ls-mural-card__frame {
+    display: block;
+    width: 100%;
+    /* height: auto beside aspect-ratio — the width/height attributes reserve
+       space before the file loads but also pin a 1067px height, and
+       aspect-ratio only governs the box when one dimension is auto. */
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    background: #ececec;
+}
+
+/* Two of the six rooms are not photographed yet. Rather than leave those cards
+   visibly short, they carry the project's own light green in the same frame —
+   which on a project about colour in rooms reads as intent, not as a gap. */
+.ls-mural-card__frame--tint {
+    background: var(--ls-green-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* An unexplained block of colour beside four real photographs reads as a
+   broken image, especially on a phone where each card fills the width. The
+   label says what it is, so the gap becomes a stated fact rather than a bug. */
+.ls-mural-card__pending {
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ls-green);
+}
+
+.ls-mural-card__body {
+    padding: 1.5rem 1.5rem 1.75rem;
 }
 
 .ls-mural-card:hover {
@@ -181,70 +221,6 @@
 .ls-mural-card--featured {
     grid-column: span 1;
     border-left: 3px solid var(--ls-green);
-}
-
-/* ---- Registo fotográfico ----
-   The six cards above describe the rooms; this section is the evidence. One
-   lead frame and a row of three, because the waiting room is where the copy
-   says the project begins — "primeiro contacto com o espaço" — so it earns
-   the width. Numbering continues the cards' own 01–06 scheme rather than
-   restarting, because these are those rooms, not a separate set. */
-.ls-shots__note {
-    font-size: 0.8125rem;
-    line-height: 1.7;
-    color: #9ca3af;
-    margin: 0 0 2rem;
-    max-width: 44ch;
-}
-
-.ls-shot {
-    margin: 0;
-}
-
-.ls-shot__frame {
-    display: block;
-    width: 100%;
-    /* height: auto is not optional here. The width/height attributes stay on
-       the <img> so the browser reserves the space before the file loads, but
-       they also set a fixed 1067px height — and aspect-ratio only governs the
-       box when one dimension is auto. Without this the frames render at their
-       pixel height instead of the ratio. */
-    height: auto;
-    aspect-ratio: 3 / 2;
-    object-fit: cover;
-    border-radius: 0.75rem;
-    background: #ececec;
-}
-
-.ls-shot__caption {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.5rem 0.75rem;
-    margin-top: 0.875rem;
-    font-size: 0.8125rem;
-    color: #374151;
-}
-
-.ls-shot__num {
-    font-size: 0.625rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    color: var(--ls-green);
-}
-
-.ls-shot--lead {
-    margin-bottom: 1.25rem;
-}
-
-/* The lead keeps the native 3:2. A wider crop would cut the top of the frame,
-   which on the waiting-room shot is exactly where the mural runs. The lead
-   earns its emphasis from width, not from a different ratio. */
-
-.ls-shots-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
 }
 
 .ls-mural-card__number {
@@ -407,12 +383,6 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
-    /* Three interiors side by side stop reading as rooms once each is a third
-       of a phone-width column. Two, then one. */
-    .ls-shots-row {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
     .ls-approach-grid {
         grid-template-columns: 1fr;
         gap: 2.5rem;
@@ -426,10 +396,6 @@
     }
 
     .ls-murals-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .ls-shots-row {
         grid-template-columns: 1fr;
     }
 
