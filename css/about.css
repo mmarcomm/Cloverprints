@@ -242,20 +242,26 @@
     align-items: start;
 }
 
+/* The portrait arrives cropped to a circle on transparency, so the slot became
+   one too rather than leaving a circle stranded inside a 3:4 beige field. It
+   also echoes the team avatars on the Lugar Seguro page, which makes "people
+   are circles" a device across the site instead of a one-off. The tint stays
+   as the ground behind it, so the block holds its shape while the image loads. */
 .sobre-pessoa__visual {
-    aspect-ratio: 3/4;
+    aspect-ratio: 1;
     background: #e8e5df;
-    border-radius: 0.75rem;
+    border-radius: 50%;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.sobre-pessoa__placeholder {
-    font-size: 0.6875rem;
-    color: #b5aea5;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+.sobre-pessoa__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .sobre-pessoa__label {

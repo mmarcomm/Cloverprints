@@ -183,6 +183,70 @@
     border-left: 3px solid var(--ls-green);
 }
 
+/* ---- Registo fotográfico ----
+   The six cards above describe the rooms; this section is the evidence. One
+   lead frame and a row of three, because the waiting room is where the copy
+   says the project begins — "primeiro contacto com o espaço" — so it earns
+   the width. Numbering continues the cards' own 01–06 scheme rather than
+   restarting, because these are those rooms, not a separate set. */
+.ls-shots__note {
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: #9ca3af;
+    margin: 0 0 2rem;
+    max-width: 44ch;
+}
+
+.ls-shot {
+    margin: 0;
+}
+
+.ls-shot__frame {
+    display: block;
+    width: 100%;
+    /* height: auto is not optional here. The width/height attributes stay on
+       the <img> so the browser reserves the space before the file loads, but
+       they also set a fixed 1067px height — and aspect-ratio only governs the
+       box when one dimension is auto. Without this the frames render at their
+       pixel height instead of the ratio. */
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    background: #ececec;
+}
+
+.ls-shot__caption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 0.75rem;
+    margin-top: 0.875rem;
+    font-size: 0.8125rem;
+    color: #374151;
+}
+
+.ls-shot__num {
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--ls-green);
+}
+
+.ls-shot--lead {
+    margin-bottom: 1.25rem;
+}
+
+/* The lead keeps the native 3:2. A wider crop would cut the top of the frame,
+   which on the waiting-room shot is exactly where the mural runs. The lead
+   earns its emphasis from width, not from a different ratio. */
+
+.ls-shots-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
 .ls-mural-card__number {
     font-size: 0.625rem;
     font-weight: 600;
@@ -305,18 +369,17 @@
     gap: 0.3rem;
 }
 
+/* Now an <img>, not a div of initials — both members read "MM", so the
+   initials identified nobody. The portraits arrive already cropped to a circle
+   on transparency, so the green stays as the ground behind them and keeps the
+   page's colour even while an image loads or if one ever fails. */
 .ls-team-member__avatar {
-    width: 3rem;
-    height: 3rem;
+    width: 3.5rem;
+    height: 3.5rem;
     border-radius: 50%;
     background: var(--ls-green);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
+    object-fit: cover;
+    display: block;
     margin-bottom: 0.75rem;
 }
 
@@ -344,6 +407,12 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
+    /* Three interiors side by side stop reading as rooms once each is a third
+       of a phone-width column. Two, then one. */
+    .ls-shots-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .ls-approach-grid {
         grid-template-columns: 1fr;
         gap: 2.5rem;
@@ -357,6 +426,10 @@
     }
 
     .ls-murals-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ls-shots-row {
         grid-template-columns: 1fr;
     }
 
