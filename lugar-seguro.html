@@ -7,6 +7,7 @@
     <link href="css/header.css" rel="stylesheet" type="text/css">
     <link href="css/projects.css" rel="stylesheet" type="text/css">
     <link href="css/lugar-seguro.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe.min.css">
     <link rel="stylesheet" href="https://use.typekit.net/uhg8sos.css">
     <link rel="stylesheet" href="https://use.typekit.net/yiz2qnq.css">
     <title>Lugar Seguro — Cloverprints</title>
@@ -69,8 +70,13 @@
                 <h2 class="ls-section__title">Seis espaços,<br>uma linguagem</h2>
             </div>
             <div class="ls-murals-grid">
-                <div class="ls-mural-card ls-mural-card--featured">
-                    <img src="Website_Imgs/mural-sala-espera.jpg" alt="Sala de espera da CPCJ de Olhão com mural de figuras em molduras, cadeiras vermelhas e mesa de brinquedos" class="ls-mural-card__frame" width="1600" height="1067" loading="lazy">
+                <div class="ls-mural-card">
+                    <a href="Website_Imgs/mural-sala-espera-large.jpg" class="ls-mural-card__zoom"
+                       data-pswp-width="2400" data-pswp-height="1600"
+                       data-pswp-caption="Sala de Espera"
+                       aria-label="Ampliar fotografia: Sala de Espera">
+                        <img src="Website_Imgs/mural-sala-espera.jpg" alt="Sala de espera da CPCJ de Olhão com mural de figuras em molduras, cadeiras vermelhas e mesa de brinquedos" class="ls-mural-card__frame" width="1600" height="1067" loading="lazy">
+                    </a>
                     <div class="ls-mural-card__body">
                         <div class="ls-mural-card__number">01</div>
                         <h3 class="ls-mural-card__title">Sala de Espera</h3>
@@ -78,7 +84,12 @@
                     </div>
                 </div>
                 <div class="ls-mural-card">
-                    <img src="Website_Imgs/mural-corredor.jpg" alt="Corredor com mural de girafa em régua de medição da altura" class="ls-mural-card__frame" width="1600" height="1067" loading="lazy">
+                    <a href="Website_Imgs/mural-corredor-large.jpg" class="ls-mural-card__zoom"
+                       data-pswp-width="2400" data-pswp-height="1600"
+                       data-pswp-caption="Corredor"
+                       aria-label="Ampliar fotografia: Corredor">
+                        <img src="Website_Imgs/mural-corredor.jpg" alt="Corredor com mural de girafa em régua de medição da altura" class="ls-mural-card__frame" width="1600" height="1067" loading="lazy">
+                    </a>
                     <div class="ls-mural-card__body">
                         <div class="ls-mural-card__number">02</div>
                         <h3 class="ls-mural-card__title">Corredor</h3>
@@ -87,7 +98,12 @@
                 </div>
                 <!-- TODO: confirmar com o Marco qual das duas salas fotografadas é atendimento e qual é escritório -->
                 <div class="ls-mural-card">
-                    <img src="Website_Imgs/mural-sala-d.jpg" alt="Sala de atendimento com mural de figura, casa e arco-íris" class="ls-mural-card__frame" width="1600" height="1067" loading="lazy">
+                    <a href="Website_Imgs/mural-sala-d-large.jpg" class="ls-mural-card__zoom"
+                       data-pswp-width="2400" data-pswp-height="1600"
+                       data-pswp-caption="Sala de Atendimento 1"
+                       aria-label="Ampliar fotografia: Sala de Atendimento 1">
+                        <img src="Website_Imgs/mural-sala-d.jpg" alt="Sala de atendimento com mural de figura, casa e arco-íris" class="ls-mural-card__frame" width="1600" height="1067" loading="lazy">
+                    </a>
                     <div class="ls-mural-card__body">
                         <div class="ls-mural-card__number">03</div>
                         <h3 class="ls-mural-card__title">Sala de Atendimento 1</h3>
@@ -103,7 +119,12 @@
                     </div>
                 </div>
                 <div class="ls-mural-card">
-                    <img src="Website_Imgs/mural-sala-c.jpg" alt="Escritório com mesa de reunião e mural de figura sobre composição geométrica" class="ls-mural-card__frame" width="1600" height="1067" loading="lazy">
+                    <a href="Website_Imgs/mural-sala-c-large.jpg" class="ls-mural-card__zoom"
+                       data-pswp-width="2400" data-pswp-height="1600"
+                       data-pswp-caption="Escritório 1"
+                       aria-label="Ampliar fotografia: Escritório 1">
+                        <img src="Website_Imgs/mural-sala-c.jpg" alt="Escritório com mesa de reunião e mural de figura sobre composição geométrica" class="ls-mural-card__frame" width="1600" height="1067" loading="lazy">
+                    </a>
                     <div class="ls-mural-card__body">
                         <div class="ls-mural-card__number">05</div>
                         <h3 class="ls-mural-card__title">Escritório 1</h3>
@@ -215,5 +236,6 @@
 
     <div id="footer-placeholder"></div>
     <script src="main.js"></script>
+    <script src="lugar-seguro.js" type="module"></script>
 </body>
 </html>

@@ -213,15 +213,60 @@
     padding: 1.5rem 1.5rem 1.75rem;
 }
 
+/* ---- Zoom affordance ----
+   A photograph that opens has to look like it opens. cursor: zoom-in is the
+   same cue the product gallery uses, and on hover the frame lifts very
+   slightly — enough to read as interactive without turning a case study into
+   a carousel. Guarded, or the lift sticks after a tap on a phone. */
+.ls-mural-card__zoom {
+    display: block;
+    cursor: zoom-in;
+    overflow: hidden;
+}
+
+.ls-mural-card__zoom .ls-mural-card__frame {
+    transition: transform 0.4s ease;
+}
+
+@media (hover: hover) {
+    .ls-mural-card__zoom:hover .ls-mural-card__frame {
+        transform: scale(1.03);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ls-mural-card__zoom .ls-mural-card__frame { transition: none; }
+    .ls-mural-card__zoom:hover .ls-mural-card__frame { transform: none; }
+}
+
+/* The anchor is focusable for free, but only if the ring is visible. */
+.ls-mural-card__zoom:focus-visible {
+    outline: 2px solid var(--ls-green);
+    outline-offset: -2px;
+}
+
+/* PhotoSwipe ships a counter but no caption; this is the element the page
+   registers in lugar-seguro.js. */
+.pswp__caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1rem 1.25rem;
+    text-align: center;
+    font-size: 0.8125rem;
+    letter-spacing: 0.02em;
+    color: rgba(255,255,255,0.85);
+    background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0));
+    pointer-events: none;
+}
+
 .ls-mural-card:hover {
     box-shadow: 0 8px 28px rgba(0,0,0,0.07);
     border-color: #e0e0e0;
 }
 
-.ls-mural-card--featured {
-    grid-column: span 1;
-    border-left: 3px solid var(--ls-green);
-}
+
 
 .ls-mural-card__number {
     font-size: 0.625rem;
