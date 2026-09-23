@@ -245,20 +245,68 @@
     outline-offset: -2px;
 }
 
-/* PhotoSwipe ships a counter but no caption; this is the element the page
-   registers in lugar-seguro.js. */
-.pswp__caption {
+/* ---- Lightbox caption ----
+   The first attempt put this in the top bar, where PhotoSwipe already keeps the
+   counter and the controls, and it inherited a dark colour with no ground of
+   its own — unreadable on a light wall, invisible on a dark one.
+
+   It sits at the bottom now, clear of the controls, on a gradient that fades to
+   nothing. The scrim is what makes it legible over any photograph rather than
+   over the ones that happen to be dark at the top.
+
+   The selector carries the .pswp ancestor on purpose: PhotoSwipe's stylesheet
+   loads before this file, so matching its specificity is not enough to win.
+   The class name is ours too, so nothing in the library competes for it. */
+.pswp .ls-pswp-caption {
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 1rem 1.25rem;
+    z-index: 10;
+    padding: 4.5rem 1.5rem calc(1.25rem + env(safe-area-inset-bottom, 0px));
     text-align: center;
-    font-size: 0.8125rem;
-    letter-spacing: 0.02em;
-    color: rgba(255,255,255,0.85);
-    background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0));
+    font-size: 0.9375rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+    color: #fff;
+    /* Belt and braces: the shadow keeps the words readable in the instant
+       before the gradient paints, and over a blown-out highlight. */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.42) 45%, rgba(0, 0, 0, 0) 100%);
+    /* Gestures belong to the photograph, not to a label sitting over it. */
     pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+/* Follows the rest of the interface: when PhotoSwipe hides its chrome, the
+   caption goes with it instead of floating alone over the image. */
+.pswp--ui-visible .ls-pswp-caption {
+    opacity: 1;
+}
+
+/* The counter and buttons sit on the bare photograph with nothing behind them,
+   so they disappear over a light wall — the same failure, at the other end. */
+.pswp .pswp__top-bar {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.pswp .pswp__counter {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+    opacity: 0.9;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pswp .ls-pswp-caption { transition: none; }
+}
+
+@media (max-width: 480px) {
+    .pswp .ls-pswp-caption {
+        font-size: 0.875rem;
+        padding-top: 3.5rem;
+    }
 }
 
 .ls-mural-card:hover {

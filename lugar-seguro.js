@@ -24,20 +24,26 @@ async function open(index) {
 
         // PhotoSwipe 5 ships a counter but no caption. Zoomed into a corner of
         // a wall you lose track of which room you are in, so the room name
-        // rides along in the bottom bar.
+        // rides along — at the bottom, clear of the counter and controls that
+        // occupy the top bar.
         lightbox.on('uiRegister', () => {
             lightbox.pswp.ui.registerElement({
-                name: 'caption',
+                name: 'lsCaption',
                 order: 9,
                 isButton: false,
                 appendTo: 'root',
-                html: '',
                 onInit: (el, pswp) => {
-                    el.className = 'pswp__caption';
-                    pswp.on('change', () => {
+                    // classList.add, not className — overwriting would strip the
+                    // classes PhotoSwipe puts there itself. The name is ours so
+                    // the library has no rule of its own competing with it.
+                    el.classList.add('ls-pswp-caption');
+
+                    const render = () => {
                         const a = pswp.currSlide?.data?.element;
                         el.textContent = a?.dataset.pswpCaption ?? '';
-                    });
+                    };
+                    pswp.on('change', render);
+                    render();   // the first slide fires no change event
                 },
             });
         });
