@@ -261,17 +261,9 @@
     margin-bottom: 1rem;
 }
 
-.home-about__quote {
-    margin: 1.5rem 0 0;
-    font-size: 1.125rem;
-    font-weight: 300;
-    font-style: italic;
-    line-height: 1.5;
-    color: #212427;
-    padding-left: 1.1rem;
-    border-left: 2px solid var(--se);
-}
-
+/* .home-about__quote removed — the line it held, "Menos volume. Mais
+   presença.", is now the section heading, so the pull quote had nothing
+   left to pull. */
 .home-values {
     display: flex;
     flex-direction: column;
