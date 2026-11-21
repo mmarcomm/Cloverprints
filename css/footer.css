@@ -95,7 +95,11 @@ footer {
 
 
 .logo-footer {
-	width: 200px;
+	/* 257px, not 200. The new lockup is 6.84:1 against the old wordmark's
+	   5.33:1, so the same width would render it 22% shorter. This keeps the
+	   height the footer was built around. */
+	width: 257px;
+	height: auto;
 	margin-bottom: 6px;
 }
 
@@ -289,7 +293,7 @@ footer {
 }
 
 .logo-footer {
-	width: 200px;
+	width: 257px;
 	margin-bottom: 24px;
 }
 

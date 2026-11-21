@@ -33,7 +33,11 @@ header {
 }
 
 .logo {
-    width: 160px;
+    /* 205px, not 160. The new lockup is 6.84:1 against the old
+       wordmark's 5.33:1, so matching the old width would have rendered it
+       22% shorter. This keeps the height the header was built around. */
+    width: 205px;
+    height: auto;
 }
 
 /* ---- Desktop inline nav ---- */
@@ -234,7 +238,10 @@ header {
     }
 
     .logo {
-        width: 140px;
+        /* Same ratio correction as desktop: 180px here holds the height
+           that 140px gave the old wordmark. */
+        width: 180px;
+        height: auto;
         display: block;
     }
 
@@ -377,5 +384,5 @@ header {
 
 @media (max-width: 700px) {
     .navbar { padding: 0 16px; }
-    .logo   { width: 130px; }
+    .logo   { width: 167px; height: auto; }
 }
