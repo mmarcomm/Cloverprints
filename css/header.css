@@ -38,6 +38,12 @@ header {
        22% shorter. This keeps the height the header was built around. */
     width: 205px;
     height: auto;
+    /* 2px down, and the 2px is measured, not taste: the lockup's centre sat
+       at 49 while the nav labels' cap band centres at 51 and the cart at 50.
+       transform, not margin — a margin would grow .logo-container and
+       .navbar centres its children, so the nav would follow the logo down
+       and give half the correction straight back. */
+    transform: translateY(2px);
 }
 
 /* ---- Desktop inline nav ---- */
@@ -245,6 +251,9 @@ header {
         width: 180px;
         height: auto;
         display: block;
+        /* Lighter here: on the fixed bar the logo, cart and hamburger are
+           already centred on the same line, so this is optical only. */
+        transform: translateY(1px);
     }
 
     /* Hide desktop nav, show hamburger */
