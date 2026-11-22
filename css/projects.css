@@ -7,7 +7,10 @@
 .proj-container {
     max-width: 80rem;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    /* No horizontal padding: every section that holds this container already
+       applies 1.5rem, and the two were adding up to a 48px gutter — double
+       every other page. */
+    padding: 0;
 }
 
 /* ---- Featured project ---- */

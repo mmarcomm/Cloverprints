@@ -219,7 +219,9 @@ header {
         right: 0;
         max-width: none;
         height: 56px;
-        padding: 0 20px;
+        /* 1.5rem, not 20px: this is the site's gutter, and the header
+           was sitting 4px inside the content below it. */
+        padding: 0 1.5rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -383,6 +385,6 @@ header {
 }
 
 @media (max-width: 700px) {
-    .navbar { padding: 0 16px; }
+    .navbar { padding: 0 1.5rem; }   /* was 16px — 8px narrower than the content */
     .logo   { width: 167px; height: auto; }
 }

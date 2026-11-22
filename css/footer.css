@@ -76,12 +76,17 @@ footer {
 
 .rower {
 	display: flex;
+	/* Wrap rather than overflow in the band above the 700px stack. */
+	flex-wrap: wrap;
 }
 
 
 .footer-container {
     max-width: 1920px;
-    min-width: 800px;
+    /* min-width: 800px removed. Below 800px it forced the footer wider
+       than the viewport, and .rower only stacks at 700px — so every page
+       scrolled sideways between 701px and 799px, a band that includes a
+       tablet held upright. Predates this work; found while checking it. */
     margin-bottom: 18px;
     margin-top: 48px;
     display: flex; /* Ensure flexbox is used */

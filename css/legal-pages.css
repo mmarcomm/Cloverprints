@@ -501,7 +501,10 @@
 
 @media (max-width: 480px) {
     .legal-content {
-        padding: 2.5rem 1rem;
+        /* 1.5rem, not 1rem: the support pages were the only ones narrowing
+           their gutter on small screens, which put their text 8px inside
+           the header above it. */
+        padding: 2.5rem 1.5rem;
     }
 
     .legal-subsection {
