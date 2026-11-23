@@ -89,7 +89,7 @@
     font-weight: 500;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: #9ca3af;
+    color: #4b5563;
     display: block;
     margin-bottom: 1rem;
 }
@@ -121,7 +121,7 @@
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #9ca3af;
+    color: #4b5563;
 }
 
 .fact-value {
@@ -152,7 +152,7 @@
     font-size: 0.625rem;
     font-weight: 500;
     letter-spacing: 0.2em;
-    color: #9ca3af;
+    color: #4b5563;
     margin-bottom: 0.875rem;
 }
 
@@ -208,7 +208,7 @@
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #9ca3af;
+    color: #4b5563;
     margin-bottom: 0.875rem;
 }
 
@@ -269,7 +269,7 @@
     font-weight: 500;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: #9ca3af;
+    color: #4b5563;
     display: block;
     margin-bottom: 1rem;
 }
@@ -284,7 +284,7 @@
 
 .sobre-pessoa__role {
     font-size: 0.8125rem;
-    color: #9ca3af;
+    color: #4b5563;
     letter-spacing: 0.05em;
     margin-bottom: 1.75rem;
 }

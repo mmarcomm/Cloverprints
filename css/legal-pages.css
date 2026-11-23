@@ -8,7 +8,7 @@
      section eyebrow     0.6875rem / 600 / 0.16em / cyan
      lead                1.0625rem / 1.7 / #4b5563
      body                0.9375rem / 1.85 / #374151
-     card tag            0.625rem / 500 / 0.12em / #9ca3af
+     card tag            0.625rem / 500 / 0.12em / #4b5563
      card body           0.875rem / 1.75 / #6b7280
    ========================================================================== */
 
@@ -93,7 +93,7 @@
 .legal-section__note {
     font-size: 0.8125rem;
     line-height: 1.7;
-    color: #9ca3af;
+    color: #4b5563;
     margin-top: 1rem;
 }
 
@@ -182,7 +182,7 @@
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #9ca3af;
+    color: #4b5563;
 }
 
 .legal-fact__value {
@@ -212,7 +212,7 @@
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #9ca3af;
+    color: #4b5563;
     margin-bottom: 0.75rem;
 }
 
@@ -242,7 +242,7 @@
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #9ca3af;
+    color: #4b5563;
 }
 
 .legal-table__cell {
@@ -279,7 +279,7 @@
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #9ca3af;
+    color: #4b5563;
 }
 
 .legal-contact__value {
@@ -337,7 +337,7 @@
     font-size: 1.125rem;
     font-weight: 300;
     line-height: 1;
-    color: #9ca3af;
+    color: #4b5563;
     transition: color 0.15s ease;
 }
 
@@ -406,7 +406,7 @@
 }
 
 .legal-nav__links a[aria-current="page"] {
-    color: #9ca3af;
+    color: #4b5563;
     pointer-events: none;
 }
 
@@ -475,7 +475,7 @@
         font-weight: 500;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: #9ca3af;
+        color: #4b5563;
     }
 
     .legal-table__cell:first-child {

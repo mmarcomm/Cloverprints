@@ -75,7 +75,7 @@
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #9ca3af;
+    color: #4b5563;
     margin-bottom: 0.75rem;
 }
 
@@ -123,7 +123,7 @@
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #9ca3af;
+    color: #4b5563;
     min-width: 4.5rem;
     flex-shrink: 0;
 }
@@ -293,7 +293,7 @@
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #9ca3af;
+    color: #4b5563;
     margin-top: 0.25rem;
 }
 
@@ -303,7 +303,7 @@
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #9ca3af;
+    color: #4b5563;
     margin-bottom: 0.4rem;
 }
 
@@ -327,7 +327,7 @@
     flex-wrap: wrap;   /* rigid row: the spans cannot shrink and overflowed */
     gap: 0.25rem 1.25rem;
     font-size: 0.75rem;
-    color: #9ca3af;
+    color: #4b5563;
 }
 
 .event-meta span::before {
@@ -360,7 +360,7 @@
 
 .event-badge--past {
     background: #f9fafb;
-    color: #9ca3af;
+    color: #4b5563;
     border: 1px solid #e5e7eb;
 }
 
@@ -370,7 +370,7 @@
     margin: 0 auto;
     padding: 1rem 1.5rem;
     font-size: 0.8125rem;
-    color: #9ca3af;
+    color: #4b5563;
     display: flex;
     align-items: center;
     gap: 0.25rem;

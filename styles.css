@@ -262,7 +262,7 @@ h4 {
             font-weight: 500;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: #9ca3af;
+            color: #4b5563;
         }
 
         .product-grid {
@@ -319,7 +319,7 @@ h4 {
         .product-category {
             display: block;
             font-size: 0.6875rem;
-            color: #9ca3af;
+            color: #4b5563;
             text-transform: uppercase;
             letter-spacing: 0.12em;
             margin-bottom: 0.75rem;

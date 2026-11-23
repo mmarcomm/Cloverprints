@@ -239,7 +239,7 @@
 
 .price-compare {
     font-size: 18px;
-    color: #9ca3af;
+    color: #4b5563;
     text-decoration: line-through;
 }
 
@@ -386,7 +386,7 @@
 
 .cta-primary:disabled {
     background-color: #e5e7eb;
-    color: #9ca3af;
+    color: #4b5563;
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
@@ -635,7 +635,7 @@
 .sticky-size-label {
     font-size: 11px;
     font-weight: 400;
-    color: #9ca3af;
+    color: #4b5563;
     letter-spacing: 0.03em;
     text-transform: uppercase;
 }
@@ -704,7 +704,7 @@
     flex: none;
     font-size: 1rem;
     line-height: 1;
-    color: #9ca3af;
+    color: #4b5563;
     transition: color 0.15s ease, transform 0.15s ease;
 }
 
@@ -726,7 +726,7 @@
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #9ca3af;
+    color: #4b5563;
 }
 
 .product-nav__name {
