@@ -1,17 +1,5 @@
 @charset "UTF-8";
 
-.icon {
-	padding: 12px 0px 0px 0px;
-	display: flex;
-	width: 30px;
-	height: 30px;
-	top: 0;
-	display: none;
-	background-color: transparent;
-	z-index: 1;
-	float: left;
-}
-
 .span {
 	background: #009688;
 	height: 100%;
@@ -243,10 +231,6 @@ a.footer-icons:hover {
 	.toggle-checkbox {
 		display: none;
 	}
-
-
-
-	footer {}
 
 
 	.footer-container {

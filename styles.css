@@ -288,6 +288,7 @@ h4 {
         }
 
         .product-image-container {
+            position: relative;   /* ancora o .product-badge, que e absolute */
             aspect-ratio: 1/1;
             overflow: hidden;
             background-color: #f4f5f6;
@@ -344,10 +345,6 @@ h4 {
             padding: 0.25rem 0.6rem;
             border-radius: 4px;
             z-index: 1;
-        }
-
-        .product-image-container {
-            position: relative;
         }
 
         /* Footer Styles */
