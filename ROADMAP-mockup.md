@@ -68,6 +68,28 @@ Branch: `claude/snipcart-tshirt-research-W2bnj`
 - **Fotografias reais dos produtos** — os três produtos partilham as mesmas
   imagens, e dois partilham o mesmo `cardImage`.
 - **Foto do retrato em `about.html`** — a secção "pessoa" tem um placeholder.
+- **~65 MB de originais que ninguém serve** — `Mockup D.png` (26 MB), `14.png`,
+  `6.png`, `5.png`, `12.png`, `55.png`, `13.png`, mais as duas cópias
+  `5 - Copy.png` e `6 - Copy.png`. Nenhuma está referenciada em HTML, CSS ou JS.
+  **Não é um problema de velocidade:** medido no browser, as páginas servem
+  entre 0,13 MB (`store`) e 0,80 MB (`index`) de imagens, o que já está bom.
+  O custo é só o repositório — cada clone arrasta os 65 MB, e o GitHub Pages
+  publica-os na mesma.
+  Decisão: são os originais de trabalho? Se sim, saem do repositório para onde
+  guardas os ficheiros de origem. Se já existem noutro sítio, apagam-se.
+  Comprimi-las não serve de nada enquanto não forem usadas.
+
+### 🧹 Limpeza de CSS (stylelint — três erros antigos)
+- **`css/footer.css:3` — a regra `.icon` está morta.** Declara `display: flex`
+  e cinco linhas abaixo `display: none`; ganha a segunda, por isso o `flex`
+  nunca fez nada. E nenhuma página usa a classe `icon` (só `cart-icon`,
+  `hamburger-icon`, `trust-icon`, `breadcrumb-back-icon`, que são outras).
+  Solução: apagar a regra inteira.
+- **`css/footer.css:249` — `footer {}` vazio.** Solução: apagar a linha.
+- **`styles.css:290` e `:349` — `.product-image-container` escrito duas vezes**
+  dentro do mesmo `@media (max-width: 640px)`. Não dá erro no site, mas quem
+  ler a primeira não adivinha que há uma segunda 59 linhas abaixo.
+  Solução: juntar o `position: relative` da segunda na primeira e apagar a segunda.
 
 ### 🔍 SEO + Legal (obrigatório para lançar)
 - Meta tags + OG tags (partilha no Instagram/WhatsApp)
