@@ -351,9 +351,13 @@
     border-color: var(--fo);
 }
 
-/* ---- CTA button override: premium dark style ---- */
+/* ---- CTA: o unico botao comercial do site ----
+   Verde floresta, nao preto. O preto ja e a cor de "Sobre o estudio" na
+   homepage, por isso comprar e navegar liam-se igual. A forma nao muda:
+   os 10px ficam porque o botao tem 420px de largura e uma pilula a essa
+   largura vira capsula. */
 .cta-primary {
-    background-color: #212427;
+    background-color: var(--verde-floresta);
     color: #fff;
     padding: 0.9rem 1.75rem;
     font-size: 0.9375rem;
@@ -370,8 +374,8 @@
 }
 
 .cta-primary:hover {
-    background-color: #3a3d40;
-    box-shadow: 0 4px 14px rgba(33, 36, 39, 0.22);
+    background-color: #12462A;   /* o floresta escurecido — branco por cima da 10,85:1 */
+    box-shadow: 0 4px 14px rgba(24, 91, 55, 0.26);
     transform: none;
 }
 
