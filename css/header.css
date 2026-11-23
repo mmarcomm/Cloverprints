@@ -33,11 +33,11 @@ header {
 }
 
 .logo {
-    /* 205px, not 160. The new lockup is 6.84:1 against the old
-       wordmark's 5.33:1, so matching the old width would have rendered it
-       22% shorter. This keeps the height the header was built around. */
-    width: 205px;
-    height: auto;
+    /* Sized by height, not width: the lockup's aspect ratio is a property of
+       the artwork, and pinning the height means a future wordmark of a
+       different length still sits on the same line. */
+    height: 30px;
+    width: auto;
     /* 2px down, and the 2px is measured, not taste: the lockup's centre sat
        at 49 while the nav labels' cap band centres at 51 and the cart at 50.
        transform, not margin — a margin would grow .logo-container and
@@ -246,10 +246,8 @@ header {
     }
 
     .logo {
-        /* Same ratio correction as desktop: 180px here holds the height
-           that 140px gave the old wordmark. */
-        width: 180px;
-        height: auto;
+        height: 26px;
+        width: auto;
         display: block;
         /* Lighter here: on the fixed bar the logo, cart and hamburger are
            already centred on the same line, so this is optical only. */
@@ -395,5 +393,5 @@ header {
 
 @media (max-width: 700px) {
     .navbar { padding: 0 1.5rem; }   /* was 16px — 8px narrower than the content */
-    .logo   { width: 167px; height: auto; }
+    .logo   { height: 24px; width: auto; }
 }

@@ -18,6 +18,25 @@
 	/*white*/
 	--si: #fdfdfd;
     /*off-white*/
+
+	/* ---- Cores da marca (identidade verde) ----
+	   Adicionadas, não substituem nada: o cyan acima continua a governar o
+	   site. Estas servem o logótipo e o que vier a assentar nele. */
+	--verde-floresta: #185B37;
+	/*verde principal — 8,11:1 sobre branco, passa AAA para texto grande e AA para corpo*/
+	--verde-rebento: #49DE78;
+	/*verde claro — 1,75:1 sobre branco, por isso NÃO serve para texto em fundo claro;
+	  sobre o #212427 do site dá 8,92:1, e é aí que funciona*/
+	--texto-marca: #1C2A21;
+	/*preto esverdeado do logótipo — 8,56:1 sobre o rebento*/
+}
+
+/* Num ecrã de gama larga o rebento pode ir mais longe do que o sRGB permite:
+   mesma luminosidade e matiz, saturação 26% acima do limite do sRGB. */
+@media (color-gamut: p3) {
+	:root {
+		--verde-rebento: oklch(0.80 0.24 150);
+	}
 }
 
 body {
