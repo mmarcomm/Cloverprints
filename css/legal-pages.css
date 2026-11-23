@@ -427,10 +427,17 @@
 .faq-item__a a {
     font-size: inherit;
     line-height: inherit;
-    color: var(--se);
+    /* Nao e cyan. Estes links sao texto de 15px em peso normal dentro de uma
+       frase — enderecos de email, politicas, ctt.pt — e em cyan davam 2,09:1,
+       quando o minimo e 4,5. Sao o pior caso de leitura do site inteiro.
+       O cyan nao muda de cor nem sai do site: deixa de carregar esta
+       responsabilidade e passa a ser o sinal de hover, que e trabalho que
+       uma cor fraca faz bem. A numeracao das seccoes, os contadores das
+       listas e o sinal do acordeao continuam cyan. */
+    color: #212427;
     text-decoration: none;
-    border-bottom: 1px solid rgba(0, 191, 255, 0.45);
-    transition: border-color 0.15s ease;
+    border-bottom: 1px solid rgba(33, 36, 39, 0.4);
+    transition: border-color 0.15s ease, color 0.15s ease;
 }
 
 @media (hover: hover) {
